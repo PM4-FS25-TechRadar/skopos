@@ -36,8 +36,8 @@ insert into radarvalmap values ('hold', 3);
 
 
 
-
-create view radarjson as 
+-- deprecated 
+create or replace view radarjson as 
 select year, json_build_object(
     'entries', json_agg( 
                     json_build_object(
@@ -53,6 +53,23 @@ from radar
 join radarvalmap valq on (radar.quadrant = valq.val) 
 join radarvalmap valr on (radar.ring = valr.val)
 group by year
+
+
+create or replace view radarentries as 
+select year, json_agg ( 
+                    json_build_object(
+                        'label', label,
+						'quadrant', valq.number, 
+						'ring', valr.number,
+						'moved', moved, 
+                        'active', 'true'
+                    )
+            )
+from radar 
+join radarvalmap valq on (radar.quadrant = valq.val) 
+join radarvalmap valr on (radar.ring = valr.val)
+group by year
+
 
 
 

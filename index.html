@@ -87,91 +87,10 @@
                 { name: "HOLD - 3",  color: "#000000" }
             ],
             print_layout: true,
-            entries: [
-            {
-                label: "MariaDB",
-                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 2,              // 0,1,2,3 (starting from inside)
-                moved: -1,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            }, 
-            {
-                label: "PostgreSQL",
-                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 0,              // 0,1,2,3 (starting from inside)
-                moved: 1,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            }, 
-            {
-                label: "Neo4J",
-                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 1,              // 0,1,2,3 (starting from inside)
-                moved: 0,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            }, 
-            {
-                label: "MS SQL",
-                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 3,              // 0,1,2,3 (starting from inside)
-                moved: -1,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            }, 
-            {
-                label: "DDD",
-                quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 1,              // 0,1,2,3 (starting from inside)
-                moved: 1,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            }, 
-            {
-                label: "TDD",
-                quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 1,              // 0,1,2,3 (starting from inside)
-                moved: 1,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            },
-            {
-                label: "GraphQL",
-                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 0,              // 0,1,2,3 (starting from inside)
-                moved: 0,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            },
-            {
-                label: "REST",
-                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 0,              // 0,1,2,3 (starting from inside)
-                moved: 0,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            },
-            {
-                label: "PHP",
-                quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 3,              // 0,1,2,3 (starting from inside)
-                moved: 0,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            },
-            {
-                label: "Java",
-                quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 0,              // 0,1,2,3 (starting from inside)
-                moved: 0,             // -1, 0, 1 = moved out (triangle pointing down)
-                active: true
-           
-            },
-            {"label" : "GrpaphQL", "quadrant" : 1, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "REST", "quadrant" : 1, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "DDD", "quadrant" : 2, "ring" : 0, "moved" : 1, "active" : "true"}, {"label" : "TDD", "quadrant" : 2, "ring" : 0, "moved" : 1, "active" : "true"}, {"label" : "MariaDB", "quadrant" : 3, "ring" : 0, "moved" : -1, "active" : "true"}, {"label" : "PostgreSQL", "quadrant" : 3, "ring" : 2, "moved" : 1, "active" : "true"}, {"label" : "Neo4J", "quadrant" : 3, "ring" : 2, "moved" : 0, "active" : "true"}, {"label" : "MS SQL", "quadrant" : 3, "ring" : 3, "moved" : -1, "active" : "true"}
-     
-         
-            ]
+            entries: 
+            //from SQL 
+            [{"label" : "MariaDB", "quadrant" : 3, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "REST", "quadrant" : 1, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "Citadelle", "quadrant" : 1, "ring" : 0, "moved" : 1, "active" : "true"}, {"label" : "DDD", "quadrant" : 2, "ring" : 0, "moved" : 1, "active" : "true"}, {"label" : "Scrum", "quadrant" : 2, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "Spring", "quadrant" : 0, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "PHP", "quadrant" : 0, "ring" : 0, "moved" : -1, "active" : "true"}, {"label" : "Java", "quadrant" : 0, "ring" : 0, "moved" : 1, "active" : "true"}, {"label" : "Angular", "quadrant" : 0, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "OpenShift", "quadrant" : 0, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "Strangler", "quadrant" : 1, "ring" : 0, "moved" : 1, "active" : "true"}, {"label" : "GrpaphQL", "quadrant" : 1, "ring" : 0, "moved" : 0, "active" : "true"}, {"label" : "chart.js", "quadrant" : 0, "ring" : 1, "moved" : 1, "active" : "true"}, {"label" : "ReactJS", "quadrant" : 0, "ring" : 1, "moved" : 1, "active" : "true"}, {"label" : "TDD", "quadrant" : 2, "ring" : 1, "moved" : 1, "active" : "true"}, {"label" : "SharedDB", "quadrant" : 1, "ring" : 1, "moved" : 1, "active" : "true"}, {"label" : "PostgreSQL", "quadrant" : 3, "ring" : 2, "moved" : 1, "active" : "true"}, {"label" : "Keycloak", "quadrant" : 0, "ring" : 2, "moved" : 1, "active" : "true"}, {"label" : "Neo4J", "quadrant" : 3, "ring" : 2, "moved" : 0, "active" : "true"}, {"label" : "MongoDB", "quadrant" : 3, "ring" : 3, "moved" : -1, "active" : "true"}]
+            
             });
 
     </script>
