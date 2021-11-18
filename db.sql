@@ -37,7 +37,7 @@ insert into radarvalmap values ('hold', 3);
 
 
 
-
+create view radarjson as 
 select year, json_build_object(
     'entries', json_agg( 
                     json_build_object(
