@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
+import javax.ws.rs.core.MediaType;
+
 @QuarkusTest
-public class GreetingResourceTest {
+public class RadarResourceTest {
 
     @Test
     public void testHelloEndpoint() {
@@ -16,6 +18,15 @@ public class GreetingResourceTest {
           .then()
              .statusCode(200)
              .body(is("Hello from RESTEasy on Sobrado Radar"));
+    }
+
+    @Test
+    public void testDataEndpoint() {
+        given()
+          .when().get("/radar/data/2022")
+          .then()
+             .statusCode(200)
+             .contentType(MediaType.APPLICATION_JSON); 
     }
 
 }

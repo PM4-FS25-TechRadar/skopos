@@ -37,5 +37,7 @@ INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Zend', 'pl
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Laminas', 'platforms', 'adopt', +1, 2022);
 
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Keycloak', 'platforms', 'eval', +1, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Quarkus', 'platforms', 'eval', +1, 2022);
+
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenShift 3', 'platforms', 'hold', -1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenShift 4', 'platforms', 'trial', +1, 2022);
