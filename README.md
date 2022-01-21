@@ -1,4 +1,24 @@
-# radar Project
+# radar: Technology Radar for Sobrado
+
+source for the Sobrado Tech Radar
+
+Uses [Zalando Tech Radar](https://opensource.zalando.com/tech-radar/), inspired by [Thoughtworks](https://www.thoughtworks.com/radar) 
+
+
+source:  
+- https://opensource.zalando.com/tech-radar/radar.js 
+- legacy: https://github.com/zalando/tech-radar/blob/master/docs/radar.js 
+
+
+## Deployment Units
+
+The Radar uses a PostgreSQL Database defined in `src/main/resources/application.properties`.  
+Schemas in `src/main/resources/db/migration` are run by Flyway at startup and validated by Hibernate. 
+
+
+
+
+# Quarkus Documentation
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
