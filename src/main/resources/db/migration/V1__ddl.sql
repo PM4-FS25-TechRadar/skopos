@@ -46,7 +46,7 @@ select year, json_agg (
 						'moved', moved, 
                         'active', 'true'
                     )
-            )
+            )::text jsondata
 from radar 
 join radarvalmap valquadrant on (radar.quadrant = valquadrant.val) 
 join radarvalmap valring on (radar.ring = valring.val)
