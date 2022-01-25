@@ -82,4 +82,6 @@ INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Quarkus', 
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenShift 3', 'platforms', 'hold', -1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Virtual Machines', 'platforms', 'hold', -1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenShift 4', 'platforms', 'trial', +1, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('GKE', 'platforms', 'eval', +1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Jenkins', 'platforms', 'hold', -1, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Selenium', 'platforms', 'hold', -1, 2022);
