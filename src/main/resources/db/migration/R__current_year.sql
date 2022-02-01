@@ -8,6 +8,9 @@ delete from radar where year = 2022;
 
 -- Data and Reporting
 
+
+
+
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('MariaDB', 'data', 'adopt', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Hibernate', 'data', 'adopt', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('PostgreSQL', 'data', 'eval', 1, 2022);
@@ -18,12 +21,12 @@ INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('MongoDB', 
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Redis', 'data', 'hold', -1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('RabbitMQ', 'data', 'hold', -1, 2022);
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Doctrine', 'data', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('chart.js', 'data', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Tableau', 'data', 'trial', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('MySQL Workbench', 'data', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('MongoDB Compass', 'data', 'adopt', 0, 2022);
-
+copy public.radar(label, quadrant, ring, moved, year) from stdin;
+chart.js	data	trial	1	2022
+Tableau	data	trial	0	2022
+MySQL Workbench	data	adopt	0	2022
+MongoDB Compass	data	adopt	0	2022
+\. 
 
 
 -- Methods 
@@ -33,7 +36,6 @@ INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('DDD', 'met
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('TDD', 'methods', 'trial', +1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Cypress', 'methods', 'trial', +1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Scrum', 'methods', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('M&P', 'methods', 'eval', +1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('TestRail', 'methods', 'eval', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('ADR', 'methods', 'adopt', +1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Figma', 'methods', 'adopt', +1, 2022);
