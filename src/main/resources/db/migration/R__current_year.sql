@@ -26,6 +26,7 @@ chart.js	data	trial	1	2022
 Tableau	data	trial	0	2022
 MySQL Workbench	data	adopt	0	2022
 MongoDB Compass	data	adopt	0	2022
+Debezium	data	eval	+1	2022
 \. 
 
 
@@ -67,6 +68,7 @@ INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OAuth', 'p
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('jwt', 'patterns', 'adopt', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('CertBased Auth', 'patterns', 'hold', -1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Strangler', 'patterns', 'trial', +1, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('FeatureFlag', 'patterns', 'trial', +1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Citadelle', 'patterns', 'adopt', +1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Gateway', 'patterns', 'hold', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Microservice', 'patterns', 'hold', -1, 2022);
@@ -78,10 +80,10 @@ INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Java 17', 
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Java 11', 'platforms', 'hold', -1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Spring', 'platforms', 'adopt', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Angular', 'platforms', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('ReactJS', 'platforms', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('PHP', 'platforms', 'adopt', 0, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('VueJS', 'platforms', 'trial', +1, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('PHP', 'platforms', 'hold', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Zend', 'platforms', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Laminas', 'platforms', 'adopt', +1, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Laminas', 'platforms', 'hold', 0, 2022);
 
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Keycloak', 'platforms', 'eval', +1, 2022);
 
