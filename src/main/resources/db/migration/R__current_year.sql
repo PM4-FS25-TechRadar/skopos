@@ -77,6 +77,7 @@ INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Microservi
 -- Platforms 
 
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Java 17', 'platforms', 'trial', +1, 2022);
+INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('JIB', 'platforms', 'adopt', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Java 11', 'platforms', 'hold', -1, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Spring', 'platforms', 'adopt', 0, 2022);
 INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Angular', 'platforms', 'adopt', 0, 2022);
