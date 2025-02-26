@@ -25,6 +25,8 @@ radar-maven-build:
     tags:
     - docker # build uses Quarkus DevServices aka Quarkus Testcontainers
     image: maven:3.8.4-openjdk-17
+    services:
+    - docker:19.03.12-dind  # Docker-in-Docker service for Quarkus DevServices
     script:
     - mvn clean package -Dquarkus.profile=ci 
     artifacts:
