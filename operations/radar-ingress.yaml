@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  name: radar
+  tags: radar
+spec:
+  rules:
+  - host: radar.sobrado.ch
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: radar
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - radar.sobrado.ch
+    secretName: radar.sobrado.ch

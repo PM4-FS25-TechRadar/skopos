@@ -1,0 +1,69 @@
+variables:
+  OPENSHIFT_SERVER: https://api.cloudscale-lpg-2.appuio.cloud:6443
+
+  GIT_SUBMODULE_STRATEGY: recursive
+
+  PROJECT_PREFIX: sobrado
+  DOCKER_REGISTRY: registry.cloudscale-lpg-2.appuio.cloud
+  DOCKER_IMAGE_TAG: ${CI_COMMIT_SHORT_SHA}
+
+  DOCKER_IMAGE_NAME: ${PROJECT_PREFIX}/${CI_PROJECT_NAME}
+  DOCKER_IMAGE: ${DOCKER_REGISTRY}/${PROJECT_PREFIX}-${CI_ENVIRONMENT_NAME}/${CI_PROJECT_NAME}
+
+  DOCKER_IMAGE_MANUAL: utils/radar
+
+stages:
+- build-quarkus-java
+- dockerize-push
+- deploy
+
+
+radar-maven-build:
+    # Build The Quarkus Java Application
+    stage: build-quarkus-java
+    # when: manual
+    image: maven:3.8.4-openjdk-17
+    script:
+    - mvn clean package
+    artifacts:
+      paths:
+        - target/
+    only:
+    - main
+
+
+
+docker-build-push:
+  # Dockerfile: Pack Jar File into Custom Keycloak Docker Image, Optimize and Quarkus Augment Keycloak and push resulting Imaged it to the registry
+  # image: docker:cli
+  stage: dockerize-push
+  tags:
+    - docker
+  before_script:
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
+  script:
+    # Configure PostgreSQL database vendor for Production
+    # Build the Dockerfile
+    # Set ENV later - docker build --build-arg ZurixDB_Dialect=postgres -t ${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:${DOCKER_IMAGE_TAG} -t ${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:latest .
+    - docker build -f src/main/docker/Dockerfile.jvm -t ${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:${DOCKER_IMAGE_TAG} -t ${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:latest .
+    - docker push ${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}
+    - docker push ${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:${DOCKER_IMAGE_TAG}
+  artifacts:
+    paths:
+      - target/
+  only:
+    - main
+  # rules:
+  #   - when: manual
+
+deploy:
+  # Deploy the Quarkus Docker Image to the prod Environment
+  stage: deploy
+  image: docker.io/appuio/oc:v4.5
+  script:
+  - oc login --token=${APPUIO_TOKEN_dev} --server=${OPENSHIFT_SERVER}
+  - oc project sobrado-prod
+  # use zurix image here not keycloak
+  - cd kustomize/overlays/dev && kustomize edit set image keycloak=${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:${DOCKER_IMAGE_TAG} && kustomize build | oc apply -f -
+  rules:
+    - when: manual
