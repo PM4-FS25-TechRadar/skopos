@@ -22,6 +22,8 @@ radar-maven-build:
     # Build The Quarkus Java Application
     stage: build-quarkus-java
     # when: manual
+    tags:
+    - docker # build uses Quarkus DevServices aka Quarkus Testcontainers
     image: maven:3.8.4-openjdk-17
     script:
     - mvn clean package -Dquarkus.profile=ci 
