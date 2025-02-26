@@ -63,7 +63,8 @@ deploy:
   script:
   - oc login --token=${APPUIO_TOKEN_dev} --server=${OPENSHIFT_SERVER}
   - oc project sobrado-prod
-  # use zurix image here not keycloak
-  - cd kustomize/overlays/dev && kustomize edit set image keycloak=${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:${DOCKER_IMAGE_TAG} && kustomize build | oc apply -f -
+  # use radar image here 
+  #- cd kustomize/overlays/dev && kustomize edit set image keycloak=${CI_REGISTRY}/${DOCKER_IMAGE_MANUAL}:${DOCKER_IMAGE_TAG} && kustomize build | oc apply -f -
+  - oc apply -f operations/radar-ingress.yaml
   rules:
     - when: manual

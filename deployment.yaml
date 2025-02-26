@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radar
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radar
+  template:
+    metadata:
+      labels:
+        app: radar
+    spec:
+      containers:
+        - name: radar
+          image: utils/radar:latest
+          ports:
+            - containerPort: 8080
