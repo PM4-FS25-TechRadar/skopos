@@ -16,13 +16,28 @@ The Radar uses a PostgreSQL Database defined in `src/main/resources/application.
 Schemas in `src/main/resources/db/migration` are run by Flyway at startup and validated by Hibernate. 
 
 
-# Manual Deploy to vsnh OpenShift
+# 🚀 Deploy to OpenShift
+
+
+- use .gitlab-ci.yml to deploy to OpenShift
+- configure new DB by hand, deploying Application Properties as ConfigMap and Secrets
+
+
+
+# Next Steps
+
+- Build simple GUI for adding new Technologies per year 
+- User Management using Keycloak Tools Reaml 
+
+
+
+# Legacy Manual Deploy to vsnh OpenShift
 
 Build jar with Java 11 (Java 17 not yet supported by builder image)   
 jar Upload  
 expose PostgreSQL Secrets in `BD` or `B` etc. to Env Variables similar to `application.properties`. 
 
-# Quarkus Documentation
+# 📒 Legacy Quarkus Documentation
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
