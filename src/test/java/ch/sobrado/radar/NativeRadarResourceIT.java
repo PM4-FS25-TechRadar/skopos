@@ -1,8 +1,8 @@
 package ch.sobrado.radar;
 
-import io.quarkus.test.junit.NativeImageTest;
+import io.quarkus.test.junit.QuarkusIntegrationTest;
 
-@NativeImageTest
+@QuarkusIntegrationTest
 public class NativeRadarResourceIT extends RadarResourceTest {
 
     // Execute the same tests but in native mode.

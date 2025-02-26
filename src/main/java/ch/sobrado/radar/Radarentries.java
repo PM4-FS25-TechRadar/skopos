@@ -3,8 +3,8 @@ package ch.sobrado.radar;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
