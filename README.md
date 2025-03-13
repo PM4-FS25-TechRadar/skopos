@@ -12,8 +12,18 @@ source:
 
 ## Running the application in dev mode
 
+Requirements:
+- Java 17 or newer
+- Maven 3.8.1 or newer
+- quarkus command line tool (optional)
+- PostgreSQL 13 or newer
+  - running locally 
+  - or: Docker or Podman running on your machine
+
 You can run your application in dev mode that enables live coding using:
 ```shell script
+quarkus dev
+or... 
 ./mvnw compile quarkus:dev
 ```
 
