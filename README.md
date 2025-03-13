@@ -10,17 +10,34 @@ source:
 - legacy: https://github.com/zalando/tech-radar/blob/master/docs/radar.js 
 
 
+## Running the application in dev mode
+
+You can run your application in dev mode that enables live coding using:
+```shell script
+./mvnw compile quarkus:dev
+```
+
+in the current setup, it requires a PostgreSQL Database to be available as described in `src/main/resources/application.properties`. 
+alternatively, you can use Quarkus DevServices to deploy a PostgreSQL Database in a Docker Container autoamtically; cf Demo-App. 
+
+
 ## Deployment Units
 
 The Radar uses a PostgreSQL Database defined in `src/main/resources/application.properties`.  
 Schemas in `src/main/resources/db/migration` are run by Flyway at startup and validated by Hibernate. 
 
 
-# 🚀 Deploy to OpenShift
+# 🚀 Deploy to private OpenShift with private Gitlab
 
 
 - use .gitlab-ci.yml to deploy to OpenShift
 - configure new DB by hand, deploying Application Properties as ConfigMap and Secrets
+
+# 🚀 Deploy to Kubernetes with Github Actions
+
+- use .github/workflows/main.yml to deploy to Kubernetes
+- tbd 
+
 
 
 
