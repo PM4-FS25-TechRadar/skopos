@@ -78,7 +78,11 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: downcase REPO
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
     - name: SKOPOS Build and push Docker image
       run: |
         docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${{ github.repository }}/skopos:latest .
-        docker push ghcr.io/${{ github.repository.lowercase }}/skopos:latest
+        docker push ghcr.io/${REPO}/skopos:latest
