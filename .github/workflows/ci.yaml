@@ -79,8 +79,8 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: downcase REPO
-        run: |
-          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+      run: |
+        echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
     - name: SKOPOS Build and push Docker image
       run: |
