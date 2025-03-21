@@ -2,7 +2,7 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: radar.sobrado.ch
-  namespace: sobrado-radar
+  namespace: scmy-techradar-testing
   uid: 3fd49072-6563-49fa-9c69-0dfca7ecde88
   resourceVersion: '535159145'
   generation: 1
