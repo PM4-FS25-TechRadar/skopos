@@ -1,12 +1,11 @@
 package ch.sobrado.radar;
 
-import java.io.Serializable;
-
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Table;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "radar_view")
