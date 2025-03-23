@@ -19,7 +19,7 @@ public class RadarResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/data/{year}")
     public String data(@PathParam("year") int year) {
-         Radarentries e = Radarentries.find("year", year).firstResult(); 
+         RadarView e = RadarView.find("year", year).firstResult();
          return e.jsondata; 
     }
 }
