@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +10,11 @@
 
     <title>Sobrado Tech Radar</title>
 
+    <!-- D3 + Zalando Radar -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://opensource.zalando.com/tech-radar/radar.js"></script>
     <!-- for backup, this file is also stored in our resource folder, but not used. -->
-    <script src="app.js"></script>
-
-    <link rel="stylesheet" href="app.css">
 </head>
-
 <body>
     <img src="https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg" />
     <h1>Tech Radar</h1>
@@ -28,7 +24,7 @@
         with inputs from <a href="https://www.thoughtworks.com/radar">ThoughtWorks</a> and <a
                 href="https://tarmac.io/techradar.html">Tarmac</a>. </p>
 
-    <svg id="radar"></svg>
+    <div id="app"></div>
 
     <p>
     <h2>Adopt 0</h2>
@@ -47,7 +43,8 @@
     <h2>Hold 3</h2>
     <p>Proceed with caution. Should not be extended or used for new proects, but can still be used for existing
         projects.</p>
-    </p>
-</body>
 
+    <!-- Vite will inject your compiled JS here -->
+    <script type="module" src="/src/main.js"></script>
+</body>
 </html>
