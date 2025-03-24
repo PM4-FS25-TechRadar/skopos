@@ -7,7 +7,7 @@ metadata:
   tags: radar
 spec:
   rules:
-  - host: radar.sobrado.ch
+  - host: skopos.pm4.init-lab.ch
     http:
       paths:
       - pathType: Prefix
@@ -19,5 +19,5 @@ spec:
               number: 8080
   tls:
   - hosts:
-    - radar.sobrado.ch
-    secretName: radar.sobrado.ch
+    - skopos.pm4.init-lab.ch
+    secretName: skopos.pm4.init-lab.ch
