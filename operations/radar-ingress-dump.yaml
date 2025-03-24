@@ -1,7 +1,7 @@
 kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: radar.sobrado.ch
+  name: skopos.pm4.init-lab.ch
   namespace: scmy-techradar-prod
   uid: 3fd49072-6563-49fa-9c69-0dfca7ecde88
   resourceVersion: '535159145'
@@ -10,7 +10,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-production"},"name":"radar.sobrado.ch","namespace":"sobrado-radar"},"spec":{"rules":[{"host":"radar.sobrado.ch","http":{"paths":[{"backend":{"service":{"name":"radar","port":{"number":8080}}},"path":"/","pathType":"Prefix"}]}}],"tls":[{"hosts":["radar.sobrado.ch"],"secretName":"radar.sobrado.ch"}]}}
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-production"},"name":"skopos.pm4.init-lab.ch","namespace":"scmy-techradar-prod"},"spec":{"rules":[{"host":"skopos.pm4.init-lab.ch","http":{"paths":[{"backend":{"service":{"name":"radar","port":{"number":8080}}},"path":"/","pathType":"Prefix"}]}}],"tls":[{"hosts":["skopos.pm4.init-lab.ch"],"secretName":"skopos.pm4.init-lab.ch"}]}}
   managedFields:
     - manager: kubectl-client-side-apply
       operation: Update
@@ -39,8 +39,8 @@ metadata:
 spec:
   tls:
     - hosts:
-        - radar.sobrado.ch
-      secretName: radar.sobrado.ch
+        - skopos.pm4.init-lab.ch
+      secretName: skopos.pm4.init-lab.ch
   rules:
     - host: radar.sobrado.ch
       http:
