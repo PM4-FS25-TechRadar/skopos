@@ -10,6 +10,11 @@ import jakarta.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 public class RadarEntriesResource {
 
+    @GET
+    public Response getAll() {
+        return Response.ok(RadarEntry.listAll()).build();
+    }
+
     @POST
     @Transactional
     public Response create(RadarEntry radar) {

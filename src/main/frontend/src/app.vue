@@ -3,7 +3,7 @@
     <sidebar :activeView="activeView" @navigate="activeView = $event" @toggle="isSidebarCollapsed = $event" />
     <div class="main-content">
       <radar v-if="activeView === 'radar'" />
-      <div v-else-if="activeView === 'entries'">Radar Entry List (coming soon)</div>
+      <RadarEntriesList v-else-if="activeView === 'entries'" />
       <div v-else-if="activeView === 'about'">About Page (coming soon)</div>
     </div>
   </div>
@@ -12,11 +12,13 @@
 <script>
 import sidebar from './components/sidebar/sidebar.vue'
 import radar from './components/radar/radar.vue'
+import RadarEntriesList from './components/radar-entries/RadarEntriesList.vue'
 
 export default {
   components: {
     sidebar,
-    radar
+    radar,
+    RadarEntriesList
   },
   data() {
     return {
@@ -35,7 +37,7 @@ export default {
 .main-content {
   flex: 1;
   padding: 2rem;
-  margin-left: 220px; /* width of sidebar */
+  margin-left: 220px;
   overflow-y: auto;
   height: 100vh;
 }

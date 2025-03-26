@@ -1,0 +1,63 @@
+<!-- src/components/radar-entries/RadarEntry.vue -->
+<template>
+  <div class="entry-card">
+    <label>
+      <input v-model="localEntry.label" class="entry-label-input"/>
+    </label>
+    <label>
+      Quadrant
+      <select v-model="localEntry.quadrant">
+        <option>data</option>
+        <option>platforms</option>
+        <option>patterns</option>
+        <option>methods</option>
+      </select>
+    </label>
+    <label>
+      Ring
+      <select v-model="localEntry.ring">
+        <option>adopt</option>
+        <option>trial</option>
+        <option>eval</option>
+        <option>hold</option>
+      </select>
+    </label>
+    <label>
+      Moved
+      <input type="number" v-model="localEntry.moved" />
+    </label>
+    <label>
+      Year
+      <input type="number" v-model="localEntry.year" />
+    </label>
+    <button @click="save">Save</button>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['entry'],
+  data() {
+    return {
+      localEntry: { ...this.entry }
+    }
+  },
+  methods: {
+    save() {
+      fetch(`/radar/entries/${this.localEntry.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.localEntry)
+      })
+          .then(res => {
+            if (!res.ok) throw new Error('Update failed')
+            return res.json()
+          })
+          .then(data => this.$emit('update-entry', data))
+          .catch(err => console.error(err))
+    }
+  }
+}
+</script>
+
+<style src="./RadarEntry.css"></style>
