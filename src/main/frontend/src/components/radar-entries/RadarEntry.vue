@@ -42,7 +42,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   props: ['entry'],
@@ -53,30 +52,44 @@ export default {
   },
   methods: {
     saveEntry() {
-      fetch(`/radar/entries/${this.localEntry.id}`, {
-        method: 'PUT',
+      const method = this.localEntry.id ? 'PUT' : 'POST'
+      const url = this.localEntry.id ? `/radar/entries/${this.localEntry.id}` : '/radar/entries'
+
+      fetch(url, {
+        method: method,
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(this.localEntry)
       })
           .then(res => {
-            if (!res.ok) throw new Error('Update failed')
+            if (!res.ok) throw new Error('Save failed')
             return res.json()
           })
-          .then(data => this.$emit('update-entry', data))
+          .then(data => {
+            if (method === 'POST') {
+              this.$emit('add-entry', data)
+            } else {
+              this.$emit('update-entry', data)
+            }
+          })
           .catch(err => console.error(err))
     },
     deleteEntry() {
+      if (!this.localEntry.id) {
+        this.$emit('deleted', this.localEntry.id)
+        return
+      }
+
       fetch(`/radar/entries/${this.localEntry.id}`, {
         method: 'DELETE'
       })
           .then((res) => {
             if (res.ok) {
-              this.$emit('deleted', this.localEntry.id) // optional: dem Parent sagen
+              this.$emit('deleted', this.localEntry.id)
             } else {
-              console.error('Löschen fehlgeschlagen')
+              console.error('Delete failed')
             }
           })
-          .catch((err) => console.error('Löschen fehlgeschlagen:', err))
+          .catch((err) => console.error('Delete failed:', err))
     }
   }
 }
