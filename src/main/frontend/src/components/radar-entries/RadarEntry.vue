@@ -1,9 +1,13 @@
-<!-- src/components/radar-entries/RadarEntry.vue -->
 <template>
   <div class="entry-card">
-    <label>
-      <input v-model="localEntry.label" class="entry-label-input"/>
-    </label>
+    <button class="delete-btn" @click="deleteEntry" title="Eintrag löschen">🗑️</button>
+
+    <input
+        v-model="localEntry.label"
+        class="entry-label-input"
+        type="text"
+    />
+
     <label>
       Quadrant
       <select v-model="localEntry.quadrant">
@@ -13,6 +17,7 @@
         <option>methods</option>
       </select>
     </label>
+
     <label>
       Ring
       <select v-model="localEntry.ring">
@@ -22,31 +27,35 @@
         <option>hold</option>
       </select>
     </label>
+
     <label>
       Moved
-      <input type="number" v-model="localEntry.moved" />
+      <input type="number" v-model="localEntry.moved"/>
     </label>
+
     <label>
       Year
-      <input type="number" v-model="localEntry.year" />
+      <input type="number" v-model="localEntry.year"/>
     </label>
-    <button @click="save">Save</button>
+
+    <button class="save-button" @click="saveEntry">Save</button>
   </div>
 </template>
+
 
 <script>
 export default {
   props: ['entry'],
   data() {
     return {
-      localEntry: { ...this.entry }
+      localEntry: {...this.entry}
     }
   },
   methods: {
-    save() {
+    saveEntry() {
       fetch(`/radar/entries/${this.localEntry.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(this.localEntry)
       })
           .then(res => {
@@ -55,9 +64,22 @@ export default {
           })
           .then(data => this.$emit('update-entry', data))
           .catch(err => console.error(err))
+    },
+    deleteEntry() {
+      fetch(`/radar/entries/${this.localEntry.id}`, {
+        method: 'DELETE'
+      })
+          .then((res) => {
+            if (res.ok) {
+              this.$emit('deleted', this.localEntry.id) // optional: dem Parent sagen
+            } else {
+              console.error('Löschen fehlgeschlagen')
+            }
+          })
+          .catch((err) => console.error('Löschen fehlgeschlagen:', err))
     }
   }
 }
 </script>
 
-<style src="./RadarEntry.css"></style>
+<style src="./radarEntry.css"></style>

@@ -11,6 +11,7 @@
     transition: transform 0.2s ease-in-out;
     box-sizing: border-box;
     margin: 1rem;
+    position: relative;
 }
 
 .entry-card:hover {
@@ -50,7 +51,6 @@
     border-bottom: 2px solid #cd5b1c !important;
 }
 
-
 .entry-card input,
 .entry-card select {
     width: 100%;
@@ -63,7 +63,7 @@
     box-sizing: border-box;
 }
 
-.entry-card button {
+.save-button {
     margin-top: 1rem;
     background-color: #cd5b1c;
     color: white;
@@ -77,4 +77,27 @@
 
 .entry-card button:hover {
     background-color: #a74615;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+    z-index: 2;
+}
+
+.delete-btn:hover {
+    color: #cd5b1c;
 }

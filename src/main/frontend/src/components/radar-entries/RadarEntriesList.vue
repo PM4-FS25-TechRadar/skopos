@@ -1,6 +1,11 @@
 <template>
   <div class="entries-container">
-    <RadarEntry v-for="entry in entries" :key="entry.id" :entry="entry" />
+    <RadarEntry
+        v-for="entry in entries"
+        :key="entry.id"
+        :entry="entry"
+        @deleted="removeEntry"
+    />
   </div>
 </template>
 
@@ -21,14 +26,11 @@ export default {
         .catch(err => console.error('Failed to load radar entries:', err))
   },
   methods: {
-    updateEntry(updated) {
-      const idx = this.entries.findIndex(e => e.id === updated.id)
-      if (idx !== -1) {
-        this.entries[idx] = updated
-      }
+    removeEntry(id) {
+      this.entries = this.entries.filter(e => e.id !== id)
     }
   }
 }
 </script>
 
-<style src="./RadarEntriesList.css"></style>
+<style src="./radarEntriesList.css"></style>
