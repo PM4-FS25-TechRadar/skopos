@@ -1,6 +1,6 @@
 <template>
   <div class="entry-card">
-    <button class="delete-btn" @click="deleteEntry" title="Eintrag löschen">🗑️</button>
+    <button class="delete-btn" title="Eintrag löschen" @click="deleteEntry">🗑️</button>
 
     <input
         v-model="localEntry.label"
@@ -30,12 +30,12 @@
 
     <label>
       Moved
-      <input type="number" v-model="localEntry.moved"/>
+      <input v-model="localEntry.moved" type="number"/>
     </label>
 
     <label>
       Year
-      <input type="number" v-model="localEntry.year"/>
+      <input v-model="localEntry.year" type="number"/>
     </label>
 
     <button class="save-button" @click="saveEntry">Save</button>

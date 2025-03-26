@@ -1,6 +1,7 @@
 <template>
   <div class="radar-wrapper">
-    <img alt="radar-img" class="radar-logo" src="https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg" />
+    <img alt="radar-img" class="radar-logo"
+         src="https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg"/>
     <h1 class="radar-title">Sobrado Tech Radar</h1>
 
     <p class="radar-desc">
@@ -54,16 +55,16 @@ export default {
         },
         title: "Sobrado Radar",
         quadrants: [
-          { name: "Platforms - 0 ↘️" },
-          { name: "Patterns - 1 ↙️" },
-          { name: "Methodologies and Metrics - 2 ↖️" },
-          { name: "Data and Reporting - 3 ↗️" }
+          {name: "Platforms - 0 ↘️"},
+          {name: "Patterns - 1 ↙️"},
+          {name: "Methodologies and Metrics - 2 ↖️"},
+          {name: "Data and Reporting - 3 ↗️"}
         ],
         rings: [
-          { name: "ADOPT - 0", color: "#cd5b1c" },
-          { name: "TRIAL - 1", color: "#5fa1b7" },
-          { name: "EVAL - 2", color: "#693e52" },
-          { name: "HOLD - 3", color: "#000000" }
+          {name: "ADOPT - 0", color: "#cd5b1c"},
+          {name: "TRIAL - 1", color: "#5fa1b7"},
+          {name: "EVAL - 2", color: "#693e52"},
+          {name: "HOLD - 3", color: "#000000"}
         ],
         print_layout: true,
         entries: loadedStuff

@@ -3,7 +3,7 @@
     <button class="toggle-btn" @click="toggleSidebar">
       {{ isCollapsed ? '☰' : '✕' }}
     </button>
-    <div class="sidebar-nav" v-if="!isCollapsed">
+    <div v-if="!isCollapsed" class="sidebar-nav">
       <ul>
         <li :class="{ active: activeView === 'radar' }" @click="$emit('navigate', 'radar')">Radar</li>
         <li :class="{ active: activeView === 'entries' }" @click="$emit('navigate', 'entries')">Entries</li>

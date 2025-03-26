@@ -13,7 +13,7 @@
 import RadarEntry from './RadarEntry.vue'
 
 export default {
-  components: { RadarEntry },
+  components: {RadarEntry},
   data() {
     return {
       entries: []

@@ -1,9 +1,9 @@
 <template>
-  <div class="app-layout" :class="{ collapsed: isSidebarCollapsed }">
-    <Sidebar :activeView="activeView" @navigate="activeView = $event" @toggle="isSidebarCollapsed = $event" />
+  <div :class="{ collapsed: isSidebarCollapsed }" class="app-layout">
+    <Sidebar :activeView="activeView" @navigate="activeView = $event" @toggle="isSidebarCollapsed = $event"/>
     <div class="main-content">
-      <Radar v-if="activeView === 'radar'" />
-      <RadarEntriesList v-else-if="activeView === 'entries'" />
+      <Radar v-if="activeView === 'radar'"/>
+      <RadarEntriesList v-else-if="activeView === 'entries'"/>
       <div v-else-if="activeView === 'about'">About Page (coming soon)</div>
     </div>
   </div>
