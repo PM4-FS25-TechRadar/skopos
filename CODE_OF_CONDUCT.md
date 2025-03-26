@@ -9,7 +9,7 @@
 - **Verantwortung**: Wir übernehmen Verantwortung für unsere Aufgaben und halten uns an Absprachen.
 - **Zusammenarbeit**: Wir arbeiten gemeinsam an Lösungen und unterstützen uns gegenseitig.
 - **Konfliktlösung**: Bei Konflikten suchen wir gemeinsam nach Lösungen und sprechen Probleme offen an.
-- **Spaß**: Wir haben Spaß an der Arbeit und am gemeinsamen Projekt.
+- **Spass**: Wir haben Spass an der Arbeit und am gemeinsamen Projekt.
 - **Lernen**: Wir lernen voneinander und unterstützen uns gegenseitig bei der Weiterentwicklung.
 - **Zielorientierung**: Wir arbeiten gemeinsam an der Erreichung unserer Ziele und unterstützen uns gegenseitig.
 
