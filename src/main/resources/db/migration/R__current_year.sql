@@ -4,24 +4,24 @@
 
 
 
-delete from radar where year = 2022; 
+DELETE FROM radar_entry where year = 2022;
 
 -- Data and Reporting
 
 
 
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('MariaDB', 'data', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Hibernate', 'data', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('PostgreSQL', 'data', 'eval', 1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Grafana', 'data', 'eval', 1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Neo4J', 'data', 'eval', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('JSONB', 'data', 'eval', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('MongoDB', 'data', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Redis', 'data', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('RabbitMQ', 'data', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('MariaDB', 'data', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Hibernate', 'data', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('PostgreSQL', 'data', 'eval', 1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Grafana', 'data', 'eval', 1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Neo4J', 'data', 'eval', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('JSONB', 'data', 'eval', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('MongoDB', 'data', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Redis', 'data', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('RabbitMQ', 'data', 'hold', -1, 2022);
 
-copy public.radar(label, quadrant, ring, moved, year) from stdin;
+copy public.radar_entry(label, quadrant, ring, moved, year) from stdin;
 chart.js	data	trial	1	2022
 Tableau	data	trial	0	2022
 MySQL Workbench	data	adopt	0	2022
@@ -33,67 +33,67 @@ Debezium	data	eval	+1	2022
 -- Methods 
 
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('DDD', 'methods', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('TDD', 'methods', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Cypress', 'methods', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Scrum', 'methods', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('TestRail', 'methods', 'eval', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('ADR', 'methods', 'adopt', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Figma', 'methods', 'adopt', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Confluence', 'methods', 'hold', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Jira', 'methods', 'hold', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('TechRadar', 'methods', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Arc42', 'methods', 'adopt', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('NewRelic', 'methods', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Sentry', 'methods', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Kibana', 'methods', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('ScanMeter', 'methods', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Trunk Based', 'methods', 'eval', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('FeatureToggle', 'methods', 'eval', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('ContDelivery', 'methods', 'eval', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('DDD', 'methods', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('TDD', 'methods', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Cypress', 'methods', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Scrum', 'methods', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('TestRail', 'methods', 'eval', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('ADR', 'methods', 'adopt', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Figma', 'methods', 'adopt', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Confluence', 'methods', 'hold', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Jira', 'methods', 'hold', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('TechRadar', 'methods', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Arc42', 'methods', 'adopt', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('NewRelic', 'methods', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Sentry', 'methods', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Kibana', 'methods', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('ScanMeter', 'methods', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Trunk Based', 'methods', 'eval', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('FeatureToggle', 'methods', 'eval', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('ContDelivery', 'methods', 'eval', 0, 2022);
 
 
 -- Patterns
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('GrpaphQL', 'patterns', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Altair GrpaphQL', 'patterns', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('REST', 'patterns', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenAPI', 'patterns', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('SOAP', 'patterns', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('SharedDB', 'patterns', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('RBAC', 'patterns', 'hold', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('ABAC', 'patterns', 'eval', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenID Connect', 'patterns', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OAuth', 'patterns', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('jwt', 'patterns', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('CertBased Auth', 'patterns', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Strangler', 'patterns', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('FeatureFlag', 'patterns', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Citadelle', 'patterns', 'adopt', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Gateway', 'patterns', 'hold', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Microservice', 'patterns', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('GrpaphQL', 'patterns', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Altair GrpaphQL', 'patterns', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('REST', 'patterns', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('OpenAPI', 'patterns', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('SOAP', 'patterns', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('SharedDB', 'patterns', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('RBAC', 'patterns', 'hold', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('ABAC', 'patterns', 'eval', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('OpenID Connect', 'patterns', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('OAuth', 'patterns', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('jwt', 'patterns', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('CertBased Auth', 'patterns', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Strangler', 'patterns', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('FeatureFlag', 'patterns', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Citadelle', 'patterns', 'adopt', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Gateway', 'patterns', 'hold', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Microservice', 'patterns', 'hold', -1, 2022);
 
 
 -- Platforms 
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Java 17', 'platforms', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('JIB', 'platforms', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Java 11', 'platforms', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Spring', 'platforms', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Angular', 'platforms', 'adopt', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('VueJS', 'platforms', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('PHP', 'platforms', 'hold', 0, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Zend', 'platforms', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Laminas', 'platforms', 'hold', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Java 17', 'platforms', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('JIB', 'platforms', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Java 11', 'platforms', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Spring', 'platforms', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Angular', 'platforms', 'adopt', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('VueJS', 'platforms', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('PHP', 'platforms', 'hold', 0, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Zend', 'platforms', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Laminas', 'platforms', 'hold', 0, 2022);
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Keycloak', 'platforms', 'eval', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Keycloak', 'platforms', 'eval', +1, 2022);
 
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Quarkus', 'platforms', 'eval', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Quarkus', 'platforms', 'eval', +1, 2022);
 
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenShift 3', 'platforms', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Virtual Machines', 'platforms', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('OpenShift 4', 'platforms', 'trial', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('GKE', 'platforms', 'eval', +1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Jenkins', 'platforms', 'hold', -1, 2022);
-INSERT INTO public.radar(label, quadrant, ring, moved, year) VALUES ('Selenium', 'platforms', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('OpenShift 3', 'platforms', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Virtual Machines', 'platforms', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('OpenShift 4', 'platforms', 'trial', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('GKE', 'platforms', 'eval', +1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Jenkins', 'platforms', 'hold', -1, 2022);
+INSERT INTO public.radar_entry(label, quadrant, ring, moved, year) VALUES ('Selenium', 'platforms', 'hold', -1, 2022);
