@@ -1,0 +1,26 @@
+.radar-wrapper {
+    padding: 1rem;
+}
+
+.radar-logo {
+    height: 50px;
+}
+
+.radar-title {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.radar-desc {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.radar-info {
+    margin-top: 2rem;
+}
+
+.radar-info h2 {
+    margin-top: 1.5rem;
+    color: #cd5b1c;
+}

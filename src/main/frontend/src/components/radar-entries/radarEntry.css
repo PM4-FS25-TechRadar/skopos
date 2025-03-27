@@ -1,0 +1,103 @@
+.entry-card {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: border-box;
+    margin: 1rem;
+    position: relative;
+}
+
+.entry-card:hover {
+    transform: translateY(-4px);
+}
+
+.entry-card label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 0.8rem;
+    margin-bottom: 0.2rem;
+    color: #333;
+}
+
+.entry-label-input {
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: transparent !important;
+    color: #222;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 0.2rem 0;
+    text-align: center;
+
+    border: none !important;
+    border-bottom: 2px solid #ccc !important;
+
+    box-shadow: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+
+    transition: border-color 0.2s ease-in-out;
+}
+
+.entry-label-input:focus {
+    border-bottom: 2px solid #cd5b1c !important;
+}
+
+.entry-card input,
+.entry-card select {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.save-button {
+    margin-top: 1rem;
+    background-color: #cd5b1c;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.entry-card button:hover {
+    background-color: #a74615;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+    z-index: 2;
+}
+
+.delete-btn:hover {
+    color: #cd5b1c;
+}
