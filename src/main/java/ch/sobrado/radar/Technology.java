@@ -14,7 +14,7 @@ public class Technology extends PanacheEntity {
 
     public String description;
 
-    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonManagedReference
     public List<Version> versions;
 }
