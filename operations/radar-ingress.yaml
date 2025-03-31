@@ -14,7 +14,7 @@ spec:
         path: /
         backend:
           service:
-            name: radar
+            name: radar-service
             port:
               number: 8080
   tls:

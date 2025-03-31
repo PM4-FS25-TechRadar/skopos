@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-configmap
+data:
+  radar.datasource.username: radar
+  radar.datasource.jdbc.url: jdbc:postgresql://postgresql-service:5432/pm4?ApplicationName=radar
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: database-secret
+type: Opaque
+data:
+  quarkus.datasource.password: YWlzdXJmZ2gzNDk4N3Ro
