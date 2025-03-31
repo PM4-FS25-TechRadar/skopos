@@ -28,7 +28,7 @@ spec:
             configMapKeyRef:
               name: database-configmap
               key: radar.datasource.jdbc.url
-        - name: SKOPUS_DATASOURCE_PASSWORD
+        - name: SKOPOS_DATASOURCE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: database-secret
