@@ -33,11 +33,12 @@
           Version Description
           <textarea v-model="version.description" placeholder="Version Description"></textarea>
         </label>
-        <button @click="removeVersion(index)">Remove Version</button>
+        <button @click="saveVersion(version, index)">Save Version</button>
+        <button @click="removeVersion(version, index)">Remove Version</button>
       </div>
       <button @click="addVersion">Add Version</button>
     </div>
-    <button class="save-button" @click="saveTechnology">Save</button>
+    <button class="save-button" @click="saveTechnology">Save Technology</button>
   </div>
 </template>
 
@@ -62,7 +63,10 @@ export default {
       fetch(url, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.localTechnology)
+        body: JSON.stringify({
+          name: this.localTechnology.name,
+          description: this.localTechnology.description
+        })
       })
           .then((res) => {
             if (!res.ok) {
@@ -73,6 +77,7 @@ export default {
             return res.json();
           })
           .then((technology) => {
+            this.localTechnology.id = technology.id;
             if (method === 'POST') {
               this.$emit('add-technology', technology);
             } else {
@@ -84,6 +89,7 @@ export default {
             alert(`Fehler beim Speichern: ${err.message}`);
           });
     },
+
     deleteTechnology() {
       if (!this.localTechnology.id) {
         this.$emit('deleted', this.localTechnology.id);
@@ -106,11 +112,67 @@ export default {
             alert('Fehler beim Löschen');
           });
     },
+
     addVersion() {
-      this.localTechnology.versions.push({ name: '', description: '' });
+      this.localTechnology.versions.push({name: '', description: ''});
     },
-    removeVersion(index) {
-      this.localTechnology.versions.splice(index, 1);
+
+    saveVersion(version, index) {
+      if (!this.localTechnology.id) {
+        alert('Bitte speichern Sie zuerst die Technologie.');
+        return;
+      }
+
+      const method = version.id ? 'PUT' : 'POST';
+      const url = version.id
+          ? `/technologies/${this.localTechnology.id}/versions/${version.id}`
+          : `/technologies/${this.localTechnology.id}/versions`;
+
+      fetch(url, {
+        method: method,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          name: version.name,
+          description: version.description
+        })
+      })
+          .then((res) => {
+            if (!res.ok) {
+              return res.text().then((text) => {
+                throw new Error(text || 'Version save failed');
+              });
+            }
+            return res.json();
+          })
+          .then((savedVersion) => {
+            this.$set(this.localTechnology.versions, index, savedVersion);
+          })
+          .catch((err) => {
+            console.error('Version save failed:', err);
+            alert(`Fehler beim Speichern der Version: ${err.message}`);
+          });
+    },
+
+    removeVersion(version, index) {
+      if (version.id) {
+        fetch(`/technologies/${this.localTechnology.id}/versions/${version.id}`, {
+          method: 'DELETE'
+        })
+            .then((res) => {
+              if (res.ok) {
+                this.localTechnology.versions.splice(index, 1);
+              } else {
+                console.error('Version delete failed');
+                alert('Löschen der Version fehlgeschlagen');
+              }
+            })
+            .catch((err) => {
+              console.error('Version delete failed:', err);
+              alert('Fehler beim Löschen der Version');
+            });
+      } else {
+        this.localTechnology.versions.splice(index, 1);
+      }
     }
   }
 };
