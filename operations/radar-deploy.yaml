@@ -32,7 +32,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: database-secret
-              key: skopus.datasource.password
+              key: radar.datasource.password
         - name: SKOPOS_HIBERNATE_ORM_DATABASE_GENERATION
           value: update
         - name: SKOPOS_HIBERNATE_ORM_SQL_LOAD_SCRIPT

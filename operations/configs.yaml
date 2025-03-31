@@ -12,4 +12,4 @@ metadata:
   name: database-secret
 type: Opaque
 data:
-  quarkus.datasource.password: YWlzdXJmZ2gzNDk4N3Ro
+  radar.datasource.password: YWlzdXJmZ2gzNDk4N3Ro
