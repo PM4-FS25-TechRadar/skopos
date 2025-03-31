@@ -114,7 +114,7 @@ export default {
     },
 
     addVersion() {
-      this.localTechnology.versions.push({name: '', description: ''});
+      this.localTechnology.versions.push({ name: '', description: '' });
     },
 
     saveVersion(version, index) {
@@ -130,7 +130,7 @@ export default {
 
       fetch(url, {
         method: method,
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: version.name,
           description: version.description
@@ -145,7 +145,7 @@ export default {
             return res.json();
           })
           .then((savedVersion) => {
-            this.$set(this.localTechnology.versions, index, savedVersion);
+            this.localTechnology.versions[index] = savedVersion;
           })
           .catch((err) => {
             console.error('Version save failed:', err);
