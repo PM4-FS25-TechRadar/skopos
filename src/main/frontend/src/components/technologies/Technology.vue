@@ -1,6 +1,13 @@
 <template>
   <div class="technology-card">
-    <button class="delete-btn" title="Delete Technology" @click="deleteTechnology">🗑️</button>
+    <button
+        class="delete-btn"
+        title="Delete Technology"
+        @click="deleteTechnology"
+        aria-label="Delete Technology"
+    >
+      🗑️
+    </button>
     <input
         v-model="localTechnology.name"
         class="technology-name-input"
@@ -13,9 +20,19 @@
     </label>
     <div class="versions-section">
       <h4>Versions</h4>
-      <div v-for="(version, index) in localTechnology.versions" :key="version.id || 'new-' + index">
-        <input v-model="version.name" type="text" placeholder="Version Name" />
-        <textarea v-model="version.description" placeholder="Version Description"></textarea>
+      <div
+          v-for="(version, index) in localTechnology.versions"
+          :key="version.id || 'new-' + index"
+          class="version-item"
+      >
+        <label>
+          Version Name
+          <input v-model="version.name" type="text" placeholder="Version Name" />
+        </label>
+        <label>
+          Version Description
+          <textarea v-model="version.description" placeholder="Version Description"></textarea>
+        </label>
         <button @click="removeVersion(index)">Remove Version</button>
       </div>
       <button @click="addVersion">Add Version</button>
