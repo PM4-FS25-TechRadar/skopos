@@ -1,7 +1,13 @@
 <template>
   <div class="technologies-container">
-    <button class="add-new-technology-btn" @click="createNewTechnology">+</button>
-    <div v-if="loading">Loading...</div>
+    <button
+        class="add-new-technology-btn"
+        @click="createNewTechnology"
+        aria-label="Add new technology"
+    >
+      +
+    </button>
+    <div v-if="loading" class="loading">Loading...</div>
     <div v-else class="technologies-list">
       <Technology
           v-for="technology in technologies"
