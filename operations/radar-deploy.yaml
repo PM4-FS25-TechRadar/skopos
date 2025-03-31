@@ -22,7 +22,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: database-configmap
-              key: skopos.datasource.username
+              key: radar.datasource.username
         - name: SKOPOS_DATASOURCE_JDBC_URL
           valueFrom:
             configMapKeyRef:
