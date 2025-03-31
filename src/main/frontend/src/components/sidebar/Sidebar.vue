@@ -6,6 +6,7 @@
     <div v-if="!isCollapsed" class="sidebar-nav">
       <ul>
         <li :class="{ active: activeView === 'radar' }" @click="$emit('navigate', 'radar')">Radar</li>
+        <li :class="{ active: activeView === 'technologies' }" @click="$emit('navigate', 'technologies')">Technologies</li>
         <li :class="{ active: activeView === 'entries' }" @click="$emit('navigate', 'entries')">Entries</li>
         <li :class="{ active: activeView === 'about' }" @click="$emit('navigate', 'about')">About</li>
       </ul>
