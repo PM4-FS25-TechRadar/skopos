@@ -2,6 +2,10 @@
   <div :class="{ collapsed: isSidebarCollapsed }" class="app-layout">
     <Sidebar :activeView="activeView" @navigate="activeView = $event" @toggle="isSidebarCollapsed = $event"/>
     <div class="main-content">
+      <div>
+        <div>👤 {{ username }}</div>
+        <button @click="logout">Logout</button>
+      </div>
       <Radar v-if="activeView === 'radar'"/>
       <RadarEntriesList v-else-if="activeView === 'entries'"/>
       <div v-else-if="activeView === 'about'">About Page (coming soon)</div>
@@ -10,20 +14,33 @@
 </template>
 
 <script>
+import { inject } from 'vue'
 import Sidebar from './components/sidebar/Sidebar.vue'
 import Radar from './components/radar/Radar.vue'
 import RadarEntriesList from './components/radar-entries/RadarEntriesList.vue'
 
 export default {
+  name: 'App',
   components: {
     Sidebar,
     Radar,
     RadarEntriesList
   },
+  inject: ['keycloak'],
   data() {
     return {
       activeView: 'radar',
       isSidebarCollapsed: false
+    }
+  },
+  computed: {
+    username() {
+      return this.keycloak?.tokenParsed?.preferred_username || 'Unknown'
+    }
+  },
+  methods: {
+    logout() {
+      this.keycloak.logout({ redirectUri: window.location.origin })
     }
   }
 }
