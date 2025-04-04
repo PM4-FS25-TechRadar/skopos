@@ -1,0 +1,196 @@
+.technologies-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    padding: 2rem 0;
+}
+
+.technologies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.add-new-technology-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #cd5b1c;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.add-new-technology-btn:hover {
+    background-color: #a74615;
+    transform: scale(1.05);
+}
+
+.add-new-technology-btn:active {
+    transform: scale(0.95);
+}
+
+.add-new-technology-btn:focus {
+    outline: 2px solid #cd5b1c;
+    outline-offset: 2px;
+}
+
+.technology-card {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.technology-card:hover {
+    transform: translateY(-4px);
+}
+
+.technology-card label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0.8rem 0 0.2rem;
+    color: #333;
+}
+
+.technology-name-input {
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: transparent;
+    color: #222;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 0.2rem 0;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.technology-name-input:focus {
+    border-bottom: 2px solid #cd5b1c;
+}
+
+.technology-card input,
+.technology-card select,
+.technology-card textarea {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.technology-card textarea {
+    resize: vertical;
+}
+
+.technology-card input:focus,
+.technology-card textarea:focus,
+.technology-card button:focus {
+    border-color: #cd5b1c;
+    outline: 2px solid #cd5b1c;
+    outline-offset: 2px;
+}
+
+.technology-card button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.save-button {
+    margin-top: 1rem;
+    background-color: #cd5b1c;
+    color: white;
+    width: 100%;
+}
+
+.save-button:hover,
+.technology-card button:hover {
+    background-color: #a74615;
+}
+
+.versions-section {
+    margin-top: 1.5rem;
+}
+
+.versions-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 0.8rem;
+}
+
+.versions-section div {
+    margin-bottom: 1rem;
+}
+
+.versions-section button {
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.versions-section button:hover {
+    background-color: #d9d9d9;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+    z-index: 2;
+}
+
+.delete-btn:hover {
+    color: #cd5b1c;
+}

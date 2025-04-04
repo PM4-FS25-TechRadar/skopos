@@ -4,6 +4,7 @@
     <div class="main-content">
       <Radar v-if="activeView === 'radar'"/>
       <RadarEntriesList v-else-if="activeView === 'entries'"/>
+      <TechnologyList v-else-if="activeView === 'technologies'"/>
       <div v-else-if="activeView === 'about'">About Page (coming soon)</div>
     </div>
   </div>
@@ -13,12 +14,14 @@
 import Sidebar from './components/sidebar/Sidebar.vue'
 import Radar from './components/radar/Radar.vue'
 import RadarEntriesList from './components/radar-entries/RadarEntriesList.vue'
+import TechnologyList from './components/technologies/TechnologyList.vue'
 
 export default {
   components: {
     Sidebar,
     Radar,
-    RadarEntriesList
+    RadarEntriesList,
+    TechnologyList
   },
   data() {
     return {
