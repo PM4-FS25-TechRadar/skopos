@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.Response;
 @Path("/radars")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RadarsResource {
+public class RadarResource {
 
     @GET
     public List<Radar> getAll() {
@@ -31,6 +31,13 @@ public class RadarsResource {
     @POST
     @Transactional
     public Response create(Radar radar) {
+        RadarGroup group = RadarGroup.findById(radar.radarGroup.id);
+        if (group == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Radar group with id " + radar.radarGroup.id + " not found")
+            .build();
+        }
+        radar.radarGroup = group;
         radar.persist();
         return Response.status(Response.Status.CREATED)
                 .entity(Collections.singletonMap("id", radar.id))
