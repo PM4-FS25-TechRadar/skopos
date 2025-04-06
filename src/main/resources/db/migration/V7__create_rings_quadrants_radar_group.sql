@@ -1,14 +1,14 @@
-CREATE SEQUENCE IF NOT EXISTS quadrants_seq START WITH 1 INCREMENT BY 50;
+CREATE SEQUENCE quadrants_seq START WITH 1 INCREMENT BY 50;
 
-CREATE SEQUENCE IF NOT EXISTS radar_group_seq START WITH 1 INCREMENT BY 50;
+CREATE SEQUENCE radar_group_seq START WITH 1 INCREMENT BY 50;
 
-CREATE SEQUENCE IF NOT EXISTS radar_seq START WITH 1 INCREMENT BY 50;
+CREATE SEQUENCE radar_seq START WITH 1 INCREMENT BY 50;
 
-CREATE SEQUENCE IF NOT EXISTS rings_seq START WITH 1 INCREMENT BY 50;
+CREATE SEQUENCE rings_seq START WITH 1 INCREMENT BY 50;
 
 CREATE TABLE quadrants
 (
-    id       BIGINT       NOT NULL,
+    id       BIGINT DEFAULT nextval('quadrants_seq'),
     name     VARCHAR(255) NOT NULL,
     radar_id BIGINT       NOT NULL,
     CONSTRAINT pk_quadrants PRIMARY KEY (id)
@@ -16,7 +16,7 @@ CREATE TABLE quadrants
 
 CREATE TABLE radar
 (
-    id       BIGINT       NOT NULL,
+    id       BIGINT DEFAULT nextval('radar_seq'),
     name     VARCHAR(255) NOT NULL,
     group_id BIGINT,
     CONSTRAINT pk_radar PRIMARY KEY (id)
@@ -24,14 +24,14 @@ CREATE TABLE radar
 
 CREATE TABLE radar_group
 (
-    id   BIGINT       NOT NULL,
+    id       BIGINT DEFAULT nextval('radar_group_seq'),
     name VARCHAR(255) NOT NULL,
     CONSTRAINT pk_radar_group PRIMARY KEY (id)
 );
 
 CREATE TABLE rings
 (
-    id       BIGINT       NOT NULL,
+    id       BIGINT DEFAULT nextval('rings_seq'),
     name     VARCHAR(255) NOT NULL,
     radar_id BIGINT       NOT NULL,
     CONSTRAINT pk_rings PRIMARY KEY (id)
