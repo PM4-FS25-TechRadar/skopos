@@ -3,6 +3,7 @@ package ch.sobrado.radar;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.ws.rs.core.MediaType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -13,14 +14,15 @@ import static ch.sobrado.radar.TestHelper.*;
 class RingResourceTest {
 
     @Test
-    @TestTransaction
     void testCreateRing() {
-        int radarId = createTestRadar("Test Radar");
+        RadarGroup testGroup = createTestGroup("Test Group");
+        Radar radar = createTestRadar("Radar to update", testGroup);
+
         given()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body("{\"name\": \"Test Ring\" }")
+                .body("{\"name\": \"Test Ring\", \"position\": \"ONE\" }")
                 .when()
-                .post("radars/" + radarId + "/rings")
+                .post("radars/" + radar.id + "/rings")
                 .then()
                 .statusCode(201)
                 .body("id", notNullValue());
@@ -28,25 +30,29 @@ class RingResourceTest {
 
     @Test
     void testUpdateRing() {
-        int radarId = createTestRadar("Test Radar");
-        int ringId = createTestRing("Test Ring", radarId);
+        RadarGroup testGroup = createTestGroup("Test Group");
+        Radar radar = createTestRadar("Radar to update", testGroup);
+
+        Ring ring = createTestRing("Test Ring", radar, Position.ONE);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body("{\"name\":\"Updated Ring\"}")
                 .when()
-                .put("radars/" + radarId + "/rings/" + ringId)
+                .put("radars/" + radar.id + "/rings/" + ring.id)
                 .then()
                 .statusCode(200);
     }
 
     @Test
     void testDeleteRing() {
-        int radarId = createTestRadar("Test Radar");
-        int ringId = createTestRing("Test Ring", radarId);
+        RadarGroup testGroup = createTestGroup("Test Group");
+        Radar radar = createTestRadar("Radar to update", testGroup);
+
+        Ring ring = createTestRing("Test Ring", radar, Position.ONE);
 
         given()
-                .when().delete("radars/" + radarId + "/rings/" + ringId)
+                .when().delete("radars/" + radar.id + "/rings/" + ring.id)
                 .then()
                 .statusCode(204);
 
