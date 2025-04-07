@@ -1,10 +1,7 @@
 package ch.sobrado.radar;
 
-import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.MediaType;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -28,7 +25,7 @@ class RadarsResourceTest {
 
         // Test GET /radars returns a non-empty list and includes our radar.
         given()
-                .when().get("/radars")
+                .when().get("/radar")
                 .then().statusCode(200)
                 .body("$", not(empty()))
                 .body("find { it.id == " + radar.id + " }.name", equalTo("Radar for getAll"));
@@ -40,7 +37,7 @@ class RadarsResourceTest {
         Radar radar = createTestRadar("Radar getById", testGroup);
 
         given()
-                .when().get("/radars/{id}", radar.id)
+                .when().get("/radar/{id}", radar.id)
                 .then().statusCode(200)
                 .body("id", equalTo(radar.id.intValue()))
                 .body("name", equalTo("Radar getById"));
@@ -53,7 +50,7 @@ class RadarsResourceTest {
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body("{\"name\":\"Create Radar\", \"radarGroup\": {\"id\":" + testGroup.id + "}}")
-                .when().post("/radars")
+                .when().post("/radar")
                 .then().statusCode(201)
                 .body("id", notNullValue());
     }
@@ -66,13 +63,13 @@ class RadarsResourceTest {
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body("{\"name\":\"Updated Radar\"}")
-                .when().put("/radars/{id}", radar.id)
+                .when().put("/radar/{id}", radar.id)
                 .then().statusCode(200)
                 .body("id", equalTo(radar.id.intValue()))
                 .body("name", equalTo("Updated Radar"));
 
         given()
-                .when().get("/radars/{id}", radar.id)
+                .when().get("/radar/{id}", radar.id)
                 .then().statusCode(200)
                 .body("name", equalTo("Updated Radar"));
     }
@@ -83,7 +80,7 @@ class RadarsResourceTest {
         Radar radar = createTestRadar("Radar to delete", testGroup);
 
         given()
-                .when().delete("/radars/{id}", radar.id)
+                .when().delete("/radar/{id}", radar.id)
                 .then().statusCode(204);
     }
 }

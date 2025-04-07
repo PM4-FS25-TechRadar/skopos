@@ -8,7 +8,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/radars")
+@Path("/radar")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RadarResource {
@@ -26,6 +26,14 @@ public class RadarResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         return Response.ok(radar).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/data/{year}")
+    public String data(@PathParam("year") int year) {
+        RadarView e = RadarView.find("year", year).firstResult();
+        return e.jsondata;
     }
 
     @POST
@@ -73,4 +81,5 @@ public class RadarResource {
         radar.delete();
         return Response.noContent().build();
     }
+
 }
