@@ -18,24 +18,24 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: SKOPOS_DATASOURCE_USERNAME
+        - name: QUARKUS_DATASOURCE_USERNAME
           valueFrom:
             configMapKeyRef:
               name: database-configmap
               key: radar.datasource.username
-        - name: SKOPOS_DATASOURCE_JDBC_URL
+        - name: QUARKUS_DATASOURCE_JDBC_URL
           valueFrom:
             configMapKeyRef:
               name: database-configmap
               key: radar.datasource.jdbc.url
-        - name: SKOPOS_DATASOURCE_PASSWORD
+        - name: QUARKUS_DATASOURCE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: database-secret
               key: radar.datasource.password
-        - name: SKOPOS_HIBERNATE_ORM_DATABASE_GENERATION
+        - name: QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION
           value: update
-        - name: SKOPOS_HIBERNATE_ORM_SQL_LOAD_SCRIPT
+        - name: QUARKUS_HIBERNATE_ORM_SQL_LOAD_SCRIPT
           value: import.sql
 
 ---
