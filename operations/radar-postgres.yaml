@@ -40,7 +40,7 @@ spec:
               name: database-secret
               key: radar.datasource.password
         - name: POSTGRES_DB
-          value: radar
+          value: sobradar
         - name: PGDATA
           value: /var/lib/postgresql/data/pgdata
         ports:
