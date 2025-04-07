@@ -1,21 +1,21 @@
 ALTER TABLE quadrants
-    ADD position VARCHAR(255);
+    ADD position INT;
 
-UPDATE quadrants SET position = 'ONE' WHERE name IN ('data');
-UPDATE quadrants SET position = 'TWO' WHERE name IN ('methods');
-UPDATE quadrants SET position = 'THREE' WHERE name IN ('patterns');
-UPDATE quadrants SET position = 'FOUR' WHERE name IN ('platforms');
+UPDATE quadrants SET position = '0' WHERE name IN ('data');
+UPDATE quadrants SET position = '1' WHERE name IN ('methods');
+UPDATE quadrants SET position = '2' WHERE name IN ('patterns');
+UPDATE quadrants SET position = '3' WHERE name IN ('platforms');
 
 ALTER TABLE quadrants
     ALTER COLUMN position SET NOT NULL;
 
 ALTER TABLE rings
-    ADD position VARCHAR(255);
+    ADD position INT;
 
-UPDATE rings SET position = 'ONE' WHERE name IN ('adopt');
-UPDATE rings SET position = 'TWO' WHERE name IN ('trial'); 
-UPDATE rings SET position = 'THREE' WHERE name IN ('assess');
-UPDATE rings SET position = 'FOUR' WHERE name IN ('hold');
+UPDATE rings SET position = '0' WHERE name IN ('adopt');
+UPDATE rings SET position = '1' WHERE name IN ('trial');
+UPDATE rings SET position = '2' WHERE name IN ('assess');
+UPDATE rings SET position = '3' WHERE name IN ('hold');
 
 ALTER TABLE rings
     ALTER COLUMN position SET NOT NULL;
@@ -62,3 +62,19 @@ ALTER TABLE radar_entry
 
 ALTER TABLE radar_entry
     ALTER COLUMN year SET NOT NULL;
+
+CREATE OR REPLACE VIEW radar_view AS
+SELECT year,
+    json_agg(
+    json_build_object(
+    'label', label,
+    'quadrant', quadrants.position,
+    'ring', rings.position,
+    'moved', moved,
+    'active', 'true'
+    )
+    )::text AS jsondata
+FROM radar_entry
+    JOIN quadrants ON radar_entry.quadrant_id = quadrants.id
+    JOIN rings ON radar_entry.ring_id = rings.id
+GROUP BY year;

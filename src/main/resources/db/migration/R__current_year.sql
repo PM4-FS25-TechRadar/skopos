@@ -14,16 +14,16 @@ INSERT INTO public.radar_group(id, name) VALUES (1,'Default Group');
 INSERT INTO public.radar (id, name, group_id) VALUES (1, 'Default Radar', 1);
 
 -- Default Quadrants
-INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (1, 'data', 1, 'ONE');
-INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (2, 'methods', 1, 'TWO');
-INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (3, 'patterns', 1, 'THREE');
-INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (4, 'platforms', 1, 'FOUR');
+INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (1, 'data', 1, '0');
+INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (2, 'methods', 1, '1');
+INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (3, 'patterns', 1, '2');
+INSERT INTO public.quadrants (id, name, radar_id, position) VALUES (4, 'platforms', 1, '3');
 
 -- Default Rings
-INSERT INTO public.rings (id, name, radar_id, position) VALUES (1, 'adopt', 1, 'ONE');
-INSERT INTO public.rings (id, name, radar_id, position) VALUES (2, 'trial', 1, 'TWO');
-INSERT INTO public.rings (id, name, radar_id, position) VALUES (3, 'assess', 1, 'THREE');
-INSERT INTO public.rings (id, name, radar_id, position) VALUES (4, 'hold', 1, 'FOUR');
+INSERT INTO public.rings (id, name, radar_id, position) VALUES (1, 'adopt', 1, '0');
+INSERT INTO public.rings (id, name, radar_id, position) VALUES (2, 'trial', 1, '1');
+INSERT INTO public.rings (id, name, radar_id, position) VALUES (3, 'assess', 1, '2');
+INSERT INTO public.rings (id, name, radar_id, position) VALUES (4, 'hold', 1, '3');
 
 -- Data
 INSERT INTO public.radar_entry(label, quadrant_id, ring_id, moved, year, radar_id) VALUES ('MariaDB', 1, 1, 0, 2022, 1);
