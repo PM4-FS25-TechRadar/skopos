@@ -17,7 +17,7 @@ public class Ring extends PanacheEntity {
     public String name;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     public Position position;
 
     @ManyToOne
