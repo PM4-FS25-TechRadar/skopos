@@ -4,7 +4,7 @@ metadata:
   name: database-configmap
 data:
   radar.datasource.username: radar
-  radar.datasource.jdbc.url: jdbc:postgresql://postgresql-service:5432/sobradar?ApplicationName=radar
+  radar.datasource.jdbc.url: jdbc:postgresql://postgres-service:5432/sobradar?ApplicationName=radar
 ---
 apiVersion: v1
 kind: Secret
