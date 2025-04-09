@@ -4,7 +4,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
   name: radar
-  tags: radar
 spec:
   rules:
   - host: skopos.pm4.init-lab.ch
