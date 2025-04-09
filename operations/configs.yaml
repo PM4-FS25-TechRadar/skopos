@@ -5,6 +5,8 @@ metadata:
 data:
   radar.datasource.username: radar
   radar.datasource.jdbc.url: jdbc:postgresql://postgres-service:5432/radar?ApplicationName=radar
+  kc.datasource.username: keycloak
+  kc.datasource.jdbc.url: jdbc:postgresql://postgres-kc-service:5432/keycloak?ApplicationName=keycloak
 ---
 apiVersion: v1
 kind: Secret
@@ -13,3 +15,4 @@ metadata:
 type: Opaque
 data:
   radar.datasource.password: YWlzdXJmZ2gzNDk4N3Ro
+  kc.datasource.password: 7H8I9J0K1L2M3N4O5P6Q

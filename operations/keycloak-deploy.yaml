@@ -1,0 +1,27 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: radar-kc
+spec:
+  instances: 1
+  db:
+    vendor: postgres
+    host: postgres-db
+    usernameSecret:
+      name: keycloak-db-secret
+      valueFrom:
+            configMapKeyRef:
+              name: database-configmap
+              key: kc.datasource.username
+    passwordSecret:
+      name: keycloak-db-secret
+      valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: kc.datasource.password
+  http:
+    tlsSecret: tls-secret
+  hostname:
+    hostname: keycloak.skopos.pm4.init-lab.ch
+  proxy:
+    headers: xforwarded

@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-kc-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: cinder-csi  # Stellen Sie sicher, dass dies zu Ihrer StorageClass passt
+
+---
+apiVersion: apps/v1
+kind: Deployment # the PostgreSQL deployment
+metadata:
+  name: postgresql-kc-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql-kc
+  template:
+    metadata:
+      labels:
+        app: postgresql-kc
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:17.4
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: database-configmap
+              key: kc.datasource.username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: kc.datasource.password
+        - name: POSTGRES_DB
+          value: keycloak
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data/
+          name: postgresql-storage
+      volumes:
+      - name: postgresql-storage
+        persistentVolumeClaim:
+          claimName: postgresql-kc-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-kc-service
+spec:
+  type: ClusterIP
+  selector:
+    app: postgresql-kc
+  ports:
+  - port: 5432
+    targetPort: 5432
