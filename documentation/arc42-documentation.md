@@ -12,7 +12,42 @@ contributors. Siehe <https://arc42.org>.
 
 # Einführung und Ziele
 
-## Aufgabenstellung
+## Ausgangslage & Idee
+
+In der heutigen schnelllebigen Technologiewelt ist es entscheidend, den Überblick über
+neue Technologien, Trends und interne Technologieentscheidungen zu behalten.
+Unternehmen wie Zalando nutzen Techradare, um ihre Technologie-Stacks transparent zu
+dokumentieren und Entwicklungsentscheidungen strategisch zu lenken. Das Ziel ist es, ein
+Techradar zu entwickeln, welches die bestehenden Technologien kategorisiert, neue Ideen
+erfasst und das Know-how der Beteiligten in den einzelnen Technologien festhält. Dies
+ermöglicht eine nachhaltige Wissenssicherung und einen systematischen
+Innovationsprozess.
+
+Unsere Implementierung basiert auf dem Zalando Tech Radar, das durch ThoughtWorks
+inspiriert wurde. Als technologische Grundlage dient der Tech Radar von unserem
+Dozenten, welcher Quarkus als Backend-Framework und PostgreSQL als
+Datenbanklösung nutzt.
+
+## Stand der Technik / Konkurrenzanalyse
+
+Der Zalando Techradar ist ein etabliertes Beispiel für ein open source Techradar. Weitere
+vergleichbare Ansätze gibt es bei ThoughtWorks und einigen anderen
+Technologieunternehmen. Diese Lösungen fokussieren sich meist auf bestehende
+Technologien und deren Kategorisierung in "Adopt", "Trial", "Assess" und "Hold". Unser
+Techradar soll darüber hinaus eine Plattform bieten, auf der Teammitglieder ihre eigenen
+Technologieideen und -erfahrungen einbringen und bewerten können.
+
+## Kontextszenario (Hauptablauf)
+
+1. Ein Nutzer meldet sich an und kann bestehende Technologien im Radar einsehen.
+2. Neue Technologien oder Erfahrungen können von berechtigten Nutzern hinzugefügt
+und mit relevanten Metadaten versehen werden.
+3. Technologien werden von anderen Nutzern bewertet und kommentiert.
+4. Ein Dashboard zeigt aktuelle Trends, häufig bewertete Technologien und ermöglicht
+Filterung nach Teams, Projekten oder Technologie-Kategorien.
+
+## Weitere Anforderungen
+x
 
 ## Qualitätsziele
 
