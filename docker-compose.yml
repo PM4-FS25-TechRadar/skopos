@@ -8,5 +8,7 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-    command: start-dev
+    command: start-dev --import-realm
     restart: unless-stopped
+    volumes:
+      - ./src/quarkus-realm.json:/opt/keycloak/data/import/quarkus-realm.json
