@@ -25,3 +25,92 @@ spec:
     hostname: keycloak.skopos.pm4.init-lab.ch
   proxy:
     headers: xforwarded
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-zurix
+spec:
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: keycloak
+        image: keycloak
+        args:
+        - start
+        - --optimized
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        - name: discovery
+          containerPort: 7800
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+        env:
+        - name: KC_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-secrets
+              key: admin-password
+        - name: KC_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-secrets
+              key: kc-db-password
+        - name: KEYCLOAK_HTTP_RELATIVE_PATH
+          value: "/"
+        - name: KC_SPI_ADMIN_REALM
+          value: "master"
+        envFrom:
+        - configMapRef:
+            name: keycloak-zurix-env-vars
+        resources:
+          limits:
+            cpu: 750m
+            # ephemeral-storage: 2Gi
+            memory: 768Mi
+          requests:
+            cpu: 500m
+            # ephemeral-storage: 50Mi
+            memory: 512Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 300
+          periodSeconds: 1
+          successThreshold: 1
+          timeoutSeconds: 5
+          tcpSocket:
+            port: http
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          httpGet:
+            path: /realms/master
+            port: http
+            scheme: HTTP
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - name: empty-dir
+          mountPath: /opt/keycloak/data
+      imagePullSecrets:
+        - name: gitlab-keycloak
+      volumes:
+        - name: empty-dir
+          emptyDir: {}
