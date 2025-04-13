@@ -25,8 +25,7 @@ spec:
           - |
             /opt/keycloak/bin/kc.sh build && \
             /opt/keycloak/bin/kc.sh start --optimized \
-            --http-enabled=true \
-            --hostname-strict-https=false
+            --http-enabled=true
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
