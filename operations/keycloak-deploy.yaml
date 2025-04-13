@@ -24,7 +24,7 @@ spec:
         args:
           - |
             /opt/keycloak/bin/kc.sh build && \
-            /opt/keycloak/bin/kc.sh start --optimized
+            /opt/keycloak/bin/kc.sh start --optimized \
             --http-enabled=true \
             --hostname-strict-https=false
         imagePullPolicy: IfNotPresent
