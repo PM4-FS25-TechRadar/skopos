@@ -138,7 +138,7 @@ jobs:
 
       - name: copy radar-deploy.yaml
         run: |
-          cp operations/radar-deploy.yaml.tmpl operations/radar-deploy.yaml
+          cp operations/radar-deploy.template operations/radar-deploy.yaml
 
       - name: Replace IMAGE_TAG in deployment file
         run: |
