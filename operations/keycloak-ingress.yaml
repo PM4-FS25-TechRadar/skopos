@@ -15,7 +15,7 @@ spec:
           service:
             name: keycloak-service
             port:
-              number: 80
+              number: 8080
   tls:
   - hosts:
     - kc.skopos.pm4.init-lab.ch
