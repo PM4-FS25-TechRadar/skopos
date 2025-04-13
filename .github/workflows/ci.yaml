@@ -139,9 +139,10 @@ jobs:
         run: |
           cp operations/radar-deploy.yaml.tmpl operations/radar-deploy.yaml
 
-      - name: Replace IMAGE_TAG in radar-deploy.yaml
+      - name: Replace IMAGE_TAG in deployment file
         run: |
-          sed -i "s|\${IMAGE__TAG}|${ IMAGE_TAG }|g" operations/radar-deploy.yaml
+          echo "Replacing \${IMAGE_TAG} with ${IMAGE_TAG}"
+          sed -i "s|\${IMAGE_TAG}|${IMAGE_TAG}|g" operations/radar-deploy.yaml
 
       - name: Commit changes
         run: |
