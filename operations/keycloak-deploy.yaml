@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: keycloak
-        image: keycloak
+        image: keycloak/keycloak
         args:
         - start
         - --optimized
