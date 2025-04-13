@@ -94,6 +94,6 @@ jobs:
 
     - name: Render deployment.yaml with tag
       run: |
-        envsubst < radar-deploy.yaml | sponge radar-deploy.yaml
+        envsubst < operations/radar-deploy.yaml.templ > operations/radar-deploy.yaml
       env:
         IMAGE_TAG: ${{ env.IMAGE_TAG }}
