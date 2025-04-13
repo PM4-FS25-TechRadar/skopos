@@ -141,7 +141,7 @@ jobs:
 
       - name: Replace IMAGE_TAG in radar-deploy.yaml
         run: |
-          sed -i "s|\${IMAGE_TAG}|${ IMAGE_TAG }|g" operations/radar-deploy.yaml
+          sed -i "s|\${IMAGE__TAG}|${ IMAGE_TAG }|g" operations/radar-deploy.yaml
 
       - name: Commit changes
         run: |
