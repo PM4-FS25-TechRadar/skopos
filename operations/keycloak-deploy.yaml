@@ -18,12 +18,13 @@ spec:
       containers:
       - name: keycloak
         image: docker.io/keycloak/keycloak:latest
+        command:
+          - bash
+          - -c
         args:
-        - bash
-        - -c
-        - |
-          /opt/keycloak/bin/kc.sh build && \
-          /opt/keycloak/bin/kc.sh start --optimized
+          - |
+            /opt/keycloak/bin/kc.sh build && \
+            /opt/keycloak/bin/kc.sh start --optimized
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
