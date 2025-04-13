@@ -98,6 +98,9 @@ jobs:
     - name: print ls
       run: ls
 
+    - name: print tree
+      run: tree
+
     - name: Render deployment.yaml with tag
       run: |
         envsubst < operations/radar-deploy.yaml.templ > operations/radar-deploy.yaml
