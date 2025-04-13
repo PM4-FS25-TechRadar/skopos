@@ -92,6 +92,12 @@ jobs:
         docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:${IMAGE_TAG} .
         docker push ghcr.io/${REPO}/skopos:${IMAGE_TAG}
 
+    - name: print pwd
+      run: pwd
+
+    - name: print ls
+      run: ls
+
     - name: Render deployment.yaml with tag
       run: |
         envsubst < operations/radar-deploy.yaml.templ > operations/radar-deploy.yaml
