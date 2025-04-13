@@ -59,6 +59,17 @@ jobs:
 
     steps:
 
+    - name: Get Commit Author
+      id: author
+      run: |
+        echo "author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_OUTPUT
+
+    - name: Stop if commit was made by github-actions
+      if: steps.author.outputs.author == 'github-actions[bot]'
+      run: |
+        echo "Commit was made by github-actions[bot], skipping..."
+        exit 0
+
     - name: SKOPOS Download build artifacts
       uses: actions/download-artifact@v4
       with:
@@ -114,7 +125,7 @@ jobs:
 
       - name: Replace IMAGE_TAG in deployment.yaml
         run: |
-          sed -i "s|\${IMAGE_TAG}|${{ github.event.inputs.image_tag }}|g" radar-deploy.yaml
+          sed -i "s|\${IMAGE_TAG}|${{ github.event.inputs.image_tag }}|g" operations/radar-deploy.yaml
 
       - name: Commit changes
         run: |
