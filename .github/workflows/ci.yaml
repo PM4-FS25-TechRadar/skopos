@@ -114,7 +114,7 @@ jobs:
 
       - name: Replace IMAGE_TAG in deployment.yaml
         run: |
-          sed -i "s|\${IMAGE_TAG}|${{ github.event.inputs.image_tag }}|g" path/to/deployment.yaml
+          sed -i "s|\${IMAGE_TAG}|${{ github.event.inputs.image_tag }}|g" radar-deploy.yaml
 
       - name: Commit changes
         run: |
