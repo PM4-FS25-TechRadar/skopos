@@ -135,14 +135,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Replace IMAGE_TAG in deployment.yaml
+      - name: copy radar-deploy.yaml
         run: |
-          sed -i "s|\${IMAGE_TAG}|${{ github.event.inputs.image_tag }}|g" operations/radar-deploy.yaml
+          cp operations/radar-deploy.yaml.tmpl operations/radar-deploy.yaml
+
+      - name: Replace IMAGE_TAG in radar-deploy.yaml
+        run: |
+          sed -i "s|\${IMAGE_TAG}|${{ IMAGE_TAG }}|g" operations/radar-deploy.yaml
 
       - name: Commit changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add operations/radar-deploy.yaml
-          git commit -m "Update image tag to ${{ github.event.inputs.image_tag }}"
+          git commit -m "Update image tag to ${{ IMAGE_TAG }}"
           git push
