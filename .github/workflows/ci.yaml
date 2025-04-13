@@ -90,8 +90,8 @@ jobs:
 
     - name: SKOPOS Build and push Docker image
       run: |
-        docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:${{ steps.next.outputs.version }} .
-        docker push ghcr.io/${REPO}/skopos:${{ steps.next.outputs.version }}
+        docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:latest .
+        docker push ghcr.io/${REPO}/skopos:latest
 
     - name: print pwd
       run: pwd
