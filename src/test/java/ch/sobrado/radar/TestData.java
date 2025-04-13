@@ -1,12 +1,14 @@
 package ch.sobrado.radar;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 
-
-public class TestHelper {
+@ApplicationScoped
+public class TestData {
 
     @Transactional
-    public static RadarGroup createTestGroup(String name) {
+    public RadarGroup createGroup(String name) {
         RadarGroup group = new RadarGroup();
         group.name = name;
         group.persistAndFlush();
@@ -14,31 +16,33 @@ public class TestHelper {
     }
 
     @Transactional
-    public static Radar createTestRadar(String name, RadarGroup group) {
+    public Radar createRadar(String name, RadarGroup group) {
         Radar radar = new Radar();
         radar.name = name;
         radar.radarGroup = group;
+        radar.quadrants = new ArrayList<>();
+        radar.rings = new ArrayList<>();
         radar.persistAndFlush();
         return radar;
     }
 
     @Transactional
-    public static Quadrant createTestQuadrant(String name, Radar radar, Position position) {
+    public Quadrant addQuadrant(Radar radar, String name) {
         Quadrant quadrant = new Quadrant();
         quadrant.name = name;
-        quadrant.position = position;
         quadrant.radar = radar;
-        quadrant.persistAndFlush();
+        radar.quadrants.add(quadrant);
+        radar.persistAndFlush();
         return quadrant;
     }
 
     @Transactional
-    public static Ring createTestRing(String name, Radar radar, Position position) {
+    public Ring addRing(Radar radar, String name) {
         Ring ring = new Ring();
         ring.name = name;
-        ring.position = position;
         ring.radar = radar;
-        ring.persistAndFlush();
+        radar.rings.add(ring);
+        radar.persistAndFlush();
         return ring;
     }
 }

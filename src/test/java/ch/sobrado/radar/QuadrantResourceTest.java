@@ -1,7 +1,8 @@
 package ch.sobrado.radar;
 
-import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.MediaType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,35 +10,39 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-import static ch.sobrado.radar.TestHelper.*;
 
 @QuarkusTest
 class QuadrantResourceTest {
 
+    @Inject
+    TestData testData;
+
+    RadarGroup group;
+    Radar radar;
+    Quadrant quadrant;
+
+    @BeforeEach
+    @Transactional
+    void setUp() {
+        group = testData.createGroup("Test Group");
+        radar = testData.createRadar("Radar A", group);
+        quadrant = testData.addQuadrant(radar, "Test Quadrant");
+    }
 
     @Test
     void testCreateQuadrant() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        Radar radar = createTestRadar("Radar to update", testGroup);
-
         given()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body("{\"name\":\"CreateQuadrant\", \"position\":\"ONE\"}")
+                .body("{\"name\":\"CreateQuadrant\"}")
                 .when()
                 .post("/radars/" + radar.id + "/quadrants")
                 .then()
                 .statusCode(201)
-                .body("id", notNullValue())
-                .extract().path("id");
+                .body("id", notNullValue());
     }
 
     @Test
     void testDuplicateQuadrantName() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        Radar radar = createTestRadar("Radar to update", testGroup);
-
-        createTestQuadrant("Test Quadrant", radar, Position.ONE);
-
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body("{\"name\":\"Test Quadrant\"}")
@@ -49,14 +54,9 @@ class QuadrantResourceTest {
 
     @Test
     void testUpdateQuadrant() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        Radar radar = createTestRadar("Radar to update", testGroup);
-
-        Quadrant quadrant = createTestQuadrant("Init Quadrant", radar, Position.ONE);
-
         given()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body("{\"name\":\"UpdatedQuadrant\"}")
+                .body("{\"name\":\"Updated Quadrant\"}")
                 .when()
                 .put("/radars/" + radar.id + "/quadrants/" + quadrant.id)
                 .then()
@@ -65,11 +65,6 @@ class QuadrantResourceTest {
 
     @Test
     void testDeleteQuadrant() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        Radar radar = createTestRadar("Radar to update", testGroup);
-
-        Quadrant quadrant = createTestQuadrant("Test Quadrant", radar, Position.ONE);
-
         given()
                 .when()
                 .delete("/radars/" + radar.id + "/quadrants/" + quadrant.id)

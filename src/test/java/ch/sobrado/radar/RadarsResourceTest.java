@@ -1,26 +1,40 @@
 package ch.sobrado.radar;
 
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.MediaType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-import static ch.sobrado.radar.TestHelper.*;
 
 
 
 @QuarkusTest
 class RadarsResourceTest {
 
+    @Inject
+    TestData testData;
+
+    RadarGroup group;
+    Radar radar;
+
+    @BeforeEach
+    @Transactional
+    void setUp() {
+        group = testData.createGroup("Test Group");
+        radar = testData.createRadar("Radar A", group);
+    }
+
     @Test
     void testGetAllRadars() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        // Ensure at least one radar exists via create endpoint.
-        Radar radar = createTestRadar("Radar for getAll", testGroup);
+        Radar radar = testData.createRadar("Radar for getAll", group);
         for (int i = 0; i < 5; i++) {
-            createTestRadar("Radar " + i, testGroup);
+            testData.createRadar("Radar " + i, group);
         }
 
         // Test GET /radars returns a non-empty list and includes our radar.
@@ -33,23 +47,18 @@ class RadarsResourceTest {
 
     @Test
     void testGetById() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        Radar radar = createTestRadar("Radar getById", testGroup);
-
         given()
                 .when().get("/radar/{id}", radar.id)
                 .then().statusCode(200)
                 .body("id", equalTo(radar.id.intValue()))
-                .body("name", equalTo("Radar getById"));
+                .body("name", equalTo("Radar A"));
     }
 
     @Test
     void testCreateRadar() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        // Create a new radar and check for created status and id in return.
         given()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body("{\"name\":\"Create Radar\", \"radarGroup\": {\"id\":" + testGroup.id + "}}")
+                .body("{\"name\":\"Create Radar\", \"radarGroup\": {\"id\":" + group.id + "}}")
                 .when().post("/radar")
                 .then().statusCode(201)
                 .body("id", notNullValue());
@@ -57,8 +66,7 @@ class RadarsResourceTest {
 
     @Test
     void testUpdateRadar() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        Radar radar = createTestRadar("Radar to update", testGroup);
+        Radar radar = testData.createRadar("Radar to update", group);
 
         given()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -76,8 +84,7 @@ class RadarsResourceTest {
 
     @Test
     void testDeleteRadar() {
-        RadarGroup testGroup = createTestGroup("Test Group");
-        Radar radar = createTestRadar("Radar to delete", testGroup);
+        Radar radar = testData.createRadar("Radar to delete", group);
 
         given()
                 .when().delete("/radar/{id}", radar.id)
