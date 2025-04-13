@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - ci/deploy-keycloak
+      - ci/deployment-tags
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -91,3 +91,10 @@ jobs:
       run: |
         docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:${IMAGE_TAG} .
         docker push ghcr.io/${REPO}/skopos:${IMAGE_TAG}
+
+    - name: Render deployment.yaml with tag
+      run: |
+        mkdir -p k8s-out
+        envsubst < operations/radar-deploy.yaml.template > radar-deploy.yaml
+      env:
+        IMAGE_TAG: ${{ env.IMAGE_TAG }}
