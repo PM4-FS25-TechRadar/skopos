@@ -2,7 +2,9 @@ name: CI for Skopos
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - ci/deploy-keycloak
   pull_request:
     branches: [ main ]
   workflow_dispatch:
