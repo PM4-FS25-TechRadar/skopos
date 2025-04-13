@@ -52,7 +52,7 @@ spec:
           value: "master"
         envFrom:
         - configMapRef:
-            name: keycloak-zurix-env-vars
+            name: database-configmap
         resources:
           limits:
             cpu: 750m
