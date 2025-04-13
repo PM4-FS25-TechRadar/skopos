@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  name: keycloak
+spec:
+  rules:
+  - host: kc.skopos.pm4.init-lab.ch
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: keycloak-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - kc.skopos.pm4.init-lab.ch
+    secretName: kc.skopos.pm4.init-lab.ch

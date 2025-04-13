@@ -25,7 +25,8 @@ spec:
           - |
             /opt/keycloak/bin/kc.sh build && \
             /opt/keycloak/bin/kc.sh start --optimized \
-            --http-enabled=true
+            --http-enabled=true \
+            --hostname=kc.skopos.pm4.init-lab.ch
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
@@ -92,3 +93,17 @@ spec:
       volumes:
         - name: empty-dir
           emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-service
+spec:
+  selector:
+    app: keycloak
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
