@@ -1,14 +1,19 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: keycloak
 spec:
+  selector:
+    matchLabels:
+      app: keycloak
   revisionHistoryLimit: 10
   strategy:
     type: RollingUpdate
   replicas: 1
   template:
+    metadata:
+      labels:
+        app: keycloak
     spec:
       containers:
       - name: keycloak
@@ -51,11 +56,9 @@ spec:
         resources:
           limits:
             cpu: 750m
-            # ephemeral-storage: 2Gi
             memory: 768Mi
           requests:
             cpu: 500m
-            # ephemeral-storage: 50Mi
             memory: 512Mi
         livenessProbe:
           failureThreshold: 3
