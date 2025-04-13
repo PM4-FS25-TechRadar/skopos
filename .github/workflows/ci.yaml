@@ -58,6 +58,18 @@ jobs:
     needs: build-and-test
 
     steps:
+    - name: SKOPOS Get Previous tag
+      id: previoustag
+      uses: 'WyriHaximus/github-action-get-previous-tag@v1'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+    - name: SKOPOS Get next version
+      id: next
+      uses: 'WyriHaximus/github-action-next-release-version@1.0.0'
+      with:
+        version: ${{ steps.previoustag.outputs.tag }}
+
     - name: SKOPOS Download build artifacts
       uses: actions/download-artifact@v4
       with:
@@ -72,6 +84,15 @@ jobs:
 
     - name: SKOPOS Set up Docker Build
       uses: docker/setup-buildx-action@v2
+
+    - name: Create release
+      id: create_release_id
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.next.outputs.version }}
+        release_name: Release ${{ steps.next.outputs.version }}
 
     - name: SKOPOS Log in to GitHub Container Registry
       uses: docker/login-action@v2
@@ -89,8 +110,8 @@ jobs:
 
     - name: SKOPOS Build and push Docker image
       run: |
-        docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:${IMAGE_TAG} .
-        docker push ghcr.io/${REPO}/skopos:${IMAGE_TAG}
+        docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:${{ steps.next.outputs.version }} .
+        docker push ghcr.io/${REPO}/skopos:${{ steps.next.outputs.version }}
 
     - name: print pwd
       run: pwd
