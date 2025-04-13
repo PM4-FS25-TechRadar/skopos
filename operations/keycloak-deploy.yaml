@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  selector:
+    matchLabels:
+      app: keycloak
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+      - name: keycloak
+        image: docker.io/keycloak/keycloak:latest
+        command:
+          - bash
+          - -c
+        args:
+          - |
+            /opt/keycloak/bin/kc.sh build && \
+            /opt/keycloak/bin/kc.sh start --optimized \
+            --http-enabled=true \
+            --hostname-strict-https=false
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        - name: discovery
+          containerPort: 7800
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+        env:
+        - name: KC_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: radar.kc.password
+        - name: KC_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: radar.datasource.password
+        - name: KEYCLOAK_HTTP_RELATIVE_PATH
+          value: "/"
+        - name: KC_SPI_ADMIN_REALM
+          value: "master"
+        envFrom:
+        - configMapRef:
+            name: database-configmap
+        resources:
+          limits:
+            cpu: 750m
+            memory: 768Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 300
+          periodSeconds: 1
+          successThreshold: 1
+          timeoutSeconds: 5
+          tcpSocket:
+            port: http
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          httpGet:
+            path: /realms/master
+            port: http
+            scheme: HTTP
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - name: empty-dir
+          mountPath: /opt/keycloak/data
+      imagePullSecrets:
+        - name: gitlab-keycloak
+      volumes:
+        - name: empty-dir
+          emptyDir: {}

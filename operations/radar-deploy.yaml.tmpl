@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radar
+  template:
+    metadata:
+      labels:
+        app: radar
+    spec:
+      containers:
+      - name: radar
+        image: ghcr.io/pm4-fs25-techradar/skopos/skopos:${IMAGE_TAG}
+        ports:
+        - containerPort: 8080
+        env:
+        - name: QUARKUS_DATASOURCE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: database-configmap
+              key: radar.datasource.username
+        - name: QUARKUS_DATASOURCE_JDBC_URL
+          valueFrom:
+            configMapKeyRef:
+              name: database-configmap
+              key: radar.datasource.jdbc.url
+        - name: QUARKUS_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: radar.datasource.password
+        - name: QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION
+          value: update
+        - name: QUARKUS_HIBERNATE_ORM_SQL_LOAD_SCRIPT
+          value: import.sql
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: radar-service
+spec:
+  selector:
+    app: radar
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP

@@ -2,9 +2,9 @@ name: CI for Skopos
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - dev
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get Commit Author
+      id: author
+      run: |
+        echo "author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_OUTPUT
+
+    - name: Stop if commit was made by github-actions
+      if: steps.author.outputs.author == 'github-actions[bot]'
+      run: |
+        echo "Commit was made by github-actions[bot], skipping..."
+        exit 0
+
+
     - name: SKOPOS Checkout code
       uses: actions/checkout@v4
 
@@ -56,6 +68,18 @@ jobs:
     needs: build-and-test
 
     steps:
+
+    - name: Get Commit Author
+      id: author
+      run: |
+        echo "author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_OUTPUT
+
+    - name: Stop if commit was made by github-actions
+      if: steps.author.outputs.author == 'github-actions[bot]'
+      run: |
+        echo "Commit was made by github-actions[bot], skipping..."
+        exit 0
+
     - name: SKOPOS Download build artifacts
       uses: actions/download-artifact@v4
       with:
@@ -82,7 +106,49 @@ jobs:
       run: |
         echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
+    - name: Set image tag from commit SHA
+      run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
     - name: SKOPOS Build and push Docker image
       run: |
-        docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:latest .
-        docker push ghcr.io/${REPO}/skopos:latest
+        docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/${REPO}/skopos:${IMAGE_TAG} .
+        docker push ghcr.io/${REPO}/skopos:${IMAGE_TAG}
+
+  update-tag:
+    runs-on: ubuntu-latest
+    needs: docker-build-and-push
+    steps:
+
+      - name: Get Commit Author
+        id: author
+        run: |
+          echo "author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_OUTPUT
+
+      - name: Stop if commit was made by github-actions
+        if: steps.author.outputs.author == 'github-actions[bot]'
+        run: |
+          echo "Commit was made by github-actions[bot], skipping..."
+          exit 0
+
+      - name: Set image tag from commit SHA
+        run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: copy radar-deploy.yaml
+        run: |
+          cp operations/radar-deploy.yaml.tmpl operations/radar-deploy.yaml
+
+      - name: Replace IMAGE_TAG in deployment file
+        run: |
+          echo "Replacing \${IMAGE_TAG} with ${IMAGE_TAG}"
+          sed -i "s|\${IMAGE_TAG}|${IMAGE_TAG}|g" operations/radar-deploy.yaml
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add operations/radar-deploy.yaml
+          git commit -m "ci: Update image tag to ${IMAGE_TAG}"
+          git push
