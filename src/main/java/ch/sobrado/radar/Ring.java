@@ -8,17 +8,13 @@ import jakarta.persistence.*;
 @Table(
         name = "rings",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"name", "position", "radar_id"})
+                @UniqueConstraint(columnNames = {"name", "radar_id"})
         }
 )
 public class Ring extends PanacheEntity {
 
     @Column(nullable = false)
     public String name;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    public Position position;
 
     @ManyToOne
     @JoinColumn(name = "radar_id", nullable = false)
