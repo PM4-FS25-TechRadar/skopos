@@ -94,7 +94,6 @@ jobs:
 
     - name: Render deployment.yaml with tag
       run: |
-        mkdir -p k8s-out
-        envsubst < operations/radar-deploy.yaml.template > radar-deploy.yaml
+        envsubst < radar-deploy.yaml | sponge radar-deploy.yaml
       env:
         IMAGE_TAG: ${{ env.IMAGE_TAG }}
