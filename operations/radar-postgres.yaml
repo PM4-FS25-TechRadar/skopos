@@ -8,11 +8,25 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: cinder-csi  # Stellen Sie sicher, dass dies zu Ihrer StorageClass passt
+  storageClassName: cinder-csi
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: init-db-script
+data:
+  init-db.sh: |
+    #!/bin/bash
+    set -e
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
+        CREATE DATABASE radar;
+        CREATE DATABASE keycloak;
+    EOSQL
 
 ---
 apiVersion: apps/v1
-kind: Deployment # the PostgreSQL deployment
+kind: Deployment
 metadata:
   name: postgresql-deployment
 spec:
@@ -39,8 +53,6 @@ spec:
             secretKeyRef:
               name: database-secret
               key: radar.datasource.password
-        - name: POSTGRES_DB
-          value: radar
         - name: PGDATA
           value: /var/lib/postgresql/data/pgdata
         ports:
@@ -48,10 +60,16 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/postgresql/data/
           name: postgresql-storage
+        - name: init-db-volume
+          mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: postgresql-storage
         persistentVolumeClaim:
           claimName: postgresql-pvc
+      - name: init-db-volume
+        configMap:
+          name: init-db-script
+          defaultMode: 0755
 
 ---
 apiVersion: v1
