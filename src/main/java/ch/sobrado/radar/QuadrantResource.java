@@ -30,6 +30,7 @@ public class QuadrantResource {
         }
 
         quadrant.radar = radar;
+        radar.quadrants.add(quadrant);
         quadrant.persist();
         return Response.status(Response.Status.CREATED)
                 .entity(Collections.singletonMap("id", quadrant.id))

@@ -28,8 +28,8 @@ public class RingResource {
                     .entity("ring with this name already exists for this radar")
                     .build();
         }
-
         ring.radar = radar;
+        radar.rings.add(ring);
         ring.persist();
         return Response.status(Response.Status.CREATED)
                 .entity(Collections.singletonMap("id", ring.id))
