@@ -1,0 +1,36 @@
+html {
+    background-color: black;
+}
+
+body {
+    background-color: #2e2e2e;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border: 0;
+    top: 0;
+    color: #ffffff;
+    font-family: sans-serif;
+}
+
+a:hover {
+    color: #cd5b1c;
+}
+
+a {
+    color: white;
+}
+
+.app-layout {
+    display: flex;
+}
+
+.app-layout .main-content {
+    margin-left: 220px;
+    flex: 1;
+    padding: 2rem;
+    transition: margin-left 0.3s ease;
+}
+
+.app-layout.collapsed .main-content {
+    margin-left: 60px;
+}
