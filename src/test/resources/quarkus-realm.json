@@ -1,0 +1,25 @@
+{
+  "realm": "quarkus",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "backend-service",
+      "secret": "secret",
+      "enabled": true,
+      "directAccessGrantsEnabled": true,
+      "publicClient": false
+    }
+  ],
+  "users": [
+    {
+      "username": "test",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "test"
+        }
+      ]
+    }
+  ]
+}
