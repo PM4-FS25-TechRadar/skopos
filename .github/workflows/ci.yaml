@@ -10,8 +10,8 @@ on:
 
 jobs:
   build-and-test:
-    #runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    #runs-on: self-hosted
 
     steps:
     - name: Get Commit Author
@@ -66,8 +66,8 @@ jobs:
         path: src/main/docker/
 
   docker-build-and-push:
-    #runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    #runs-on: self-hosted
 
     needs: build-and-test
 
