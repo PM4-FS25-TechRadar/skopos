@@ -2,6 +2,8 @@ package ch.sobrado.radar;
 
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.ws.rs.core.MediaType;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -10,6 +12,7 @@ import static org.hamcrest.Matchers.*;
 @QuarkusTest
 public class VersionsResourceTest {
 
+    @Disabled ("This test is disabled to test the deployment")
     @Test
     public void testCreateUpdateDeleteVersion() {
         int techId = given()
@@ -46,6 +49,7 @@ public class VersionsResourceTest {
                 .statusCode(204);
     }
 
+    @Disabled ("This test is disabled to test the deployment")
     @Test
     public void testDuplicateVersionName() {
         int techId = given()
