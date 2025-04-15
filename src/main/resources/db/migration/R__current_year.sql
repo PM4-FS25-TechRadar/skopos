@@ -7,11 +7,9 @@
 DELETE FROM radar_entry where year = 2022;
 
 -- Data and Reporting
--- Default Group
-INSERT INTO public.radar_group(id, name) VALUES (1,'Default Group');
 
 -- Default Radar
-INSERT INTO public.radar (id, name, group_id) VALUES (1, 'Default Radar', 1);
+INSERT INTO public.radar (id, name) VALUES (1, 'Default Radar');
 
 -- Default Quadrants
 INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (1, 'data', 1, '0');

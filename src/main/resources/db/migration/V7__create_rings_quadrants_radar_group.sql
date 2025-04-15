@@ -18,16 +18,9 @@ CREATE TABLE radar
 (
     id       BIGINT DEFAULT nextval('radar_seq'),
     name     VARCHAR(255) NOT NULL,
-    group_id BIGINT,
     CONSTRAINT pk_radar PRIMARY KEY (id)
 );
 
-CREATE TABLE radar_group
-(
-    id       BIGINT DEFAULT nextval('radar_group_seq'),
-    name VARCHAR(255) NOT NULL,
-    CONSTRAINT pk_radar_group PRIMARY KEY (id)
-);
 
 CREATE TABLE rings
 (
@@ -57,9 +50,6 @@ ALTER TABLE radar_entry
 
 ALTER TABLE radar_entry
     ADD CONSTRAINT FK_RADAR_ENTRY_ON_RING FOREIGN KEY (ring_id) REFERENCES rings (id);
-
-ALTER TABLE radar
-    ADD CONSTRAINT FK_RADAR_ON_GROUP FOREIGN KEY (group_id) REFERENCES radar_group (id);
 
 ALTER TABLE rings
     ADD CONSTRAINT FK_RINGS_ON_RADAR FOREIGN KEY (radar_id) REFERENCES radar (id);
