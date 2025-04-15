@@ -1,3 +1,4 @@
+/*
 package ch.sobrado.radar;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -17,3 +18,4 @@ public class RadarGroup extends PanacheEntity {
     @JsonManagedReference
     public List<Radar> radars;
 }
+*/
