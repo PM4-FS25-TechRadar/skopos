@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -38,7 +39,8 @@ public class RadarResource {
 
     @POST
     @Transactional
-    public Response create(Radar radar) {
+    public Response create(@Valid Radar radar) {
+        /*
         RadarGroup group = RadarGroup.findById(radar.radarGroup.id);
         if (group == null) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -46,6 +48,8 @@ public class RadarResource {
             .build();
         }
         radar.radarGroup = group;
+        */
+
         radar.persist();
         return Response.status(Response.Status.CREATED)
                 .entity(Collections.singletonMap("id", radar.id))
@@ -56,7 +60,7 @@ public class RadarResource {
     @Path("/{radarId}")
     @Transactional
     public Response update(@PathParam("radarId") Long radarId,
-                           Radar updatedRadar) {
+                           @Valid Radar updatedRadar) {
 
         Radar existingRadar = Radar.findById(radarId);
         if (existingRadar == null) {
