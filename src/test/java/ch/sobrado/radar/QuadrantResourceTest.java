@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
 
 @QuarkusTest
 class QuadrantResourceTest {
@@ -17,28 +16,14 @@ class QuadrantResourceTest {
     @Inject
     TestData testData;
 
-    RadarGroup group;
     Radar radar;
     Quadrant quadrant;
 
     @BeforeEach
     @Transactional
     void setUp() {
-        group = testData.createGroup("Test Group");
-        radar = testData.createRadar("Radar A", group);
-        quadrant = testData.addQuadrant(radar, "Test Quadrant");
-    }
-
-    @Test
-    void testCreateQuadrant() {
-        given()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body("{\"name\":\"CreateQuadrant\"}")
-                .when()
-                .post("/radars/" + radar.id + "/quadrants")
-                .then()
-                .statusCode(201)
-                .body("id", notNullValue());
+        radar = testData.createRadar("Radar A");
+        quadrant = testData.replaceQuadrant(radar, 0,"Test Quadrant");
     }
 
     @Test
@@ -47,7 +32,7 @@ class QuadrantResourceTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body("{\"name\":\"Test Quadrant\"}")
                 .when()
-                .post("/radars/" + radar.id + "/quadrants")
+                .put("/radars/" + radar.id + "/quadrants/" + quadrant.id)
                 .then()
                 .statusCode(409);
     }
@@ -63,12 +48,4 @@ class QuadrantResourceTest {
                 .statusCode(200);
     }
 
-    @Test
-    void testDeleteQuadrant() {
-        given()
-                .when()
-                .delete("/radars/" + radar.id + "/quadrants/" + quadrant.id)
-                .then()
-                .statusCode(204);
-    }
 }

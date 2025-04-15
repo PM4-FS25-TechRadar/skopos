@@ -17,28 +17,25 @@ class RingResourceTest {
     @Inject
     TestData testData;
 
-    RadarGroup group;
     Radar radar;
     Ring ring;
 
     @BeforeEach
     @Transactional
     void setUp() {
-        group = testData.createGroup("Test Group");
-        radar = testData.createRadar("Test Radar", group);
-        ring = testData.addRing(radar, "Test Ring");
+        radar = testData.createRadar("Test Radar");
+        ring = testData.replaceRing(radar, 0,"Test Ring");
     }
 
     @Test
-    void testCreateRing() {
+    void testDuplicateRingName() {
         given()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body("{\"name\": \"Create Ring\"}")
+                .body("{\"name\":\"Test Ring\"}")
                 .when()
-                .post("radars/" + radar.id + "/rings")
+                .put("/radars/" + radar.id + "/rings/" + ring.id)
                 .then()
-                .statusCode(201)
-                .body("id", notNullValue());
+                .statusCode(409);
     }
 
     @Test
@@ -52,12 +49,4 @@ class RingResourceTest {
                 .statusCode(200);
     }
 
-    @Test
-    void testDeleteRing() {
-        given()
-                .when().delete("radars/" + radar.id + "/rings/" + ring.id)
-                .then()
-                .statusCode(204);
-
-    }
 }
