@@ -1,18 +1,32 @@
 package ch.sobrado.radar;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import java.util.Collections;
+import java.util.List;
 
-@Path("/radar")
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+@Path("/radars")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class RadarResource {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello from RESTEasy on Sobrado Radar";
+    public List<Radar> getAll() {
+        return Radar.listAll();
+    }
+
+    @GET
+    @Path("/{radarId}")
+    public Response getById(@PathParam("radarId") Long radarId) {
+        Radar radar = Radar.findById(radarId);
+        if (radar == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(radar).build();
     }
 
     @GET
@@ -22,4 +36,54 @@ public class RadarResource {
         RadarView e = RadarView.find("year", year).firstResult();
         return e.jsondata;
     }
+
+    @POST
+    @Transactional
+    public Response create(@Valid Radar radar) {
+        /*
+        RadarGroup group = RadarGroup.findById(radar.radarGroup.id);
+        if (group == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Radar group with id " + radar.radarGroup.id + " not found")
+            .build();
+        }
+        radar.radarGroup = group;
+        */
+
+        radar.persist();
+        return Response.status(Response.Status.CREATED)
+                .entity(Collections.singletonMap("id", radar.id))
+                .build();
+    }
+
+    @PUT
+    @Path("/{radarId}")
+    @Transactional
+    public Response update(@PathParam("radarId") Long radarId,
+                           @Valid Radar updatedRadar) {
+
+        Radar existingRadar = Radar.findById(radarId);
+        if (existingRadar == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        existingRadar.name = updatedRadar.name;
+
+        return Response.ok(existingRadar).build();
+    }
+
+    @DELETE
+    @Path("/{radarId}")
+    @Transactional
+    public Response delete(@PathParam("radarId") Long radarId) {
+
+        Radar radar = Radar.findById(radarId);
+        if (radar == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        radar.delete();
+        return Response.noContent().build();
+    }
+
 }
