@@ -36,7 +36,7 @@ class RadarsResourceTest {
 
         // Test GET /radars returns a non-empty list and includes our radar.
         given()
-                .when().get("/radar")
+                .when().get("/radars")
                 .then().statusCode(200)
                 .body("$", not(empty()))
                 .body("find { it.id == " + targetRadar.id + " }.name", equalTo("Radar for getAll"));
@@ -45,7 +45,7 @@ class RadarsResourceTest {
     @Test
     void testGetById() {
         given()
-                .when().get("/radar/{id}", radar.id)
+                .when().get("/radars/{id}", radar.id)
                 .then().statusCode(200)
                 .body("id", equalTo(radar.id.intValue()))
                 .body("name", equalTo("Radar A"));
@@ -72,7 +72,7 @@ class RadarsResourceTest {
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(radarJson)
-                .when().post("/radar")
+                .when().post("/radars")
                 .then().statusCode(201)
                 .body("id", notNullValue());
     }
@@ -84,13 +84,13 @@ class RadarsResourceTest {
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body("{\"name\":\"Updated Radar\"}")
-                .when().put("/radar/{id}", radar.id)
+                .when().put("/radars/{id}", radar.id)
                 .then().statusCode(200)
                 .body("id", equalTo(radar.id.intValue()))
                 .body("name", equalTo("Updated Radar"));
 
         given()
-                .when().get("/radar/{id}", radar.id)
+                .when().get("/radars/{id}", radar.id)
                 .then().statusCode(200)
                 .body("name", equalTo("Updated Radar"));
     }
@@ -100,7 +100,7 @@ class RadarsResourceTest {
         Radar radar = testData.createRadar("Radar to delete");
 
         given()
-                .when().delete("/radar/{id}", radar.id)
+                .when().delete("/radars/{id}", radar.id)
                 .then().statusCode(204);
     }
 }
