@@ -47,15 +47,8 @@ spec:
             secretKeyRef:
               name: database-secret
               key: radar.kc.password
-        - name: KC_DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: database-secret
-              key: radar.datasource.password
         - name: KEYCLOAK_HTTP_RELATIVE_PATH
           value: "/"
-        - name: KC_SPI_ADMIN_REALM
-          value: "master"
         envFrom:
         - configMapRef:
             name: database-configmap
