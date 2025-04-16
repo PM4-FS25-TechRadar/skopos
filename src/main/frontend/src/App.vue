@@ -7,6 +7,7 @@
         <button @click="logout">Logout</button>
       </div>
       <Radar v-if="activeView === 'radar'"/>
+      <Radars v-else-if="activeView === 'radars'"/>
       <RadarEntriesList v-else-if="activeView === 'entries'"/>
       <TechnologyList v-else-if="activeView === 'technologies'"/>
       <div v-else-if="activeView === 'about'">About Page (coming soon)</div>
@@ -18,6 +19,7 @@
 import { inject } from 'vue'
 import Sidebar from './components/sidebar/Sidebar.vue'
 import Radar from './components/radar/Radar.vue'
+import Radars from './components/radars/Radars.vue'
 import RadarEntriesList from './components/radar-entries/RadarEntriesList.vue'
 import TechnologyList from './components/technologies/TechnologyList.vue'
 
@@ -26,6 +28,7 @@ export default {
   components: {
     Sidebar,
     Radar,
+    Radars,
     RadarEntriesList,
     TechnologyList
   },
