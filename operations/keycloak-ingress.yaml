@@ -6,7 +6,7 @@ metadata:
   name: keycloak
 spec:
   rules:
-  - host: kc.skopos.pm4.init-lab.ch
+  - host: kc-skopos.pm4.init-lab.ch
     http:
       paths:
       - pathType: Prefix
@@ -18,5 +18,5 @@ spec:
               number: 8080
   tls:
   - hosts:
-    - kc.skopos.pm4.init-lab.ch
-    secretName: kc.skopos.pm4.init-lab.ch
+    - kc-skopos.pm4.init-lab.ch
+    secretName: kc-skopos.pm4.init-lab.ch
