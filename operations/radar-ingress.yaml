@@ -15,7 +15,7 @@ spec:
           service:
             name: radar-service
             port:
-              number: 80
+              number: 8080
   tls:
   - hosts:
     - skopos.pm4.init-lab.ch
