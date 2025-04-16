@@ -174,5 +174,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add operations/radar-deploy.yaml
-          git commit -m "ci: Update image tag to ${IMAGE_TAG}"
+          git commit -m "ci: Update image tag to ${{ github.event.head_commit.message }} ${IMAGE_TAG}"
           git push
