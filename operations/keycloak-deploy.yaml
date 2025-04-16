@@ -26,7 +26,7 @@ spec:
             /opt/keycloak/bin/kc.sh build && \
             /opt/keycloak/bin/kc.sh start --optimized \
             --http-enabled=true \
-            --hostname=kc-skopos.pm4.init-lab.ch \
+            --hostname=https://kc-skopos.pm4.init-lab.ch \
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
