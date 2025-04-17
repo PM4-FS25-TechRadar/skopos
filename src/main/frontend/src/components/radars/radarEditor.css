@@ -1,0 +1,127 @@
+.radar-editor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    min-width: 600px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    gap: 2rem;
+}
+
+.editor-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.radar-svg{
+    position: relative;
+}
+
+.editor-pair {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+}
+@media (min-width: 1310px) {
+    .editor-pair {
+        flex-direction: column;
+    }
+}
+.edit-section {
+    flex: 1 1 48%;
+}
+.edit-section h4 {
+    color: #cd5b1c;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.drag-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.drag-item {
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #e5e5e5;
+}
+
+.drag-handle {
+    cursor: move;
+    padding: 0 0.5rem;
+    color: #aaa;
+}
+
+.drag-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0.25rem;
+    font-size: 1rem;
+}
+
+.radar-name-input {
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 100%;
+    max-width: 600px;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 2px solid #cd5b1c;
+    text-align: center;
+    background: transparent;
+    outline: none;
+}
+
+
+.editor-actions {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    justify-content: space-between;
+}
+
+.save-button,
+.cancel-button {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.save-button {
+    background-color: #cd5b1c;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #a74615;
+}
+
+.cancel-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.cancel-button:hover {
+    background-color: #d9d9d9;
+}
+
