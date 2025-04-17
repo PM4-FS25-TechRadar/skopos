@@ -1,0 +1,7 @@
+.list{ display:flex; flex-direction:column; gap:.5rem; }
+.item{
+    display:flex; align-items:center; background:var(--card-bg);
+    border:1px solid var(--border); padding:.3rem .5rem; border-radius:4px;
+}
+.handle{ cursor:grab; margin-right:.4rem; color:#888; }
+input{ flex:1; border:none; background:transparent; font-size:1rem; }

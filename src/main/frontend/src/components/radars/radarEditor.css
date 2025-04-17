@@ -1,127 +1,135 @@
-.radar-editor-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    min-width: 600px;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    gap: 2rem;
+.container{
+    background:#fff;
+    padding:1.5rem 2rem;
+    border-radius:8px;
+    max-width:1200px;
+    margin:auto;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
-.editor-content {
+.name{
+    font:700 1.4rem/1.2 sans-serif;
+    width:100%;
+    border:none;
+    border-bottom:2px solid var(--brand-main);
+    margin-bottom:1.5rem;
+    text-align:center;
+    background:transparent;
+    color:var(--text-dark);
+}
+
+.body{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
     gap: 2rem;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    align-content: center;
 }
 
-.radar-svg{
-    position: relative;
-}
-
-.editor-pair {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-}
-@media (min-width: 1310px) {
-    .editor-pair {
-        flex-direction: column;
+@media(min-width:960px){
+    .body{
+        grid-template-columns:1fr minmax(240px, 320px);
+        align-items:start;
     }
 }
-.edit-section {
-    flex: 1 1 48%;
-}
-.edit-section h4 {
-    color: #cd5b1c;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
 
-.drag-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.radar-preview {
+    flex: 1 1 400px;
+    min-width: 260px;
+    background: none;
+    border-radius: 8px;
 }
+.radar-preview .axis     { stroke:var(--brand-main); stroke-width:1.0; }
+.radar-preview .ring     { fill:none; stroke-width:1.2; }
 
-.drag-item {
-    display: flex;
-    align-items: center;
-    background: #fafafa;
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #e5e5e5;
-}
-
-.drag-handle {
-    cursor: move;
-    padding: 0 0.5rem;
-    color: #aaa;
-}
-
-.drag-input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    outline: none;
-    padding: 0.25rem;
-    font-size: 1rem;
-}
-
-.radar-name-input {
-    font-size: 1.5rem;
-    font-weight: bold;
-    width: 100%;
-    max-width: 600px;
-    padding: 0.5rem;
-    border: none;
-    border-bottom: 2px solid #cd5b1c;
-    text-align: center;
-    background: transparent;
-    outline: none;
-}
+.radar-preview .ring   { stroke:var(--brand-main); }
 
 
-.editor-actions {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-    max-width: 600px;
-    justify-content: space-between;
+.radar-preview .ring-label{
+    font:700 22px/1 sans-serif;
+    text-anchor:middle;
+    dominant-baseline:middle;
+    opacity:.8;
+}
+.radar-preview .rl-0 { fill:var(--ring-inner); }
+.radar-preview .rl-1 { fill:var(--ring-second); }
+.radar-preview .rl-2 { fill:var(--ring-third);  }
+.radar-preview .rl-3 { fill:var(--ring-outer);  }
+
+.radar-preview .quad-label{
+    font:700 18px/1 sans-serif;
+    text-anchor:middle;
+    dominant-baseline:middle;
+    fill:var(--text-dark);
 }
 
-.save-button,
-.cancel-button {
-    flex: 1;
-    padding: 0.6rem 1rem;
-    border: none;
-    font-weight: bold;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
+.lists{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    flex: 1 1 280px;
+    min-width: 280px;
+    max-width: 280px;
 }
 
-.save-button {
-    background-color: #cd5b1c;
-    color: white;
+.editor-block h4{
+    margin:0 0 .5rem;
+    font:600 1rem/1 sans-serif;
+    text-align:center;
+    color:#000;
 }
 
-.save-button:hover {
-    background-color: #a74615;
+@media(min-width:960px){
+    .lists{
+        display:flex;
+        flex-direction:column;
+        flex-wrap:nowrap;
+        width:280px;
+        max-width:280px;
+    }
 }
 
-.cancel-button {
-    background-color: #f0f0f0;
-    color: #333;
+.list{ display:flex; flex-direction:column; gap:.6rem; max-height:240px; overflow:auto; }
+.item{
+    display:flex; align-items:center;
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:.45rem .6rem;
+}
+.handle{ cursor:grab; margin-right:.5rem; color:#888; }
+input{
+    flex:1; border:none; background:transparent;
+    font-size:.95rem; color:var(--text-dark);
 }
 
-.cancel-button:hover {
-    background-color: #d9d9d9;
+.actions{
+    display:flex;
+    gap:1rem;
+    margin-top:2rem;
+    justify-content:flex-end;
+    flex-wrap:wrap;
 }
-
+.actions button{
+    flex:1 1 140px;
+    padding:.6rem 1rem;
+    font-weight:600;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+button.save{
+    background:var(--brand-main);
+    color:#fff;
+}
+button.save:hover{
+    background:var(--brand-dark);
+}
+button.cancel {
+    background:#f0f0f0;
+    color:var(--text-dark);
+}
+button.cancel:hover{
+    background:#d9d9d9;
+}

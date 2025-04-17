@@ -1,167 +1,149 @@
 <template>
-  <div class="radar-editor-container">
-    <!-- Editable Radar Name -->
-    <input v-model="localRadar.name" class="radar-name-input" placeholder="Radar Name"/>
+  <div class="container">
+    <input v-model="radar.name" class="name" placeholder="Radar name"/>
 
-    <div class="editor-content">
-      <!-- Radar SVG Display -->
-      <div class="radar-svg">
-        <svg :width="size" :height="size" viewBox="-220 -220 440 440">
-          <!-- Rings -->
-          <circle
-              v-for="(ring, idx) in localRings"
-              :key="'ring' + ring._id"
-              :r="(idx + 1) * 50"
-              fill="none"
-              stroke="#cd5b1c"
-              stroke-width="1"
+    <div class="body">
+      <svg
+          class="radar-preview"
+          :viewBox="`-${c} -${c} ${size} ${size}`"
+          :width="size"
+          :height="size"
+      >
+        <!-- rings -->
+        <circle
+            v-for="i in 4"
+            :key="'ring'+i"
+            :class="'ring ring-'+i"
+            :r="step*i"
+        />
+
+        <!-- axes -->
+        <line class="axis" :x1="-c" :x2="c" y1="0" y2="0"/>
+        <line class="axis" x1="0" x2="0" :y1="-c" :y2="c"/>
+
+        <!-- ring labels (inner → outer) -->
+        <text
+            v-for="(ring,i) in radar.rings"
+            :key="'label'+i"
+            :class="'ring-label rl-'+i"
+            x="0"
+            :y="-(step*(i+1)-step/2)"
+        >
+          {{ (ring.name || defaultRingName(i)).toUpperCase() }}
+        </text>
+
+        <!-- quadrant labels -->
+        <text
+            v-for="(q,i) in radar.quadrants"
+            :key="'q'+i"
+            :x="labels[i].x"
+            :y="labels[i].y"
+            class="quad-label"
+        >
+          {{ q.name || `Q${i + 1}` }}
+        </text>
+      </svg>
+
+      <div class="lists">
+        <!-- rings -->
+        <section class="editor-block">
+          <h4>Rings</h4>
+          <RingListEditor
+              :rings="radar.rings"
+              @update:rings="radar.rings = $event"
           />
-
-          <!-- Axes -->
-          <line x1="-200" x2="200" stroke="#cd5b1c"/>
-          <line y1="-200" y2="200" stroke="#cd5b1c"/>
-
-          <!-- Quadrant Labels -->
-          <text
-              v-for="(quad, idx) in localQuadrants"
-              :key="'quadlabel' + quad._id"
-              :x="quadLabelPos[idx].x"
-              :y="quadLabelPos[idx].y"
-              fill="#333"
-              font-size="14"
-              font-weight="bold"
-              text-anchor="middle"
-          >
-            {{ quad.name || 'Quadrant ' + (idx + 1) }}
-          </text>
-
-          <!-- Ring Labels -->
-          <text
-              v-for="(ring, idx) in localRings"
-              :key="'ringlabel' + ring._id"
-              :y="-(idx + 1) * 50"
-              x="0"
-              text-anchor="middle"
-              fill="#666"
-              font-size="12"
-          >
-            {{ ring.name || 'Ring ' + (idx + 1) }}
-          </text>
-        </svg>
-      </div>
-
-      <!-- Quadrant & Ring Editors -->
-      <div class="editor-panel">
-        <div class="editor-pair">
-          <section class="edit-section">
-            <h4>Quadrants</h4>
-            <draggable v-model="localQuadrants" item-key="_id" class="drag-list" handle=".drag-handle">
-              <template #item="{ element }">
-                <div class="drag-item">
-                  <span class="drag-handle">☰</span>
-                  <input v-model="element.name" placeholder="Quadrant Name" class="drag-input"/>
-                </div>
-              </template>
-            </draggable>
-          </section>
-
-          <section class="edit-section">
-            <h4>Rings</h4>
-            <draggable v-model="reversedRings" item-key="_id" class="drag-list" handle=".drag-handle">
-              <template #item="{ element }">
-                <div class="drag-item">
-                  <span class="drag-handle">☰</span>
-                  <input v-model="element.name" placeholder="Ring Name" class="drag-input"/>
-                </div>
-              </template>
-            </draggable>
-          </section>
-        </div>
+        </section>
+        <!-- quadrants -->
+        <section class="editor-block">
+          <h4>Quadrants</h4>
+          <QuadrantListEditor
+              :quadrants="radar.quadrants"
+              @update:quadrants="radar.quadrants = $event"
+          />
+        </section>
       </div>
     </div>
 
-    <!-- Action Buttons -->
-    <div class="editor-actions">
-      <button class="save-button" @click="saveRadar">Save</button>
-      <button class="cancel-button" @click="cancelEdit">Cancel</button>
+    <div class="actions">
+      <button class="save" @click="save">Save</button>
+      <button class="cancel" @click="$emit('close', null)">Cancel</button>
     </div>
+
+    <ConfirmModal
+        v-if="error"
+        title="Save failed"
+        confirm-only
+        confirm-label="Close"
+        @confirm="error = ''"
+    >
+    </ConfirmModal>
   </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+import RingListEditor from './editors/RingListEditor.vue'
+import QuadrantListEditor from './editors/QuadrantListEditor.vue'
+import ConfirmModal from '@/components/ui/ConfirmModal.vue'
+import service from '@/services/radarService'
+import {deepClone} from '@/utils/deepClone'
 
 export default {
-  components: { draggable },
-  props: {
-    modelValue: Object,
-    size: { type: Number, default: 600 }
-  },
+  components: {RingListEditor, QuadrantListEditor, ConfirmModal},
+  props: {modelValue: Object, size: {default: 600}},
+  emits: ['update:modelValue', 'close'],
   data() {
     return {
-      localRadar: {},
-      localRings: [],
-      localQuadrants: [],
-      quadLabelPos: [
-        { x: -100, y: -100 },
-        { x: 100, y: -100 },
-        { x: -100, y: 100 },
-        { x: 100, y: 100 }
-      ]
-    }
-  },
-  computed: {
-    // Display the rings reversed (outermost first), but keep internal order correct
-    reversedRings: {
-      get() {
-        return [...this.localRings].reverse()
-      },
-      set(newVal) {
-        this.localRings = [...newVal].reverse()
-      }
+      radar: deepClone(this.modelValue),
+      error: ''
     }
   },
   watch: {
-    modelValue: {
-      handler(v) {
-        this.localRadar = JSON.parse(JSON.stringify(v))
-        this.localRings = JSON.parse(JSON.stringify(v.rings))
-        this.localQuadrants = JSON.parse(JSON.stringify(v.quadrants))
-      },
-      immediate: true,
-      deep: true
+    modelValue(v) {
+      this.radar = deepClone(v)
+    }
+  },
+  computed: {
+    c() {
+      return this.size / 2
+    },
+    step() {
+      return this.size / 8
+    },
+    labels() {
+      const h = this.c / 2
+      return [
+        {x: -h, y: -h},
+        {x: h, y: -h},
+        {x: -h, y: h},
+        {x: h, y: h}
+      ]
     }
   },
   methods: {
-    saveRadar() {
-      this.localRadar.rings = this.localRings
-      this.localRadar.quadrants = this.localQuadrants
-
-      const method = this.localRadar.id ? 'PUT' : 'POST'
-      const url = this.localRadar.id ? `/radars/${this.localRadar.id}` : '/radars'
-
-      fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.localRadar)
-      })
-          .then(res => res.json())
-          .then(data => {
-            // Fetch the full radar after saving (with rings/quadrants)
-            return fetch(`/radars/${data.id}`)
-                .then(res => res.json())
-                .then(fullRadar => {
-                  this.$emit('update:modelValue', fullRadar)
-                  this.$emit('close-editor', fullRadar)
-                })
-          })
-          .catch(err => {
-            console.error('Save failed:', err)
-            alert('Error saving Radar')
-          })
+    defaultRingName(i) {
+      return ['ADOPT', 'TRIAL', 'EVAL', 'HOLD'][i] || `RING ${i + 1}`
     },
-    cancelEdit() {
-      this.$emit('close-editor', null)
+    defaultQuadrantName(i) {
+      return this.modelValue.quadrants[i]?.name || `Quadrant ${i + 1}`
+    },
+    async save() {
+      this.radar.rings.forEach((r, i) => {
+        if (!r.name.trim()) {
+          r.name = this.defaultRingName(i)
+        }
+      })
+      this.radar.quadrants.forEach((q, i) => {
+        if (!q.name.trim()) {
+          q.name = this.defaultQuadrantName(i)
+        }
+      })
+      try {
+        const saved = await service.save(this.radar)
+        this.$emit('update:modelValue', saved)
+        this.$emit('close', saved)
+      } catch (e) {
+        this.error = e.message || 'Unknown error'
+      }
     }
   }
 }
