@@ -1,15 +1,14 @@
 .radar-card {
-    background-color: #fdfdfd;
-    border: 1px solid #ddd;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     padding: 1.5rem;
     border-radius: 10px;
     width: 320px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.2s ease-in-out;
-    box-sizing: border-box;
+    transition: transform .2s ease-in-out;
     margin: 1rem;
     position: relative;
 }
@@ -18,131 +17,84 @@
     transform: translateY(-4px);
 }
 
-.radar-card label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin: 0.8rem 0 0.2rem;
-    color: #333;
-    display: block;
+.title{
+    margin:0;
+    font:700 1.25rem/1.2 sans-serif;
+    text-align:center;
+    color:var(--text-dark);
 }
 
-.radar-name-input {
-    font-size: 1.4rem;
-    font-weight: bold;
-    background: transparent;
-    color: #222;
-    margin-bottom: 1rem;
-    outline: none;
-    padding: 0.2rem;
-    text-align: center;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    transition: border-color 0.2s ease-in-out;
+.block{
+    flex:1 1 120px;
 }
 
-.radar-name-input:focus {
-    border-bottom: 2px solid #cd5b1c;
+.block h4{
+    margin:.2rem 0 .5rem;
+    color:var(--brand-main);
+    font:600 .9rem/1 sans-serif;
+    text-align:center;
 }
 
-.radar-card input,
-.radar-card textarea {
-    width: 100%;
-    padding: 0.6rem;
-    font-size: 0.95rem;
-    margin-top: 0.2rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-in-out;
+.block ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:.35rem;
 }
 
-.radar-card textarea {
-    resize: vertical;
+.block li{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:.3rem .6rem;
+    font-size:.85rem;
+    text-align:center;
+    color:var(--text-dark);
 }
 
-.radar-card input:focus,
-.radar-card textarea:focus,
-.radar-card button:focus {
-    border-color: #cd5b1c;
-    outline: 2px solid #cd5b1c;
-    outline-offset: 2px;
-}
-
-.view-mode {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-    text-align: center;
-    padding: 0.5rem 0;
-}
-
-.view-mode h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #222;
-    margin: 0;
-}
-
-.view-mode ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.25rem 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.view-mode ul.quadrants li,
-.view-mode ul.rings li {
-    background: #fafafa;
-    border: 1px solid #e0e0e0;
-    padding: 0.35rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.25rem;
-    color: #333;
+.meta{
+    display:flex;
+    gap:1.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
 .edit-btn {
-    background: #cd5b1c;
+    background: var(--brand-main);
+    color: #fff;
     border: none;
     border-radius: 6px;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    padding: .5rem 1rem;
+    font-size: .9rem;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background .2s;
 }
 
 .edit-btn:hover {
-    background: #a74615;
+    background: var(--brand-dark);
 }
 
-.section {
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+    z-index: 2;
 }
 
-.section-title {
-    font-size: 1rem;
+.delete-btn:hover {
     color: #cd5b1c;
-    padding: 0.1rem 0rem;
-    background-color: #fafafa;
-    border-bottom: 1px solid #eee;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-ul.quadrants,
-ul.rings {
-    list-style: none;
-    padding: 0 2rem;
-    margin: 0;
-    width: 100%;
-    box-sizing: border-box;
 }
