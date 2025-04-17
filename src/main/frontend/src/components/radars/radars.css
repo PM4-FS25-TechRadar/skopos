@@ -1,0 +1,148 @@
+.radar-card {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: border-box;
+    margin: 1rem;
+    position: relative;
+}
+
+.radar-card:hover {
+    transform: translateY(-4px);
+}
+
+.radar-card label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0.8rem 0 0.2rem;
+    color: #333;
+    display: block;
+}
+
+.radar-name-input {
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: transparent;
+    color: #222;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 0.2rem;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.radar-name-input:focus {
+    border-bottom: 2px solid #cd5b1c;
+}
+
+.radar-card input,
+.radar-card textarea {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.radar-card textarea {
+    resize: vertical;
+}
+
+.radar-card input:focus,
+.radar-card textarea:focus,
+.radar-card button:focus {
+    border-color: #cd5b1c;
+    outline: 2px solid #cd5b1c;
+    outline-offset: 2px;
+}
+
+.view-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+.view-mode h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
+.view-mode ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.25rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.view-mode ul.quadrants li,
+.view-mode ul.rings li {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    color: #333;
+}
+
+.edit-btn {
+    background: #cd5b1c;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.edit-btn:hover {
+    background: #a74615;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.section-title {
+    font-size: 1rem;
+    color: #cd5b1c;
+    padding: 0.1rem 0rem;
+    background-color: #fafafa;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+ul.quadrants,
+ul.rings {
+    list-style: none;
+    padding: 0 2rem;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
