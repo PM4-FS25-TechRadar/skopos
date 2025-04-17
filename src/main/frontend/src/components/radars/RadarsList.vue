@@ -1,94 +1,70 @@
 <template>
-  <div class="radars-container">
-    <button v-if="!editingRadar" class="add-new-radar-btn" @click="addNew">＋</button>
+  <div class="wrapper">
+    <button v-if="!editing" class="add-new-radar-btn" @click="newRadar">＋</button>
 
-    <div v-if="loading" class="loading">Loading…</div>
+    <RadarEditor
+        v-if="editing"
+        :modelValue="editing"
+        @update:modelValue="updateList"
+        @close="handleEditorClose"
+    />
 
-    <div v-if="!editingRadar" class="radars-list">
-      <Radars
-          v-for="(r, idx) in radars"
-          :key="r.id ?? 'n-' + idx"
+    <div v-else class="grid">
+      <RadarCard
+          v-for="r in radars"
+          :key="r.id ?? r._stubId"
           :radar="r"
-          @update-radar="updateRadar"
-          @add-radar="replaceStub(idx, $event)"
-          @deleted="removeRadar"
-          @edit-radar="startEdit"
+          @edit="editing = clone(r)"
+          @deleted="remove"
       />
     </div>
 
-    <RadarEditor
-        v-else
-        v-model="editingRadar"
-        @update:modelValue="updateRadar"
-        @close-editor="handleEditorClose"
-    />
+    <div v-if="loading" class="loading">Loading…</div>
   </div>
 </template>
 
 <script>
-import Radars from './Radars.vue'
+import { genId } from '@/utils/uuid'
+import service from '@/services/radarService'
+import RadarCard from '@/components/radars/RadarCard.vue'
 import RadarEditor from '@/components/radars/RadarEditor.vue'
 
-const genId = () => crypto.randomUUID?.() || Math.random().toString(36).slice(2)
-
 export default {
-  components: { Radars, RadarEditor },
+  components: { RadarCard, RadarEditor },
   data() {
-    return {
-      radars: [],
-      loading: true,
-      editingRadar: null
-    }
+    return { radars: [], loading: false, editing: null }
   },
   created() {
-    this.reloadRadars()
+    this.reload()
   },
   methods: {
-    reloadRadars() {
+    async reload() {
       this.loading = true
-      fetch('/radars')
-          .then(res => res.json())
-          .then(data => (this.radars = data))
-          .finally(() => (this.loading = false))
+      this.radars = await service.list()
+      this.loading = false
     },
-    addNew() {
-      const blank = {
+    clone(o) {
+      return JSON.parse(JSON.stringify(o))
+    },
+    newRadar() {
+      this.editing = {
+        _stubId: genId(),
         name: '',
-        description: '',
-        quadrants: Array.from({ length: 4 }, () => ({ name: '', _id: genId() })),
-        rings: Array.from({ length: 4 }, () => ({ name: '', _id: genId() }))
-      }
-      this.radars.unshift(blank)
-      this.editingRadar = blank
-    },
-    startEdit(radar) {
-      this.editingRadar = JSON.parse(JSON.stringify(radar))
-    },
-    updateRadar(updated) {
-      const i = this.radars.findIndex(r => r.id === updated.id)
-      if (i !== -1) {
-        this.radars.splice(i, 1, updated)
-      } else {
-        this.radars.unshift(updated)
+        rings: Array.from({ length: 4 }, () => ({ _id: genId(), name: '' })),
+        quadrants: Array.from({ length: 4 }, () => ({ _id: genId(), name: '' }))
       }
     },
-    replaceStub(index, newRadar) {
-      this.radars.splice(index, 1, newRadar)
+    updateList(saved) {
+      this.radars = this.radars.filter(r => r._stubId !== saved._stubId)
+      const i = this.radars.findIndex(r => r.id === saved.id)
+      i === -1 ? this.radars.unshift(saved) : this.radars.splice(i, 1, saved)
     },
-    removeRadar(id) {
+    remove(id) {
       this.radars = this.radars.filter(r => r.id !== id)
     },
-    handleEditorClose(updatedRadar) {
-      this.editingRadar = null
-
-      if (updatedRadar?.id) {
-        // Remove any stub (no id) radar from the list
-        this.radars = this.radars.filter(r => r.id && r.id !== updatedRadar.id)
-
-        this.radars.unshift(updatedRadar)
-      } else {
-        this.reloadRadars()
-      }
+    async handleEditorClose(updatedRadar) {
+      this.editing = null
+      await this.reload()
     }
   }
 }
