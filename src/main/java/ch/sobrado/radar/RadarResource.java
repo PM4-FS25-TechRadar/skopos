@@ -49,7 +49,12 @@ public class RadarResource {
         }
         radar.radarGroup = group;
         */
-
+        for(Quadrant quadrant : radar.quadrants) {
+            quadrant.radar = radar;
+        }
+        for(Ring ring : radar.rings) {
+            ring.radar = radar;
+        }
         radar.persist();
         return Response.status(Response.Status.CREATED)
                 .entity(Collections.singletonMap("id", radar.id))
@@ -68,7 +73,27 @@ public class RadarResource {
         }
 
         existingRadar.name = updatedRadar.name;
+        existingRadar.quadrants.clear();
+        for (Quadrant quadrant : updatedRadar.quadrants) {
+            Quadrant managed = Quadrant.findById(quadrant.id);
+            if (managed == null) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+            existingRadar.quadrants.add(managed);
+            managed.radar = existingRadar;
+            managed.name = quadrant.name;
+        }
 
+        existingRadar.rings.clear();
+        for (Ring ring : updatedRadar.rings) {
+            Ring managed = Ring.findById(ring.id);
+            if (managed == null) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+            existingRadar.rings.add(managed);
+            managed.radar = existingRadar;
+            managed.name = ring.name;
+        }
         return Response.ok(existingRadar).build();
     }
 

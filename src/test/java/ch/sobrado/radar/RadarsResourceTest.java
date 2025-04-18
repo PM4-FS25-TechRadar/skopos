@@ -80,10 +80,10 @@ class RadarsResourceTest {
     @Test
     void testUpdateRadar() {
         Radar radar = testData.createRadar("Radar to update");
-
+        radar.name = "Updated Radar";
         given()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body("{\"name\":\"Updated Radar\"}")
+                .body(radar)
                 .when().put("/radars/{id}", radar.id)
                 .then().statusCode(200)
                 .body("id", equalTo(radar.id.intValue()))

@@ -24,13 +24,11 @@ public class Radar extends PanacheEntity {
     */
 
     @OneToMany(mappedBy = "radar", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonManagedReference
     @OrderColumn(name = "quadrant_order")
     @Size(min = 4, max = 4, message = "Radar must have 4 quadrants")
     public List<Quadrant> quadrants = new ArrayList<>();
 
     @OneToMany(mappedBy = "radar", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonManagedReference
     @OrderColumn(name = "ring_order")
     @Size(min = 4, max = 4, message = "Radar must have 4 rings")
     public List<Ring> rings = new ArrayList<>();

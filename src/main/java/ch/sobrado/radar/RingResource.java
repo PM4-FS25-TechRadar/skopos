@@ -38,7 +38,7 @@ public class RingResource {
         }
 
         existingRing.name = updatedRing.name;
-        existingRing.persist();
+
         return Response.ok(existingRing).build();
     }
 }
