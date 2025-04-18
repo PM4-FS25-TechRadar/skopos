@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: space-between;
     transition: transform .2s ease-in-out;
-    margin: 1rem;
+    margin: 0.5rem;
     position: relative;
 }
 

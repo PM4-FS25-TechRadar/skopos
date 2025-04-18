@@ -9,7 +9,7 @@
         @close="handleEditorClose"
     />
 
-    <div v-else class="grid">
+    <div v-else class="radars-list">
       <RadarCard
           v-for="r in radars"
           :key="r.id ?? r._stubId"
