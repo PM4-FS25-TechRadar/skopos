@@ -32,7 +32,7 @@ export default {
   inject: ['keycloak'],
   data() {
     return {
-      activeView: 'radar',
+      activeView: 'technologies',
       isSidebarCollapsed: false
     }
   },
