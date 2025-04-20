@@ -15,7 +15,7 @@ public class TechnologiesResource {
 
     @GET
     public List<Technology> getAll() {
-        return Technology.listAll();
+        return Technology.list("ORDER BY name");
     }
 
     @GET
