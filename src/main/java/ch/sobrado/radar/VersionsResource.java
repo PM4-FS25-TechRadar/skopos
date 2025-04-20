@@ -66,6 +66,7 @@ public class VersionsResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
+        existing.technology.versions.remove(existing);
         existing.delete();
         return Response.noContent().build();
     }
