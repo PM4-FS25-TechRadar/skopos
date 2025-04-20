@@ -144,8 +144,10 @@ export default {
             }
             return res.json();
           })
-          .then((savedVersion) => {
-            this.localTechnology.versions[index] = savedVersion;
+          .then(result => {
+            if (result.id) {
+              this.localTechnology.versions[index].id = result.id;
+            }
           })
           .catch((err) => {
             console.error('Version save failed:', err);
