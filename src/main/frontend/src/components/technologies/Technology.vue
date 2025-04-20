@@ -20,23 +20,29 @@
     </label>
     <div class="versions-section">
       <h4>Versions</h4>
-      <div
-          v-for="(version, index) in localTechnology.versions"
-          :key="version.id || 'new-' + index"
-          class="version-item"
-      >
-        <label>
-          Version Name
-          <input v-model="version.name" type="text" placeholder="Version Name" />
-        </label>
-        <label>
-          Version Description
-          <textarea v-model="version.description" placeholder="Version Description"></textarea>
-        </label>
-        <button @click="saveVersion(version, index)">Save Version</button>
-        <button @click="removeVersion(version, index)">Remove Version</button>
+      <div class="versions-container">
+        <div
+            v-for="(version, index) in localTechnology.versions"
+            :key="version.id || 'new-' + index"
+            class="version-item"
+        >
+          <label>
+            Version Name
+            <input v-model="version.name" type="text" placeholder="Version Name" />
+          </label>
+          <label>
+            Version Description
+            <textarea v-model="version.description" placeholder="Version Description"></textarea>
+          </label>
+          <div class="version-actions">
+            <button @click="saveVersion(version, index)">Save</button>
+            <button @click="removeVersion(version, index)">Remove</button>
+          </div>
+        </div>
+        <div class="add-version-container">
+          <button @click="addVersion">Add Version</button>
+        </div>
       </div>
-      <button @click="addVersion">Add Version</button>
     </div>
     <button class="save-button" @click="saveTechnology">Save Technology</button>
   </div>
@@ -79,9 +85,9 @@ export default {
           .then((technology) => {
             this.localTechnology.id = technology.id;
             if (method === 'POST') {
-              this.$emit('add-technology', technology);
+              this.$emit('add-technology', this.localTechnology);
             } else {
-              this.$emit('update-technology', technology);
+              this.$emit('update-technology', this.localTechnology);
             }
           })
           .catch((err) => {
