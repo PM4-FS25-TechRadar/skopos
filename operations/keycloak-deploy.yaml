@@ -26,7 +26,9 @@ spec:
             /opt/keycloak/bin/kc.sh build && \
             /opt/keycloak/bin/kc.sh start --optimized \
             --http-enabled=true \
-            --hostname-strict-https=false
+            --hostname=https://kc-skopos.pm4.init-lab.ch \
+            --bootstrap-admin-username tmpadm \
+            --bootstrap-admin-password pass \
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
@@ -47,15 +49,8 @@ spec:
             secretKeyRef:
               name: database-secret
               key: radar.kc.password
-        - name: KC_DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: database-secret
-              key: radar.datasource.password
         - name: KEYCLOAK_HTTP_RELATIVE_PATH
           value: "/"
-        - name: KC_SPI_ADMIN_REALM
-          value: "master"
         envFrom:
         - configMapRef:
             name: database-configmap
@@ -93,3 +88,17 @@ spec:
       volumes:
         - name: empty-dir
           emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-service
+spec:
+  selector:
+    app: keycloak
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP

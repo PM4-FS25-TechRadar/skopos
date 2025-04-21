@@ -3,20 +3,20 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-  name: radar
+  name: keycloak
 spec:
   rules:
-  - host: skopos.pm4.init-lab.ch
+  - host: kc-skopos.pm4.init-lab.ch
     http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: radar-service
+            name: keycloak-service
             port:
               number: 8080
   tls:
   - hosts:
-    - skopos.pm4.init-lab.ch
-    secretName: skopos.pm4.init-lab.ch
+    - kc-skopos.pm4.init-lab.ch
+    secretName: kc-skopos.pm4.init-lab.ch
