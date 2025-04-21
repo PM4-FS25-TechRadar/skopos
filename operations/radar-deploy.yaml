@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: radar
-        image: ghcr.io/pm4-fs25-techradar/skopos/skopos:a0f4418
+        image: ghcr.io/pm4-fs25-techradar/skopos/skopos:b1a6cd5
         ports:
         - containerPort: 8080
         env:
@@ -48,6 +48,6 @@ spec:
     app: radar
   ports:
   - protocol: TCP
-    port: 8080
+    port: 80
     targetPort: 8080
   type: ClusterIP
