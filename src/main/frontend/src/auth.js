@@ -1,7 +1,7 @@
 import Keycloak from 'keycloak-js'
 
 const keycloak = new Keycloak({
-    url: 'http://localhost:9000/',
+    url: 'https://kc-skopos.pm4.init-lab.ch/',
     realm: 'quarkus',
     clientId: 'frontend-app',
 })
