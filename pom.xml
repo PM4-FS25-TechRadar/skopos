@@ -116,6 +116,66 @@
           </systemPropertyVariables>
         </configuration>
       </plugin>
+ <plugin>
+  <groupId>com.github.eirslett</groupId>
+  <artifactId>frontend-maven-plugin</artifactId>
+  <version>1.12.1</version>
+  <executions>
+    <execution>
+      <id>install-node-and-npm</id>
+      <goals>
+        <goal>install-node-and-npm</goal>
+      </goals>
+      <configuration>
+        <nodeVersion>v20.10.0</nodeVersion>
+        <npmVersion>10.2.3</npmVersion>
+      </configuration>
+    </execution>
+    <execution>
+      <id>npm-install</id>
+      <goals>
+        <goal>npm</goal>
+      </goals>
+      <configuration>
+        <arguments>ci</arguments>
+      </configuration>
+    </execution>
+    <execution>
+      <id>npm-build</id>
+      <goals>
+        <goal>npm</goal>
+      </goals>
+      <configuration>
+        <arguments>run build</arguments>
+      </configuration>
+    </execution>
+  </executions>
+  <configuration>
+    <workingDirectory>src/main/frontend</workingDirectory>
+  </configuration>
+</plugin>
+<plugin>
+  <artifactId>maven-resources-plugin</artifactId>
+  <version>3.3.1</version>
+  <executions>
+    <execution>
+      <id>copy-frontend</id>
+      <phase>process-resources</phase>
+      <goals>
+        <goal>copy-resources</goal>
+      </goals>
+      <configuration>
+        <outputDirectory>${project.build.outputDirectory}/META-INF/resources</outputDirectory>
+        <resources>
+          <resource>
+            <directory>src/main/frontend/dist</directory>
+            <filtering>false</filtering>
+          </resource>
+        </resources>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
     </plugins>
   </build>
   <profiles>
