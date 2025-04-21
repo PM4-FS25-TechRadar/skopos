@@ -19,7 +19,7 @@ export default defineConfig({
         }
     },
     build: {
-        outDir: '../backend/src/main/resources/META-INF/resources',
+        outDir: '../resources/META-INF/resources',
         emptyOutDir: true
     },
     resolve: {

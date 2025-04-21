@@ -53,9 +53,6 @@ jobs:
     - name: SKOPOS Run tests with Maven
       run: mvn package
 
-    - name: Check built JAR contents
-      run: unzip -l target/quarkus-app/quarkus-run.jar | grep META-INF/resources
-
     - name: Delete Old Artifacts
       uses: actions/github-script@v6
       id: artifact
