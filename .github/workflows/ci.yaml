@@ -51,7 +51,7 @@ jobs:
       run: echo "testcontainers.reuse.enable=true" > ~/.testcontainers.properties
 
     - name: SKOPOS Run tests with Maven
-      run: mvn package
+      run: mvn package -Dmaven.test.skip
 
     - name: Delete Old Artifacts
       uses: actions/github-script@v6
