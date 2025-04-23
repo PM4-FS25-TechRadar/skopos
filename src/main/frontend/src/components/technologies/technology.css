@@ -27,21 +27,9 @@
 }
 
 .technology-name-input {
-    font-size: 1.4rem;
+    margin-top: 0.8rem !important;
     font-weight: bold;
-    background: transparent;
-    color: #222;
-    margin-bottom: 1rem;
-    outline: none;
-    padding: 0.2rem 2rem;
     text-align: center;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    box-shadow: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    transition: border-color 0.2s ease-in-out;
 }
 
 .technology-name-input:focus {
@@ -49,12 +37,11 @@
 }
 
 .technology-card input,
-.technology-card select,
 .technology-card textarea {
     width: 100%;
     padding: 0.6rem;
     font-size: 0.95rem;
-    margin-top: 0.2rem;
+    margin-top: 0.4rem;
     border: 1px solid #ccc;
     border-radius: 6px;
     background-color: #fff;
@@ -95,8 +82,17 @@
     background-color: #a74615;
 }
 
-.versions-section {
-    margin-top: 1.5rem;
+.version-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+}
+
+.version-actions button {
+    flex: 1;
+    width: 100%;
 }
 
 .versions-section h4 {
@@ -105,12 +101,18 @@
     color: #222;
     margin-bottom: 0.8rem;
 }
-
+.versions-container {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-bottom: 0.1rem;
+}
 .version-item {
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    border: 1px solid #aaaaaa;
+    border-radius: 6px;
+    padding: 5px 5px 5px 5px;
 }
 
 .versions-section button {
@@ -121,6 +123,12 @@
 
 .versions-section button:hover {
     background-color: #d9d9d9;
+}
+
+.add-version-container {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically */
 }
 
 .delete-btn {
