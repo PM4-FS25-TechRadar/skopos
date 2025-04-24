@@ -35,7 +35,7 @@ import './radar.css'
 
 export default {
   mounted() {
-    fetch('/radar/data/2022')
+    fetch('/radars/data/2022')
         .then(res => res.json())
         .then(loadedStuff => {
           this.renderRadar(loadedStuff)

@@ -1,3 +1,17 @@
+:root {
+    --brand-main: #cd5b1c;
+    --brand-dark: #a74615;
+    --text-dark : #333;
+    --text-light: #666;
+    --card-bg   : #fafafa;
+    --border    : #e5e5e5;
+
+    --ring-inner : #cd5b1c;
+    --ring-second : #5fa1b7;
+    --ring-third  : #693e52;
+    --ring-outer  : #000000;
+}
+
 html {
     background-color: black;
 }

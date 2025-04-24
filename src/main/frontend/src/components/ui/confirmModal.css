@@ -1,0 +1,62 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--card-bg);
+    color: var(--text-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    min-width: 320px;
+    max-width: 90vw;
+}
+
+.modal h3 {
+    margin: 0 0 1rem;
+    font: 600 1.2rem sans-serif;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
+}
+
+.row button {
+    flex: 1 1 auto;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+.row button:first-child {
+    background:#f0f0f0;
+    color:var(--text-dark);
+}
+.row button:first-child:hover {
+    background:#d9d9d9;
+}
+
+.row button.danger {
+    background: var(--brand-main);
+    color: #fff;
+}
+.row button.danger:hover {
+    background: var(--brand-dark);
+}
