@@ -1,242 +1,152 @@
-# SKOPOS - Texhradar
+# arc42 Architektur-Dokumentation: Technologieradar
 
-**Über arc42**
+## 1. Einleitung und Ziele
 
-arc42, das Template zur Dokumentation von Software- und
-Systemarchitekturen.
+### Aufgabenstellung
+Entwicklung eines webbasierten Technologieradars, der Technologien (Programmiersprachen, Frameworks, Tools, Plattformen etc.) innerhalb eines Unternehmens oder Teams systematisch erfasst, bewertet und nachverfolgt.
 
-Template Version 8.2 DE. (basiert auf AsciiDoc Version), Januar 2023
+### Qualitätsziele
+- **Benutzerfreundlichkeit**: Einfache Bedienung für technische und nicht-technische Nutzer.
+- **Skalierbarkeit**: Unterstützung wachsender Mengen an Technologien und Teams.
+- **Wartbarkeit**: Leicht erweiterbar für neue Technologien und Bewertungsmodelle.
+- **Sicherheit**: Geschützte Benutzerverwaltung und Berechtigungen.
 
-Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and
-contributors. Siehe <https://arc42.org>.
+### Stakeholder
+- **Entwicklungsteam**: Implementierung und Pflege des Systems.
+- **Teamleiter / CTO**: Nutzung zur Technologiebewertung und Entscheidungshilfe.
+- **Mitarbeiter**: Beitrag zur Bewertung und Ergänzung neuer Technologien.
 
-# Einführung und Ziele
+---
 
-## Ausgangslage & Idee
+## 2. Randbedingungen
 
-In der heutigen schnelllebigen Technologiewelt ist es entscheidend, den Überblick über
-neue Technologien, Trends und interne Technologieentscheidungen zu behalten.
-Unternehmen wie Zalando nutzen Techradare, um ihre Technologie-Stacks transparent zu
-dokumentieren und Entwicklungsentscheidungen strategisch zu lenken. Das Ziel ist es, ein
-Techradar zu entwickeln, welches die bestehenden Technologien kategorisiert, neue Ideen
-erfasst und das Know-how der Beteiligten in den einzelnen Technologien festhält. Dies
-ermöglicht eine nachhaltige Wissenssicherung und einen systematischen
-Innovationsprozess.
+### Technische Randbedingungen
+- Web-Anwendung, responsive Design.
+- Backend: Java (Quarkus)
+- Frontend: Vue.js (Vite)
+- Authentifizierung via Keycloak.
+- Hostbar in Kubernetes.
 
-Unsere Implementierung basiert auf dem Zalando Tech Radar, das durch ThoughtWorks
-inspiriert wurde. Als technologische Grundlage dient der Tech Radar von unserem
-Dozenten, welcher Quarkus als Backend-Framework und PostgreSQL als
-Datenbanklösung nutzt.
+### Organisatorische Randbedingungen
+- Agile Entwicklung (Scrum)
+- Zweiwöchentliche Reviews mit Stakeholdern.
 
-## Stand der Technik / Konkurrenzanalyse
+### Konventionen
+- GitHub als Repository
+- CI/CD via GitHub Actions
+- Code-Konventionen nach Firmenstandard
 
-Der Zalando Techradar ist ein etabliertes Beispiel für ein open source Techradar. Weitere
-vergleichbare Ansätze gibt es bei ThoughtWorks und einigen anderen
-Technologieunternehmen. Diese Lösungen fokussieren sich meist auf bestehende
-Technologien und deren Kategorisierung in "Adopt", "Trial", "Assess" und "Hold". Unser
-Techradar soll darüber hinaus eine Plattform bieten, auf der Teammitglieder ihre eigenen
-Technologieideen und -erfahrungen einbringen und bewerten können.
+---
 
-## Kontextszenario (Hauptablauf)
+## 3. Kontextabgrenzung
 
-1. Ein Nutzer meldet sich an und kann bestehende Technologien im Radar einsehen.
-2. Neue Technologien oder Erfahrungen können von berechtigten Nutzern hinzugefügt
-und mit relevanten Metadaten versehen werden.
-3. Technologien werden von anderen Nutzern bewertet und kommentiert.
-4. Ein Dashboard zeigt aktuelle Trends, häufig bewertete Technologien und ermöglicht
-Filterung nach Teams, Projekten oder Technologie-Kategorien.
+### Systemkontext
 
-## Weitere Anforderungen
-x
+Das Technologieradar empfängt Eingaben von Nutzern und ermöglicht die visuelle Darstellung sowie die Auswertung von Technologie-Trends.
 
-## Qualitätsziele
+### Kontextdiagramm
+(→ Platzhalter: Hier könntest du später ein einfaches Diagramm ergänzen.)
 
-## Stakeholder
+### Externe Systeme / Schnittstellen
+- Keycloak (Authentifizierung)
+- Postgresql Datenbanken für Technologien und Metadaten
 
-| Rolle        | Kontakt        | Erwartungshaltung |
-|--------------|----------------|-------------------|
-| *\<Rolle-1>* | *\<Kontakt-1>* | *\<Erwartung-1>*  |
-| *\<Rolle-2>* | *\<Kontakt-2>* | *\<Erwartung-2>*  |
+---
 
-# Randbedingungen
+## 4. Lösungsstrategie
+- **Microservice-Ansatz**: Trennung zwischen Frontend und Backend.
+- **Single Page Application (SPA)**: Frontend läuft komplett im Browser.
+- **Eventuelle spätere Anbindung**: Exportfunktionen / Social Sharingfunktionen (z.B. Links Generieren / Möglichkeit Technologie ins eigene Skopos Techradar zu übernehmen).
 
-# Kontextabgrenzung
+---
 
-## Fachlicher Kontext
+## 5. Bausteinsicht
 
-**\<Diagramm und/oder Tabelle>**
+### Bausteinübersicht
+- Frontend (Vue.js SPA)
+- Backend-API (Quarkus, RESTful API)
+- Datenbank (PostgreSQL)
+- Authentifizierung (Keycloak)
 
-**\<optional: Erläuterung der externen fachlichen Schnittstellen>**
+### Ebene 1: Hauptbausteine
+- **Frontend**: Visualisierung und Interaktion
+- **Backend**: Logik, Business-Regeln
+- **Datenbank**: Speicherung der Technologieeinträge und Bewertungen
 
-## Technischer Kontext
+### Ebene 2: Detaillierung wichtiger Bausteine
+- Technologien sind in Quadranten und Ringen organisiert.
+- Technologien haben Attribute wie Status (Adopt, Trial, Assess, Hold).
 
-**\<Diagramm oder Tabelle>**
+---
 
-**\<optional: Erläuterung der externen technischen Schnittstellen>**
+## 6. Laufzeitsicht
 
-**\<Mapping fachliche auf technische Schnittstellen>**
+### Wichtige Abläufe
 
-# Lösungsstrategie
+**Hinzufügen einer neuen Technologie**
 
-# Bausteinsicht
+1. Benutzer loggt sich ein (Keycloak).
+2. Benutzer klickt auf "Neue Technologie hinzufügen".
+3. Frontend sendet ein POST-Request an die API.
+4. Backend prüft Rechte, validiert Eingaben.
+5. Backend speichert Technologie in der Datenbank.
+6. Frontend aktualisiert die Darstellung.
 
-## Whitebox Gesamtsystem
+// TODO: weiterer Abläufe
 
-***\<Übersichtsdiagramm>***
+## 7. Verteilungssicht
 
-Begründung  
-*\<Erläuternder Text>*
+### Technische Infrastruktur
+- Kompilierte Frontenddaten werden nach dem Bauen mit Quarkus bereitgestellt.
+- Backend-API läuft mit Quarkus als Container in Kubernetes.
+- Datenbank als verwalteter Dienst (z.B. AWS RDS).
 
-Enthaltene Bausteine  
-*\<Beschreibung der enthaltenen Bausteine (Blackboxen)>*
+### Zuordnung
+- Frontend kommuniziert über HTTPS mit der API.
+- API authentifiziert Requests über OAuth2 (Keycloak).
 
-Wichtige Schnittstellen  
-*\<Beschreibung wichtiger Schnittstellen>*
+---
 
-### \<Name Blackbox 1>
+## 8. Datenmodell
 
-*\<Zweck/Verantwortung>*
+![Datenmodell](Datenmodell.png)
 
-*\<Schnittstelle(n)>*
+## 9. Architekturentscheidungen
 
-*\<(Optional) Qualitäts-/Leistungsmerkmale>*
+| Entscheidung | Begründung | Alternative |
+| ------------ | ---------- | ----------- |
+| Quarkus für Backend | Codebase bereits auf Quarkus | Spring Boot |
+| Vue.js für Frontend | gute Integration, Vorwissen des Entwicklungsteam | //TODO Vorschlag von rschumm einfügen |
+| Keycloak für Authentifizierung | Open Source, Standardkonform, einfach zu integrieren | Auth0, eigene Lösung |
 
-*\<(Optional) Ablageort/Datei(en)>*
+---
 
-*\<(Optional) Erfüllte Anforderungen>*
+## 10. Qualitätsanforderungen
 
-*\<(optional) Offene Punkte/Probleme/Risiken>*
+### Qualitätsbaum
+- **Performance**: Antwortzeiten <500ms
+- **Security**: DSGVO-konforme Datenhaltung
+- **Usability**: Selbsterklärende Bedienung
 
-### \<Name Blackbox 2>
+### Wichtigste Qualitätsszenarien
+- Viele gleichzeitige Benutzer können Technologien hinzufügen und bewerten, ohne Performanceprobleme.
+- Bei einem Ausfall von Keycloak soll ein Failover-Modus definiert sein.
 
-*\<Blackbox-Template>*
+---
 
-### \<Name Blackbox n>
+## 11. Risiken und technische Schulden
 
-*\<Blackbox-Template>*
+- Abhängigkeit von Keycloak: Erfordert Know-how im Team.
+- Mangelnde Dokumentation der API könnte zu Missverständnissen führen.
+- Technologiewachstum: Zu viele Technologien könnten die Übersichtlichkeit beeinträchtigen.
+- Unzureichende Performance-Optimierung: Hohe Last könnte zu langsamen Antwortzeiten führen.
 
-### \<Name Schnittstelle 1>
+---
 
-…
+## 12. Glossar
 
-### \<Name Schnittstelle m>
-
-## Ebene 2
-
-### Whitebox *\<Baustein 1>*
-
-*\<Whitebox-Template>*
-
-### Whitebox *\<Baustein 2>*
-
-*\<Whitebox-Template>*
-
-…
-
-### Whitebox *\<Baustein m>*
-
-*\<Whitebox-Template>*
-
-## Ebene 3
-
-### Whitebox \<\_Baustein x.1\_\>
-
-*\<Whitebox-Template>*
-
-### Whitebox \<\_Baustein x.2\_\>
-
-*\<Whitebox-Template>*
-
-### Whitebox \<\_Baustein y.1\_\>
-
-*\<Whitebox-Template>*
-
-# Laufzeitsicht
-
-## *\<Bezeichnung Laufzeitszenario 1>*
-
--   \<hier Laufzeitdiagramm oder Ablaufbeschreibung einfügen>
-
--   \<hier Besonderheiten bei dem Zusammenspiel der Bausteine in diesem
-    Szenario erläutern>
-
-## *\<Bezeichnung Laufzeitszenario 2>*
-
-…
-
-## *\<Bezeichnung Laufzeitszenario n>*
-
-…
-
-# Verteilungssicht
-
-## Infrastruktur Ebene 1
-
-***\<Übersichtsdiagramm>***
-
-Begründung  
-*\<Erläuternder Text>*
-
-Qualitäts- und/oder Leistungsmerkmale  
-*\<Erläuternder Text>*
-
-Zuordnung von Bausteinen zu Infrastruktur  
-*\<Beschreibung der Zuordnung>*
-
-## Infrastruktur Ebene 2
-
-### *\<Infrastrukturelement 1>*
-
-*\<Diagramm + Erläuterungen>*
-
-### *\<Infrastrukturelement 2>*
-
-*\<Diagramm + Erläuterungen>*
-
-…
-
-### *\<Infrastrukturelement n>*
-
-*\<Diagramm + Erläuterungen>*
-
-# Querschnittliche Konzepte
-
-## *\<Konzept 1>*
-
-*\<Erklärung>*
-
-## *\<Konzept 2>*
-
-*\<Erklärung>*
-
-…
-
-## *\<Konzept n>*
-
-*\<Erklärung>*
-
-# Architekturentscheidungen
-
-# Qualitätsanforderungen
-
-<div class="formalpara-title">
-
-**Weiterführende Informationen**
-
-</div>
-
-Siehe [Qualitätsanforderungen](https://docs.arc42.org/section-10/) in
-der online-Dokumentation (auf Englisch!).
-
-## Qualitätsbaum
-
-## Qualitätsszenarien
-
-# Risiken und technische Schulden
-
-# Glossar
-
-| Begriff        | Definition        |
-|----------------|-------------------|
-| *\<Begriff-1>* | *\<Definition-1>* |
-| *\<Begriff-2*  | *\<Definition-2>* |
+| Begriff | Definition |
+| ------- | ---------- |
+| Technologie | Software oder Plattform, die bewertet wird. |
+| Quadrant | Kategorisierung, z.B. Programmiersprachen, Tools, Plattformen. |
+| Ring | Reifegrad der Technologie (Adopt, Trial, Assess, Hold). |
