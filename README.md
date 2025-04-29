@@ -9,6 +9,7 @@ source:
 - https://opensource.zalando.com/tech-radar/radar.js 
 - legacy: https://github.com/zalando/tech-radar/blob/master/docs/radar.js 
 
+Link to the [Arc42 documentation](documentation/arc42-documentation.md) for the architecture of the application.
 
 ## Running the application in dev mode
 
