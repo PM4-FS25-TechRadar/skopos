@@ -53,14 +53,14 @@ export default {
   methods: {
     renderRadar(data) {
       const style = getComputedStyle(document.documentElement)
-      const bg    = style.getPropertyValue('--radar-background').trim()
-      const grid  = style.getPropertyValue('--brand-main').trim()
-      const inactive = style.getPropertyValue('--radar-inactive').trim()
+      const bg    = style.getPropertyValue('--radar-background')
+      const grid  = style.getPropertyValue('--brand-main')
+      const inactive = style.getPropertyValue('--radar-inactive')
 
-      const ringVars = ['--ring-inner','--ring-second','--ring-third','--ring-outer']
+      const ringColors = ['--ring-inner','--ring-second','--ring-third','--ring-outer']
       const rings = data.rings.map((r,i) => ({
         name:  r.name.toUpperCase(),
-        color: style.getPropertyValue(ringVars[i]).trim() || '#aaa'
+        color: style.getPropertyValue(ringColors[i])
       }))
 
       radar_visualization({
