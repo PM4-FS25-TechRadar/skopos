@@ -34,40 +34,49 @@
 import './radar.css'
 
 export default {
+  data() {
+    return {
+      radarTitle: '',
+      payload: null
+    }
+  },
   mounted() {
     fetch('/radars/data/2022')
         .then(res => res.json())
-        .then(loadedStuff => {
-          this.renderRadar(loadedStuff)
+        .then(json => {
+          this.payload = json;
+          this.radarTitle = json.title;
+          this.renderRadar(json)
         })
         .catch(err => console.error('Radar fetch failed:', err))
   },
   methods: {
-    renderRadar(loadedStuff) {
+    renderRadar(data) {
+      const style = getComputedStyle(document.documentElement)
+      const bg    = style.getPropertyValue('--radar-background').trim()
+      const grid  = style.getPropertyValue('--brand-main').trim()
+      const inactive = style.getPropertyValue('--radar-inactive').trim()
+
+      const ringVars = ['--ring-inner','--ring-second','--ring-third','--ring-outer']
+      const rings = data.rings.map((r,i) => ({
+        name:  r.name.toUpperCase(),
+        color: style.getPropertyValue(ringVars[i]).trim() || '#aaa'
+      }))
+
       radar_visualization({
         svg_id: "radar",
         width: 1450,
         height: 1000,
         colors: {
-          background: "#c5c5c5",
-          grid: "#cd5b1c",
-          inactive: "#5fa1b7"
+          background: bg,
+          grid: grid,
+          inactive: inactive
         },
-        title: "Sobrado Radar",
-        quadrants: [
-          {name: "Platforms - 0 ↘️"},
-          {name: "Patterns - 1 ↙️"},
-          {name: "Methodologies and Metrics - 2 ↖️"},
-          {name: "Data and Reporting - 3 ↗️"}
-        ],
-        rings: [
-          {name: "ADOPT - 0", color: "#cd5b1c"},
-          {name: "TRIAL - 1", color: "#5fa1b7"},
-          {name: "EVAL - 2", color: "#693e52"},
-          {name: "HOLD - 3", color: "#000000"}
-        ],
+        title: data.title,
+        quadrants: data.quadrants,
+        rings: rings,
         print_layout: true,
-        entries: loadedStuff
+        entries: data.entries,
       })
     }
   }
