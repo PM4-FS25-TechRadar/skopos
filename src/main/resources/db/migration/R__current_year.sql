@@ -12,7 +12,7 @@ DELETE FROM radar_entry where year = 2022;
 INSERT INTO public.radar (id, name) VALUES (1, 'Default Radar');
 
 -- Default Quadrants
-INSERT INTO public.quadrants (id, name, description, radar_id, quadrant_order) VALUES (1, 'data', 'Description for data...', 1, '0');
+INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (1, 'data', 1, '0');
 INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (2, 'methods', 1, '1');
 INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (3, 'patterns', 1, '2');
 INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (4, 'platforms', 1, '3');
