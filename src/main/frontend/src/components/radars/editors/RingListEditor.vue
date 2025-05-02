@@ -1,5 +1,5 @@
 <template>
-  <draggable v-model="ui" item-key="_id" handle=".handle" class="list">
+  <draggable v-model="model" item-key="_id" handle=".handle" class="list">
     <template #item="{ element }">
       <div class="item">
         <span class="handle">☰</span>
@@ -16,7 +16,7 @@ export default {
   props: ['rings'],
   emits: ['update:rings'],
   computed: {
-    ui: {
+    model: {
       get() {
         return [...this.rings].reverse()
       },
