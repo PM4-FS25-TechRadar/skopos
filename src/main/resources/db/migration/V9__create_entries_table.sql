@@ -1,10 +1,8 @@
-CREATE SEQUENCE Entries_SEQ START WITH 1 INCREMENT BY 50;
-CREATE TABLE entries
-(
-    id          BIGINT PRIMARY KEY DEFAULT nextval('Entries_SEQ'),
-    radar_id    BIGINT NOT NULL REFERENCES radar(id) ON DELETE CASCADE,
-    version_id  BIGINT NOT NULL REFERENCES versions(id) ON DELETE CASCADE,
-    quadrant_id BIGINT NOT NULL REFERENCES quadrants(id) ON DELETE CASCADE,
-    ring_id     BIGINT NOT NULL REFERENCES rings(id) ON DELETE CASCADE,
-    status      VARCHAR(50) NOT NULL CHECK (status IN ('MOVED_UP', 'MOVED_DOWN', 'NEW', 'NO_CHANGE'))
+CREATE TABLE entries (
+     id          SERIAL PRIMARY KEY,
+     radar_id    INTEGER NOT NULL REFERENCES radar(id) ON DELETE CASCADE,
+     version_id  INTEGER NOT NULL REFERENCES versions(id) ON DELETE CASCADE,
+     quadrant_id INTEGER NOT NULL REFERENCES quadrants(id) ON DELETE CASCADE,
+     ring_id     INTEGER NOT NULL REFERENCES rings(id) ON DELETE CASCADE,
+     status      VARCHAR(50) NOT NULL
 );
