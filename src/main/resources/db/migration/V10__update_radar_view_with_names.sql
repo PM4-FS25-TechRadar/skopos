@@ -12,6 +12,7 @@ SELECT
                              json_build_object(
                                      'id',    quadrants.id,
                                      'name',  quadrants.name,
+                                     'description', quadrants.description,
                                      'order', quadrants.quadrant_order
                              )
                              ORDER BY quadrants.quadrant_order
@@ -24,6 +25,7 @@ SELECT
                              json_build_object(
                                      'id',    rings.id,
                                      'name',  rings.name,
+                                     'description', rings.description,
                                      'order', rings.ring_order
                              )
                              ORDER BY rings.ring_order

@@ -20,6 +20,8 @@ public class Ring extends PanacheEntity {
     @Column(nullable = false)
     public String name;
 
+    public String description;
+
     @ManyToOne
     @JoinColumn(name = "radar_id", nullable = false)
     public Radar radar;
