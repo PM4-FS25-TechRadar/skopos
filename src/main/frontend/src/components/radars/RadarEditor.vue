@@ -112,10 +112,10 @@ export default {
     labels() {
       const h = this.c / 2
       return [
-        {x: -h, y: -h},
-        {x: h, y: -h},
+        {x: h, y: h},
         {x: -h, y: h},
-        {x: h, y: h}
+        {x: -h, y: -h},
+        {x: h, y: -h}
       ]
     }
   },
@@ -124,7 +124,7 @@ export default {
       return ['ADOPT', 'TRIAL', 'EVAL', 'HOLD'][i] || `RING ${i + 1}`
     },
     defaultQuadrantName(i) {
-      return this.modelValue.quadrants[i]?.name || `Quadrant ${i + 1}`
+      return this.modelValue.quadrants[i]?.name || `Quadrant${i + 1}`
     },
     async save() {
       this.radar.rings.forEach((r, i) => {
