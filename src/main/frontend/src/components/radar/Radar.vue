@@ -14,18 +14,20 @@
 
     <svg id="radar"></svg>
 
-    <div class="radar-info">
-      <h2>Adopt 0</h2>
-      <p>We feel strongly that we should be adopting these items...</p>
+    <div class="radar-info" v-if="payload">
+      <div class="ring-description" v-for="ring in payload.rings" :key="ring.id">
+        <div v-if="ring.description">
+          <h2>{{ ring.name }} {{ ring.order }}</h2>
+          <p>{{ ring.description }}</p>
+        </div>
+      </div>
 
-      <h2>Trial 1</h2>
-      <p>Worth pursuing. It is important to understand how to build up this capability...</p>
-
-      <h2>Eval 2</h2>
-      <p>Worth exploring with the goal of understanding how it will affect us...</p>
-
-      <h2>Hold 3</h2>
-      <p>Proceed with caution. Should not be extended or used for new projects...</p>
+      <div class="quadrant-description" v-for="quadrant in payload.quadrants" :key="quadrant.id">
+        <div v-if="quadrant.description">
+          <h2>{{ quadrant.name }} {{ quadrant.order }}</h2>
+          <p>{{ quadrant.description }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
