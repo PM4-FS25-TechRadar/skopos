@@ -1,31 +1,30 @@
 package ch.sobrado.radar;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "radar_entry")
+@Table(name = "entries")
 public class RadarEntry extends PanacheEntity {
 
-    public String label;
-
-    @ManyToOne
-    @JoinColumn(name = "radar_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "radar_id", nullable = false)
     public Radar radar;
 
-    @ManyToOne
-    @JoinColumn(name = "quadrant_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "version_id", nullable = false)
+    public Version version;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "quadrant_id", nullable = false)
     public Quadrant quadrant;
 
-    @ManyToOne
-    @JoinColumn(name = "ring_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ring_id", nullable = false)
     public Ring ring;
 
-    public int moved;
-
-    public int year;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    public EntryStatus status;
 
 }
