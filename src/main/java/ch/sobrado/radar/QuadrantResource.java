@@ -15,8 +15,8 @@ public class QuadrantResource {
     @Path("/{quadrantId}")
     @Transactional
     public Response update(@PathParam("radarId") Long radarId,
-            @PathParam("quadrantId") Long quadrantId,
-            @Valid Quadrant updatedQuadrant) {
+                           @PathParam("quadrantId") Long quadrantId,
+                           @Valid Quadrant updatedQuadrant) {
 
         Radar radar = Radar.findById(radarId);
         if (radar == null) {

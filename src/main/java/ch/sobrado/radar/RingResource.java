@@ -15,8 +15,8 @@ public class RingResource {
     @Path("/{ringId}")
     @Transactional
     public Response update(@PathParam("radarId") Long radarId,
-            @PathParam("ringId") Long ringId,
-            @Valid Ring updatedRing) {
+                           @PathParam("ringId") Long ringId,
+                           @Valid Ring updatedRing) {
 
         Radar radar = Radar.findById(radarId);
         if (radar == null) {
