@@ -45,3 +45,27 @@ Skopos Tech Radar ist eine webbasierte Anwendung zur Visualisierung und Verwaltu
 - 💻 **Entwicklungsteam**: Implementierung und Pflege des Systems.
 - 🧑‍💼 **Teamleiter / CTO**: Nutzung zur Technologiebewertung und Entscheidungshilfe.
 - 👨‍🏫 **Mitarbeiter**: Beitrag zur Bewertung und Ergänzung neuer Technologien.
+
+## 🏗️ Architektur
+### 🗺️ Systemarchitektur
+Die Anwendung ist als Microservice konzipiert und folgt einem Container-First-Ansatz. Das Backend basiert auf **Quarkus** und nutzt **Hibernate ORM** zur Datenpersistenz. Quarkus wird in einem **Docker-Container** ausgeführt und über **Kubernetes/OpenShift** bereitgestellt.
+
+### 🛠️ Backend-Komponenten
+- 🗃️ **RadarService**: Verwaltung und Speicherung von Radardaten.
+- 🪧 **QuadrantService und RingService**: Strukturierung der Radardaten.
+- 🌐 **REST-API**: Bereitstellung der Schnittstellen mit JAX-RS.
+- 🗄️ **Datenbankzugriff**: Implementierung mit Panache, einer JPA-Erweiterung von Quarkus.
+
+### 🌍 API-Endpunkte
+- 📥 **GET /radars**: Liefert alle verfügbaren Radare.
+- 🔍 **GET /radars/{radarId}**: Details zu einem spezifischen Radar.
+- 📊 **GET /radars/data/{year}**: Radar-Daten eines bestimmten Jahres.
+- ➕ **POST /radars**: Erzeugt ein neues Radar.
+- ❌ **DELETE /radars/{radarId}**: Löscht ein Radar.
+
+## 🗂️ Datenmodell
+Die Hauptentitäten sind:
+- 📌 **Radar**: Repräsentiert eine Sammlung von Technologien.
+- 🧭 **Quadrant**: Bereich innerhalb eines Radars, z.B. Programmiersprachen.
+- 🎯 **Ring**: Kategorisierung innerhalb eines Quadranten, z.B. "Adopt", "Trial", "Assess", "Hold".
+- 📝 **RadarEntry**: Einzelne Technologie in einem Radar.
