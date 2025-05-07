@@ -16,3 +16,32 @@ Für uns als Entwickler-Community verkörpert Skopos genau diesen Gedanken:
 
 ## 🚀 Unsere Vision  
 Skopos Tech Radar soll eine zentrale, kollaborative Plattform bieten, um Technologien systematisch zu bewerten und deren Entwicklung zu verfolgen. Statt die neuesten Trends und deren Potenziale in verstreuten Notizen, Excel-Listen oder sonstigen Website Tabs zu verwalten, schaffen wir einen **gemeinsamen Wissensraum** – immer einfach zugänglich und strukturiert.
+
+### 💡 Use Cases  
+- **Teamentscheidung:** Bei der Wahl neuer Technologien stehen viele Optionen zur Verfügung. Mit dem Tech Radar können Teams fundierte Entscheidungen treffen.  
+- **Technologie-Monitoring:** Welche Tools und Frameworks werden von der Community unterstützt? Welche sind vielversprechend, welche sollten gemieden werden?  
+- **Wissensmanagement:** Zentralisierte und kontinuierlich aktualisierte Informationen verhindern, dass wertvolles Wissen verloren geht.  
+- **Open Source Spirit:** Mit einer offenen und transparenten Plattform möchten wir auch andere inspirieren, sich zu beteiligen und Technologien gemeinsam zu bewerten.  
+
+## 🌱 Community-getrieben und nachhaltig  
+Der Skopos Tech Radar ist mehr als nur ein Tool. Er ist eine **Initiative zur Förderung von Austausch und Transparenz**. Gemeinsam können wir Technologie-Trends besser verstehen und sinnvoll in Projekten einsetzen.  
+
+Egal ob erfahrene Entwickler oder Teams, die nach Orientierung suchen – unser Ziel ist es, eine offene und verlässliche Ressource bereitzustellen, die allen hilft, die technologische Zukunft aktiv mitzugestalten.  
+
+Lasst uns zusammen die Technologie von morgen entdecken
+
+
+## 📋 Projektbeschreibung
+
+Skopos Tech Radar ist eine webbasierte Anwendung zur Visualisierung und Verwaltung technologischer Trends im Unternehmen. Die Applikation basiert auf Quarkus und verwendet Keycloak für die Authentifizierung. Ziel ist es, Technologien (Programmiersprachen, Frameworks, Tools, Plattformen) systematisch zu erfassen, zu bewerten und nachzuverfolgen.
+
+### 🎯 Qualitätsziele
+- ✅ **Benutzerfreundlichkeit**: Einfache Bedienung für technische und nicht-technische Nutzer.
+- 📈 **Skalierbarkeit**: Unterstützung wachsender Mengen an Technologien und Teams.
+- 🔧 **Wartbarkeit**: Leicht erweiterbar für neue Technologien und Bewertungsmodelle.
+- 🔒 **Sicherheit**: Geschützte Benutzerverwaltung und Berechtigungen.
+
+### 👥 Stakeholder
+- 💻 **Entwicklungsteam**: Implementierung und Pflege des Systems.
+- 🧑‍💼 **Teamleiter / CTO**: Nutzung zur Technologiebewertung und Entscheidungshilfe.
+- 👨‍🏫 **Mitarbeiter**: Beitrag zur Bewertung und Ergänzung neuer Technologien.
