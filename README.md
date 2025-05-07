@@ -69,3 +69,28 @@ Die Hauptentitäten sind:
 - 🧭 **Quadrant**: Bereich innerhalb eines Radars, z.B. Programmiersprachen.
 - 🎯 **Ring**: Kategorisierung innerhalb eines Quadranten, z.B. "Adopt", "Trial", "Assess", "Hold".
 - 📝 **RadarEntry**: Einzelne Technologie in einem Radar.
+
+### 🗃️ Datenbankschema
+Die PostgreSQL-Datenbank besteht aus den Tabellen `radar`, `quadrant`, `ring`, und `radar_entry`, wobei Beziehungen über Fremdschlüssel realisiert werden. Hibernate ORM übernimmt die Verwaltung der Relationen.
+
+## 🔐 Sicherheitsaspekte
+- 🛡️ **Authentifizierung**: Mittels Keycloak, Benutzerverwaltung über OpenID Connect.
+- 🔑 **Zugangskontrolle**: Rollenbasiert, Admin-Benutzer mit erweiterten Berechtigungen.
+- 🔏 **Passwortverwaltung**: Sicher über Kubernetes Secrets abgelegt.
+
+## 🚀 Deployment und Infrastruktur
+Die Applikation läuft in Containern und wird mit Kubernetes/OpenShift orchestriert. Die Bereitstellung erfolgt in mehreren Stages:
+1. 🏗️ **Build**: Erzeugung des Quarkus-Bundles.
+2. 📦 **Containerisierung**: Erstellung des Docker-Images.
+3. 🌐 **Deployment**: Bereitstellung über Kubernetes.
+
+### 📂 Wichtige Konfigurationsdateien
+- 📝 **docker-compose.yml**: Lokale Container-Orchestrierung.
+- 🌐 **deployment.yaml**: Kubernetes-Deployment der Anwendung.
+- 🔧 **configs.yaml**: Datenbankverbindungsparameter.
+- 🛠️ **keycloak-deploy.yaml**: Keycloak-Deployment.
+
+## 📄 Lizenz
+Diese Software ist Open Source.
+Entwickelt und gepflegt von PM4 TechRadar Team ;) 
+
