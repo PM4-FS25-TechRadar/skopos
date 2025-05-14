@@ -1,5 +1,7 @@
 <template>
-  <div class="radar-card">
+  <div
+      class="radar-card"
+      @dblclick="goToRadar">
     <h3 class="title">{{ radar.name || 'Unnamed Radar' }}</h3>
 
     <div class="meta">
@@ -28,6 +30,7 @@
     </div>
 
     <div class="actions">
+      <button class="view-radar-btn" @click="goToRadar">View</button>
       <button class="edit-btn" @click="$emit('edit', radar)">Edit</button>
       <button class="delete-btn" @click="ask=true">🗑️</button>
     </div>
@@ -46,11 +49,17 @@ import ConfirmModal from '@/components/ui/ConfirmModal.vue'
 import service      from '@/services/radarService'
 
 export default {
+  name: 'RadarCard',
   components:{ ConfirmModal },
-  props:['radar'],
+  props: {
+    radar: { type: Object, required: true }
+  },
   emits:['deleted','edit'],
-  data:()=>({ ask:false }),
+  data:()=>({ ask: false }),
   methods:{
+    goToRadar(){
+      this.$router.push({ name: 'radar', params: { id: this.radar.id } })
+    },
     async remove(){
       this.ask=false
       await service.remove(this.radar.id)

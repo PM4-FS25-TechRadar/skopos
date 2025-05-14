@@ -1,16 +1,19 @@
 <template>
   <div :class="{ collapsed: isSidebarCollapsed }" class="app-layout">
-    <Sidebar :activeView="activeView" @navigate="activeView = $event" @toggle="isSidebarCollapsed = $event"/>
+    <Sidebar :activeView="activeView" @navigate=onNavigate() @toggle="isSidebarCollapsed = $event"/>
     <div class="main-content">
       <div>
         <div>👤 {{ username }}</div>
         <button @click="logout">Logout</button>
       </div>
-      <Radar v-if="activeView === 'radar'"/>
+
+      <router-view />
+      <!--
       <RadarsList v-else-if="activeView === 'radars'"/>
       <RadarEntriesList v-else-if="activeView === 'entries'"/>
       <TechnologyList v-else-if="activeView === 'technologies'"/>
       <div v-else-if="activeView === 'about'">About Page (coming soon)</div>
+      -->
     </div>
   </div>
 </template>
@@ -35,7 +38,7 @@ export default {
   inject: ['keycloak'],
   data() {
     return {
-      activeView: 'technologies',
+      activeView: 'radars',
       isSidebarCollapsed: false
     }
   },
