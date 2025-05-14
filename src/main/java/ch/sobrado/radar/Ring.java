@@ -3,9 +3,13 @@ package ch.sobrado.radar;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import jakarta.validation.ValidationException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(
@@ -14,7 +18,6 @@ import jakarta.validation.ValidationException;
                 @UniqueConstraint(columnNames = {"name", "radar_id"})
         }
 )
-@JsonIgnoreProperties("radar")
 public class Ring extends PanacheEntity {
 
     @Column(nullable = false)
@@ -22,6 +25,7 @@ public class Ring extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(name = "radar_id", nullable = false)
+    @JsonBackReference
     public Radar radar;
 
     @PrePersist
