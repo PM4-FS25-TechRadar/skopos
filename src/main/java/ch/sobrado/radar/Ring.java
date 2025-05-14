@@ -18,6 +18,7 @@ import java.util.List;
                 @UniqueConstraint(columnNames = {"name", "radar_id"})
         }
 )
+@JsonIgnoreProperties({"radar"})
 public class Ring extends PanacheEntity {
 
     @Column(nullable = false)
@@ -25,7 +26,6 @@ public class Ring extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(name = "radar_id", nullable = false)
-    @JsonBackReference
     public Radar radar;
 
     @PrePersist

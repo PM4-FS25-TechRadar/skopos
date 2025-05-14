@@ -13,7 +13,7 @@ import jakarta.validation.ValidationException;
                 @UniqueConstraint(columnNames = {"name", "radar_id"})
         }
 )
-@JsonIgnoreProperties("radar")
+@JsonIgnoreProperties({"radar"})
 public class Quadrant extends PanacheEntity {
 
     @Column(nullable = false)
@@ -21,7 +21,6 @@ public class Quadrant extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(name = "radar_id", nullable = false)
-    @JsonBackReference
     public Radar radar;
 
     @PrePersist
