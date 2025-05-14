@@ -1,127 +1,96 @@
-# radar: Technology Radar for Sobrado
+# 🌐 Skopos Tech Radar
 
-source for the Sobrado Tech Radar
+## 🌍 Warum Skopos Tech Radar?  
 
-Uses [Zalando Tech Radar](https://opensource.zalando.com/tech-radar/), inspired by [Thoughtworks](https://www.thoughtworks.com/radar) 
+In einer Welt in der die technologische Entwicklung rasant voranschreitet, sehen wir uns täglich mit einer Flut an neuen Tools, Frameworks und Programmiersprachen konfrontiert. Für Entwickler, Teams und Unternehmen stellt sich die Frage: **Wie behalten wir den Überblick über all die Innovationen und deren Nutzen für uns?**  
 
+Wir als Open-Source-Community wissen, dass Wissensaustausch und kontinuierliches Lernen die Grundlage für nachhaltige Entwicklung sind. Deshalb haben wir das **Skopos Tech Radar** ins Leben gerufen. Mithilfe unseres Dozenten welcher uns die Idee und Vorlage angeboten hatte, versuchten wir etwas weiterzuentwickeln um Usern ein einfaches und logisches Tracking von verschiedensten Dingen zu ermöglichen.
 
-source:  
-- https://opensource.zalando.com/tech-radar/radar.js 
-- legacy: https://github.com/zalando/tech-radar/blob/master/docs/radar.js 
+## 🪄 Woher kommt der Name Skopos?
+Der Name Skopos hat seine Wurzeln im Altgriechischen und bedeutet so viel wie "Ziel", "Aussicht" oder "Zweck". 
 
-Link to the [Arc42 documentation](documentation/arc42-documentation.md) for the architecture of the application.
+Für uns als Entwickler-Community verkörpert Skopos genau diesen Gedanken:
+- Wir wollen nicht einfach nur Daten sammeln sondern Technologie-Trends im Blick behalten.
+- Wir wollen nicht nur Informationen verwalten, sondern sie gezielt nutzen.
+- Wir wollen nicht nur passiv beobachten, sondern proaktiv die Zukunft gestalten.
 
-## Running the application in dev mode
+## 🚀 Unsere Vision  
+Skopos Tech Radar soll eine zentrale, kollaborative Plattform bieten, um Technologien systematisch zu bewerten und deren Entwicklung zu verfolgen. Statt die neuesten Trends und deren Potenziale in verstreuten Notizen, Excel-Listen oder sonstigen Website Tabs zu verwalten, schaffen wir einen **gemeinsamen Wissensraum** – immer einfach zugänglich und strukturiert.
 
-Requirements:
-- Java 17 or newer
-- Maven 3.8.1 or newer
-- quarkus command line tool (optional)
-- PostgreSQL 13 or newer
-  - running locally 
-  - or: Docker or Podman running on your machine
+### 💡 Use Cases  
+- **Teamentscheidung:** Bei der Wahl neuer Technologien stehen viele Optionen zur Verfügung. Mit dem Tech Radar können Teams fundierte Entscheidungen treffen.  
+- **Technologie-Monitoring:** Welche Tools und Frameworks werden von der Community unterstützt? Welche sind vielversprechend, welche sollten gemieden werden?  
+- **Wissensmanagement:** Zentralisierte und kontinuierlich aktualisierte Informationen verhindern, dass wertvolles Wissen verloren geht.  
+- **Open Source Spirit:** Mit einer offenen und transparenten Plattform möchten wir auch andere inspirieren, sich zu beteiligen und Technologien gemeinsam zu bewerten.  
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-quarkus dev
-or... 
-./mvnw compile quarkus:dev
-```
+## 🌱 Community-getrieben und nachhaltig  
+Der Skopos Tech Radar ist mehr als nur ein Tool. Er ist eine **Initiative zur Förderung von Austausch und Transparenz**. Gemeinsam können wir Technologie-Trends besser verstehen und sinnvoll in Projekten einsetzen.  
 
-in the current setup, it requires a PostgreSQL Database to be available as described in `src/main/resources/application.properties`. 
-alternatively, you can use Quarkus DevServices to deploy a PostgreSQL Database in a Docker Container autoamtically; cf Demo-App. 
+Egal ob erfahrene Entwickler oder Teams, die nach Orientierung suchen – unser Ziel ist es, eine offene und verlässliche Ressource bereitzustellen, die allen hilft, die technologische Zukunft aktiv mitzugestalten.  
 
-
-## Deployment Units
-
-The Radar uses a PostgreSQL Database defined in `src/main/resources/application.properties`.  
-Schemas in `src/main/resources/db/migration` are run by Flyway at startup and validated by Hibernate. 
+Lasst uns zusammen die Technologie von morgen entdecken
 
 
-# 🚀 Deploy to private OpenShift with private Gitlab
+## 📋 Projektbeschreibung
 
+Skopos Tech Radar ist eine webbasierte Anwendung zur Visualisierung und Verwaltung technologischer Trends im Unternehmen. Die Applikation basiert auf Quarkus und verwendet Keycloak für die Authentifizierung. Ziel ist es, Technologien (Programmiersprachen, Frameworks, Tools, Plattformen) systematisch zu erfassen, zu bewerten und nachzuverfolgen.
 
-- use .gitlab-ci.yml to deploy to OpenShift
-- configure new DB by hand, deploying Application Properties as ConfigMap and Secrets
+### 🎯 Qualitätsziele
+- ✅ **Benutzerfreundlichkeit**: Einfache Bedienung für technische und nicht-technische Nutzer.
+- 📈 **Skalierbarkeit**: Unterstützung wachsender Mengen an Technologien und Teams.
+- 🔧 **Wartbarkeit**: Leicht erweiterbar für neue Technologien und Bewertungsmodelle.
+- 🔒 **Sicherheit**: Geschützte Benutzerverwaltung und Berechtigungen.
 
-# 🚀 Deploy to Kubernetes with Github Actions
+### 👥 Stakeholder
+- 💻 **Entwicklungsteam**: Implementierung und Pflege des Systems.
+- 🧑‍💼 **Teamleiter / CTO**: Nutzung zur Technologiebewertung und Entscheidungshilfe.
+- 👨‍🏫 **Mitarbeiter**: Beitrag zur Bewertung und Ergänzung neuer Technologien.
 
-- use .github/workflows/main.yml to deploy to Kubernetes
-- tbd 
+## 🏗️ Architektur
+### 🗺️ Systemarchitektur
+Die Anwendung ist als Microservice konzipiert und folgt einem Container-First-Ansatz. Das Backend basiert auf **Quarkus** und nutzt **Hibernate ORM** zur Datenpersistenz. Quarkus wird in einem **Docker-Container** ausgeführt und über **Kubernetes/OpenShift** bereitgestellt.
 
+### 🛠️ Backend-Komponenten
+- 🗃️ **RadarService**: Verwaltung und Speicherung von Radardaten.
+- 🪧 **QuadrantService und RingService**: Strukturierung der Radardaten.
+- 🌐 **REST-API**: Bereitstellung der Schnittstellen mit JAX-RS.
+- 🗄️ **Datenbankzugriff**: Implementierung mit Panache, einer JPA-Erweiterung von Quarkus.
 
+### 🌍 API-Endpunkte
+- 📥 **GET /radars**: Liefert alle verfügbaren Radare.
+- 🔍 **GET /radars/{radarId}**: Details zu einem spezifischen Radar.
+- 📊 **GET /radars/data/{year}**: Radar-Daten eines bestimmten Jahres.
+- ➕ **POST /radars**: Erzeugt ein neues Radar.
+- ❌ **DELETE /radars/{radarId}**: Löscht ein Radar.
 
+## 🗂️ Datenmodell
+Die Hauptentitäten sind:
+- 📌 **Radar**: Repräsentiert eine Sammlung von Technologien.
+- 🧭 **Quadrant**: Bereich innerhalb eines Radars, z.B. Programmiersprachen.
+- 🎯 **Ring**: Kategorisierung innerhalb eines Quadranten, z.B. "Adopt", "Trial", "Assess", "Hold".
+- 📝 **RadarEntry**: Einzelne Technologie in einem Radar.
 
-# Next Steps
+### 🗃️ Datenbankschema
+Die PostgreSQL-Datenbank besteht aus den Tabellen `radar`, `quadrant`, `ring`, und `radar_entry`, wobei Beziehungen über Fremdschlüssel realisiert werden. Hibernate ORM übernimmt die Verwaltung der Relationen.
 
-- Build simple GUI for adding new Technologies per year 
-- User Management using Keycloak Tools Reaml 
+## 🔐 Sicherheitsaspekte
+- 🛡️ **Authentifizierung**: Mittels Keycloak, Benutzerverwaltung über OpenID Connect.
+- 🔑 **Zugangskontrolle**: Rollenbasiert, Admin-Benutzer mit erweiterten Berechtigungen.
+- 🔏 **Passwortverwaltung**: Sicher über Kubernetes Secrets abgelegt.
 
+## 🚀 Deployment und Infrastruktur
+Die Applikation läuft in Containern und wird mit Kubernetes/OpenShift orchestriert. Die Bereitstellung erfolgt in mehreren Stages:
+1. 🏗️ **Build**: Erzeugung des Quarkus-Bundles.
+2. 📦 **Containerisierung**: Erstellung des Docker-Images.
+3. 🌐 **Deployment**: Bereitstellung über Kubernetes.
 
+### 📂 Wichtige Konfigurationsdateien
+- 📝 **docker-compose.yml**: Lokale Container-Orchestrierung.
+- 🌐 **deployment.yaml**: Kubernetes-Deployment der Anwendung.
+- 🔧 **configs.yaml**: Datenbankverbindungsparameter.
+- 🛠️ **keycloak-deploy.yaml**: Keycloak-Deployment.
 
-# Legacy Manual Deploy to vsnh OpenShift
+## 📄 Lizenz
+Diese Software ist Open Source.
+Entwickelt und gepflegt von PM4 TechRadar Team ;) 
 
-Build jar with Java 11 (Java 17 not yet supported by builder image)   
-jar Upload  
-expose PostgreSQL Secrets in `BD` or `B` etc. to Env Variables similar to `application.properties`. 
-
-# 📒 Legacy Quarkus Documentation
-
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
-
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
-
-## Packaging and running the application
-
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/radar-0.0.1-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-- RESTEasy JAX-RS ([guide](https://quarkus.io/guides/rest-json)): REST endpoint framework implementing JAX-RS and more
-
-## Provided Code
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
