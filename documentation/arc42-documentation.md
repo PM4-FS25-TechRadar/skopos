@@ -122,6 +122,14 @@ Authentisierung geschieht über die Quarkus OIDC Integration. Der Provider muss 
 
 //TODO genauer erkläre, evtl. auch die Sache mit den DevServices 
 
+
+## Styling / Corporate Design 
+
+Das Styling von Radar und Applikation wird in einem zentralen CSS-File gesteuert. 
+//TODO beschreiben wie wo genau. 
+
+
+
 ## Automatisches Testing 
 
 Die Applikation verwendet Automatische End-zu-End Tests, die auf QuarkusTest basieren. Diese Tests werden im DevMode (kontinuerlich) und während der Build-Phase ausgeführt. 
