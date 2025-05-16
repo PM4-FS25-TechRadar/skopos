@@ -16,7 +16,6 @@ public class RadarView extends PanacheEntityBase implements Serializable {
 
     @Id
     public Long radar_id;
-    public int year;
     public String jsondata;
 
 
