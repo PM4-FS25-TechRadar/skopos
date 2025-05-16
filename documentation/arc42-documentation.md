@@ -122,6 +122,10 @@ Authentisierung geschieht über die Quarkus OIDC Integration. Der Provider muss 
 
 //TODO genauer erkläre, evtl. auch die Sache mit den DevServices 
 
+## Automatisches Testing 
+
+Die Applikation verwendet Automatische End-zu-End Tests, die auf QuarkusTest basieren. Diese Tests werden im DevMode (kontinuerlich) und während der Build-Phase ausgeführt. 
+
 
 
 # 9. Architekturentscheidungen
