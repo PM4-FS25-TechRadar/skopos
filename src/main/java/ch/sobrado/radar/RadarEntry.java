@@ -1,8 +1,6 @@
 package ch.sobrado.radar;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 
@@ -14,6 +12,7 @@ public class RadarEntry extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(name = "radar_id")
+    @JsonBackReference
     public Radar radar;
 
     @ManyToOne

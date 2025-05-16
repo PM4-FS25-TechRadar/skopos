@@ -1,7 +1,8 @@
 export default {
     async list ()      { return (await fetch('/radars')).json() },
-    async get  (id)    { return (await fetch(`/radars/${id}`)).json() },
+    async get  (id)    { return (await fetch(`/radars/${id}`)).json().catch(err => console.error('Radar fetch failed:', err)) },
 
+    async getRadar (id) { return (await fetch(`/radars/${id}/data`)).json() },
     async save (radar) {
         const method = radar.id ? 'PUT' : 'POST'
         const url    = radar.id ? `/radars/${radar.id}` : '/radars'

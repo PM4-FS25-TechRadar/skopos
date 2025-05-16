@@ -10,6 +10,7 @@ CREATE TABLE quadrants
 (
     id       BIGINT DEFAULT nextval('quadrants_seq'),
     name     VARCHAR(255) NOT NULL,
+    description   TEXT,
     radar_id BIGINT       NOT NULL,
     CONSTRAINT pk_quadrants PRIMARY KEY (id)
 );
@@ -26,6 +27,7 @@ CREATE TABLE rings
 (
     id       BIGINT DEFAULT nextval('rings_seq'),
     name     VARCHAR(255) NOT NULL,
+    description   TEXT,
     radar_id BIGINT       NOT NULL,
     CONSTRAINT pk_rings PRIMARY KEY (id)
 );

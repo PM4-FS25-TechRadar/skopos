@@ -1,6 +1,5 @@
 package ch.sobrado.radar;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import jakarta.validation.ValidationException;
@@ -32,6 +31,10 @@ public class Radar extends PanacheEntity {
     @OrderColumn(name = "ring_order")
     @Size(min = 4, max = 4, message = "Radar must have 4 rings")
     public List<Ring> rings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "radar", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    public List<RadarEntry> entries = new ArrayList<>();
 
     public void addRing(Ring ring) {
         ring.radar = this;
