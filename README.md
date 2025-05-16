@@ -84,6 +84,17 @@ Die Applikation läuft in Containern und wird mit Kubernetes/OpenShift orchestri
 2. 📦 **Containerisierung**: Erstellung des Docker-Images.
 3. 🌐 **Deployment**: Bereitstellung über Kubernetes.
 
+### Local run
+
+`mvn quarkus:dev` 
+
+oder 
+
+`quarkus dev`
+
+Benötigt `docker` oder `podman` mit Docker-Kompatibilität. 
+
+
 ### 📂 Wichtige Konfigurationsdateien
 - 📝 **docker-compose.yml**: Lokale Container-Orchestrierung.
 - 🌐 **deployment.yaml**: Kubernetes-Deployment der Anwendung.
