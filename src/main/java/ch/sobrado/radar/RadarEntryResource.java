@@ -15,13 +15,13 @@ import static jakarta.ws.rs.core.Response.Status.*;
 public class RadarEntryResource {
 
     @GET
-    @Path("/radar/{radarId}/entries")
+    @Path("radar/{radarId}/entries")
     public List<RadarEntry> getEntriesByRadar(@PathParam("radarId") Long radarId) {
         return RadarEntry.list("radar.id", radarId);
     }
 
     @PUT
-    @Path("/radar/{radarId}/entries")
+    @Path("radar/{radarId}/entries")
     @Transactional
     public Response createEntry(@PathParam("radarId") Long radarId, EntryDTO dto) {
         Radar radar = Radar.findById(radarId);
@@ -45,7 +45,7 @@ public class RadarEntryResource {
     }
 
     @POST
-    @Path("/entries/{entryId}")
+    @Path("entries/{entryId}")
     @Transactional
     public Response updateEntry(@PathParam("entryId") Long entryId, EntryDTO dto) {
         RadarEntry entry = RadarEntry.findById(entryId);
@@ -67,7 +67,7 @@ public class RadarEntryResource {
     }
 
     @DELETE
-    @Path("/entries/{entryId}")
+    @Path("entries/{entryId}")
     @Transactional
     public Response deleteEntry(@PathParam("entryId") Long entryId) {
         RadarEntry entry = RadarEntry.findById(entryId);
