@@ -34,6 +34,7 @@
 
 <script>
 import './radar.css'
+import radarService from "@/services/radarService.js";
 
 export default {
   data() {
@@ -42,15 +43,12 @@ export default {
       payload: null
     }
   },
-  mounted() {
-    fetch('/radars/data/2022')
-        .then(res => res.json())
-        .then(json => {
-          this.payload = json;
-          this.radarTitle = json.title;
-          this.renderRadar(json)
-        })
-        .catch(err => console.error('Radar fetch failed:', err))
+  async mounted() {
+    const id = this.$route.params.id
+    const json = await radarService.getRadar(id)
+    this.radarTitle = json.title
+    this.payload = json
+    this.renderRadar(json)
   },
   methods: {
     renderRadar(data) {

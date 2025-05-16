@@ -31,9 +31,9 @@ public class RadarResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/data/{year}")
-    public String data(@PathParam("year") int year) {
-        RadarView e = RadarView.find("year", year).firstResult();
+    @Path("/{radarId}/data")
+    public String data(@PathParam("radarId") Long radarId) {
+        RadarView e = RadarView.find("radar_id", radarId).firstResult();
         return e.jsondata;
     }
 
