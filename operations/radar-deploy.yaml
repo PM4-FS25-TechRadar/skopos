@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: radar
-        image: ghcr.io/pm4-fs25-techradar/skopos/skopos:da3d2d7
+        image: ghcr.io/pm4-fs25-techradar/skopos/skopos:7837f37
         ports:
         - containerPort: 8080
         env:
