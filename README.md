@@ -47,6 +47,11 @@ Skopos Tech Radar ist eine webbasierte Anwendung zur Visualisierung und Verwaltu
 - 👨‍🏫 **Mitarbeiter**: Beitrag zur Bewertung und Ergänzung neuer Technologien.
 
 ## 🏗️ Architektur
+
+
+Siehe auch die [Arc42-Dokumenation](documentation/arc42-documentation.md). 
+
+
 ### 🗺️ Systemarchitektur
 Die Anwendung ist als Microservice konzipiert und folgt einem Container-First-Ansatz. Das Backend basiert auf **Quarkus** und nutzt **Hibernate ORM** zur Datenpersistenz. Quarkus wird in einem **Docker-Container** ausgeführt und über **Kubernetes/OpenShift** bereitgestellt.
 
