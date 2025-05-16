@@ -32,6 +32,7 @@
     <div class="actions">
       <button class="view-radar-btn" @click="goToRadar">View</button>
       <button class="edit-btn" @click="$emit('edit', radar)">Edit</button>
+      <button class="duplicate-btn" @click="duplicate">Duplicate</button>
       <button class="delete-btn" @click="ask=true">🗑️</button>
     </div>
 
@@ -47,6 +48,7 @@
 <script>
 import ConfirmModal from '@/components/ui/ConfirmModal.vue'
 import service      from '@/services/radarService'
+import {deepClone} from "@/utils/deepClone.js";
 
 export default {
   name: 'RadarCard',
@@ -59,6 +61,26 @@ export default {
   methods:{
     goToRadar(){
       this.$router.push({ name: 'radar', params: { id: this.radar.id } })
+    },
+    duplicate(){
+      const clone = deepClone(this.radar)
+      delete clone.id
+      clone.quadrants.forEach(q => delete q.id)
+      clone.rings.forEach(r => delete r.id)
+
+      if (clone.entries) {
+        clone.entries = this.radar.entries.map(e => ({
+          label: e.label,
+          quadrant: e.quadrant,
+          ring: e.ring,
+          moved: e.moved,
+          active: e.active,
+          year: e.year,
+        }))
+        clone.entries.forEach(e => delete e.id)
+      }
+      console.log(clone)
+      this.$emit('edit', clone)
     },
     async remove(){
       this.ask=false

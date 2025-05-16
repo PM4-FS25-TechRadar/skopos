@@ -56,6 +56,13 @@ public class RadarResource {
             ring.radar = radar;
         }
         radar.persist();
+        for(RadarEntry entry : radar.entries) {
+            Quadrant quadrant = Quadrant.find("name = ?1 and radar.id = ?2", entry.quadrant.name, radar.id).firstResult();
+            Ring ring = Ring.find("name = ?1 and radar.id = ?2", entry.ring.name, radar.id).firstResult();
+            entry.quadrant = quadrant;
+            entry.ring = ring;
+            entry.persist();
+        }
         return Response.status(Response.Status.CREATED)
                 .entity(Collections.singletonMap("id", radar.id))
                 .build();

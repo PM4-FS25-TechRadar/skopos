@@ -14,7 +14,7 @@
           v-for="r in radars"
           :key="r.id ?? r._stubId"
           :radar="r"
-          @edit="editing = clone(r)"
+          @edit="editing = clone($event)"
           @deleted="remove"
       />
     </div>
@@ -28,6 +28,7 @@ import { genId } from '@/utils/uuid'
 import service from '@/services/radarService'
 import RadarCard from '@/components/radars/RadarCard.vue'
 import RadarEditor from '@/components/radars/RadarEditor.vue'
+import {deepClone} from "@/utils/deepClone.js";
 
 export default {
   components: { RadarCard, RadarEditor },
@@ -44,7 +45,7 @@ export default {
       this.loading = false
     },
     clone(o) {
-      return JSON.parse(JSON.stringify(o))
+      return deepClone(o)
     },
     newRadar() {
       this.editing = {
@@ -62,7 +63,7 @@ export default {
     remove(id) {
       this.radars = this.radars.filter(r => r.id !== id)
     },
-    async handleEditorClose(updatedRadar) {
+    async handleEditorClose() {
       this.editing = null
       await this.reload()
     }

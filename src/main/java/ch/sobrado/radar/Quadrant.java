@@ -1,5 +1,6 @@
 package ch.sobrado.radar;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
@@ -12,7 +13,7 @@ import jakarta.validation.ValidationException;
                 @UniqueConstraint(columnNames = {"name", "radar_id"})
         }
 )
-@JsonIgnoreProperties("radar")
+@JsonIgnoreProperties({"radar"})
 public class Quadrant extends PanacheEntity {
 
     @Column(nullable = false)
