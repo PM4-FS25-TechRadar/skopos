@@ -1,8 +1,8 @@
 CREATE TABLE entries (
-    id          SERIAL PRIMARY KEY,
-    radar_id    INTEGER NOT NULL REFERENCES radar(id) ON DELETE CASCADE,
-    version_id  INTEGER NOT NULL REFERENCES versions(id) ON DELETE CASCADE,
-    quadrant_id INTEGER NOT NULL REFERENCES quadrants(id) ON DELETE CASCADE,
-    ring_id     INTEGER NOT NULL REFERENCES rings(id) ON DELETE CASCADE,
-    status      VARCHAR(50) NOT NULL
+     id          SERIAL PRIMARY KEY,
+     radar_id    INTEGER NOT NULL REFERENCES radar(id) ON DELETE CASCADE,
+     version_id  INTEGER NOT NULL REFERENCES versions(id) ON DELETE CASCADE,
+     quadrant_id INTEGER NOT NULL REFERENCES quadrants(id) ON DELETE CASCADE,
+     ring_id     INTEGER NOT NULL REFERENCES rings(id) ON DELETE CASCADE,
+     status      VARCHAR(50) NOT NULL
 );

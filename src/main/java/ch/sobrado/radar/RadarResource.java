@@ -1,13 +1,13 @@
 package ch.sobrado.radar;
 
-import java.util.Collections;
-import java.util.List;
-
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+import java.util.Collections;
+import java.util.List;
 
 @Path("/radars")
 @Produces(MediaType.APPLICATION_JSON)
@@ -49,10 +49,10 @@ public class RadarResource {
         }
         radar.radarGroup = group;
         */
-        for(Quadrant quadrant : radar.quadrants) {
+        for (Quadrant quadrant : radar.quadrants) {
             quadrant.radar = radar;
         }
-        for(Ring ring : radar.rings) {
+        for (Ring ring : radar.rings) {
             ring.radar = radar;
         }
         radar.persist();
