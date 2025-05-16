@@ -2,26 +2,7 @@
 -- Repeatable Flyway Migration for the current year's Data still being discussed: 
 -- (will be replaced by a GUI in future)
 
-
-
 DELETE FROM radar_entry where year = 2022;
-
--- Data and Reporting
-
--- Default Radar
-INSERT INTO public.radar (id, name) VALUES (1, 'Default Radar');
-
--- Default Quadrants
-INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (1, 'data', 1, '0');
-INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (2, 'methods', 1, '1');
-INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (3, 'patterns', 1, '2');
-INSERT INTO public.quadrants (id, name, radar_id, quadrant_order) VALUES (4, 'platforms', 1, '3');
-
--- Default Rings
-INSERT INTO public.rings (id, name, description, radar_id, ring_order) VALUES (1, 'adopt', 'We feel strongly that we should be adopting these items...' ,1, '0');
-INSERT INTO public.rings (id, name, description, radar_id, ring_order) VALUES (2, 'trial', 'Worth pursuing. It is important to understand how to build up this capability...', 1, '1');
-INSERT INTO public.rings (id, name, description, radar_id, ring_order) VALUES (3, 'assess', 'Worth exploring with the goal of understanding how it will affect us...', 1, '2');
-INSERT INTO public.rings (id, name, description, radar_id, ring_order) VALUES (4, 'hold', 'Proceed with caution. Should not be extended or used for new projects...', 1, '3');
 
 -- Data
 INSERT INTO public.radar_entry(label, quadrant_id, ring_id, moved, year, radar_id) VALUES ('MariaDB', 1, 1, 0, 2022, 1);
