@@ -70,16 +70,13 @@ export default {
 
       if (clone.entries) {
         clone.entries = this.radar.entries.map(e => ({
-          label: e.label,
           quadrant: e.quadrant,
           ring: e.ring,
-          moved: e.moved,
-          active: e.active,
-          year: e.year,
+          version: e.version,
+          status: e.status,
         }))
         clone.entries.forEach(e => delete e.id)
       }
-      console.log(clone)
       this.$emit('edit', clone)
     },
     async remove(){
