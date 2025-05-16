@@ -50,5 +50,5 @@ select year, json_agg (
 from radar 
 join radarvalmap valquadrant on (radar.quadrant = valquadrant.val) 
 join radarvalmap valring on (radar.ring = valring.val)
-group by year
+group by year;
 
