@@ -61,6 +61,16 @@ export default {
   },
   methods: {
     saveTechnology() {
+      if (!this.localTechnology.versions || this.localTechnology.versions.length === 0) {
+        alert('Bitte mindestens eine Version eintragen.');
+        return;
+      }
+
+      if (this.localTechnology.versions.some(v => !v.name || !v.name.trim())) {
+        alert('Jede Version muss einen Namen haben.');
+        return;
+      }
+
       const method = this.localTechnology.id ? 'PUT' : 'POST';
       const url = this.localTechnology.id
           ? `/technologies/${this.localTechnology.id}`
