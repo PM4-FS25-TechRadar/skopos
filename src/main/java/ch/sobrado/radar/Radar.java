@@ -32,6 +32,10 @@ public class Radar extends PanacheEntity {
     @Size(min = 4, max = 4, message = "Radar must have 4 rings")
     public List<Ring> rings = new ArrayList<>();
 
+    @OneToMany(mappedBy = "radar", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    public List<RadarEntry> entries = new ArrayList<>();
+
     public void addRing(Ring ring) {
         ring.radar = this;
         rings.add(ring);

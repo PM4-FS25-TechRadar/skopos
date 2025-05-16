@@ -1,74 +1,74 @@
 # arc42 Architektur-Dokumentation: Technologieradar
 
-## 1. Einleitung und Ziele
+# 1. Einleitung und Ziele
 
-### Aufgabenstellung
+## Aufgabenstellung
 Entwicklung eines webbasierten Technologieradars, der Technologien (Programmiersprachen, Frameworks, Tools, Plattformen etc.) innerhalb eines Unternehmens oder Teams systematisch erfasst, bewertet und nachverfolgt.
 
-### Qualitätsziele
+## Qualitätsziele
 - **Benutzerfreundlichkeit**: Einfache Bedienung für technische und nicht-technische Nutzer.
 - **Skalierbarkeit**: Unterstützung wachsender Mengen an Technologien und Teams.
 - **Wartbarkeit**: Leicht erweiterbar für neue Technologien und Bewertungsmodelle.
 - **Sicherheit**: Geschützte Benutzerverwaltung und Berechtigungen.
 
-### Stakeholder
+## Stakeholder
 - **Entwicklungsteam**: Implementierung und Pflege des Systems.
 - **Teamleiter / CTO**: Nutzung zur Technologiebewertung und Entscheidungshilfe.
 - **Mitarbeiter**: Beitrag zur Bewertung und Ergänzung neuer Technologien.
 
 ---
 
-## 2. Randbedingungen
+# 2. Randbedingungen
 
-### Technische Randbedingungen
+## Technische Randbedingungen
 - Web-Anwendung, responsive Design.
 - Backend: Java (Quarkus)
 - Frontend: Vue.js (Vite)
 - Authentifizierung via Keycloak.
 - Hostbar in Kubernetes.
 
-### Organisatorische Randbedingungen
+## Organisatorische Randbedingungen
 - Agile Entwicklung (Scrum)
 - Zweiwöchentliche Reviews mit Stakeholdern.
 
-### Konventionen
+## Konventionen
 - GitHub als Repository
 - CI/CD via GitHub Actions
 - Code-Konventionen nach Firmenstandard
 
 ---
 
-## 3. Kontextabgrenzung
+# 3. Kontextabgrenzung
 
-### Systemkontext
+## Systemkontext
 
 Das Technologieradar empfängt Eingaben von Nutzern und ermöglicht die visuelle Darstellung sowie die Auswertung von Technologie-Trends.
 
-### Kontextdiagramm
+## Kontextdiagramm
 (→ Platzhalter: Hier könntest du später ein einfaches Diagramm ergänzen.)
 
-### Externe Systeme / Schnittstellen
+## Externe Systeme / Schnittstellen
 - Keycloak (Authentifizierung)
 - Postgresql Datenbanken für Technologien und Metadaten
 
 ---
 
-## 4. Lösungsstrategie
+# 4. Lösungsstrategie
 - **Microservice-Ansatz**: Trennung zwischen Frontend und Backend.
 - **Single Page Application (SPA)**: Frontend läuft komplett im Browser.
 - **Eventuelle spätere Anbindung**: Exportfunktionen / Social Sharingfunktionen (z.B. Links Generieren / Möglichkeit Technologie ins eigene Skopos Techradar zu übernehmen).
 
 ---
 
-## 5. Bausteinsicht
+# 5. Bausteinsicht
 
-### Bausteinübersicht
+## Bausteinübersicht
 - Frontend (Vue.js SPA)
 - Backend-API (Quarkus, RESTful API)
 - Datenbank (PostgreSQL)
-- Authentifizierung (Keycloak)
+- Authentifizierung (Keycloak, andere OIDC Provider)
 
-### Ebene 1: Hauptbausteine
+## Ebene 1: Hauptbausteine
 - **Frontend**: Visualisierung und Interaktion
 - **Backend**: Logik, Business-Regeln
 - **Datenbank**: Speicherung der Technologieeinträge und Bewertungen
@@ -79,9 +79,9 @@ Das Technologieradar empfängt Eingaben von Nutzern und ermöglicht die visuelle
 
 ---
 
-## 6. Laufzeitsicht
+# 6. Laufzeitsicht
 
-### Wichtige Abläufe
+## Wichtige Abläufe
 
 **Hinzufügen einer neuen Technologie**
 
@@ -92,26 +92,39 @@ Das Technologieradar empfängt Eingaben von Nutzern und ermöglicht die visuelle
 5. Backend speichert Technologie in der Datenbank.
 6. Frontend aktualisiert die Darstellung.
 
-// TODO: weiterer Abläufe
+//TODO: weiterer Abläufe
 
-## 7. Verteilungssicht
+# 7. Verteilungssicht
 
-### Technische Infrastruktur
-- Kompilierte Frontenddaten werden nach dem Bauen mit Quarkus bereitgestellt.
+## Technische Infrastruktur
+- Kompilierte Frontenddaten werden nach dem Bauen mit Quarkus bereitgestellt. 
+- TODO: welcher Ordner ist der Quarkus Server static site ordner? 
 - Backend-API läuft mit Quarkus als Container in Kubernetes.
-- Datenbank als verwalteter Dienst (z.B. AWS RDS).
+- Datenbank als verwalteter Dienst (z.B. AWS RDS). //TODO korriegieren 
 
 ### Zuordnung
 - Frontend kommuniziert über HTTPS mit der API.
-- API authentifiziert Requests über OAuth2 (Keycloak).
+- API authentifiziert Requests über OIDC (Keycloak).
 
 ---
 
-## 8. Datenmodell
+# 8. Generelle Konzepte
+
+
+
+## Datenmodell
 
 ![Datenmodell](Datenmodell.png)
 
-## 9. Architekturentscheidungen
+## Authentisierung
+
+Authentisierung geschieht über die Quarkus OIDC Integration. Der Provider muss im File `application.properties` einstellt werden. 
+
+//TODO genauer erkläre, evtl. auch die Sache mit den DevServices 
+
+
+
+# 9. Architekturentscheidungen
 
 | Entscheidung | Begründung | Alternative |
 | ------------ | ---------- | ----------- |
@@ -121,20 +134,26 @@ Das Technologieradar empfängt Eingaben von Nutzern und ermöglicht die visuelle
 
 ---
 
-## 10. Qualitätsanforderungen
+# 10. Qualitätsanforderungen
 
-### Qualitätsbaum
+## Qualitätsbaum
 - **Performance**: Antwortzeiten <500ms
 - **Security**: DSGVO-konforme Datenhaltung
 - **Usability**: Selbsterklärende Bedienung
 
-### Wichtigste Qualitätsszenarien
+## Wichtigste Qualitätsszenarien
 - Viele gleichzeitige Benutzer können Technologien hinzufügen und bewerten, ohne Performanceprobleme.
 - Bei einem Ausfall von Keycloak soll ein Failover-Modus definiert sein.
 
+... //TODO dies waren keine Anforderungen, jedoch: 
+
+- Mühelose Installation mit Kubernetes und "von Hand / bare Metal"
+- Mühelose Integration in OIDC IDP (e. g. Keycloak)
+- etc. 
+
 ---
 
-## 11. Risiken und technische Schulden
+# 11. Risiken und technische Schulden
 
 - Abhängigkeit von Keycloak: Erfordert Know-how im Team.
 - Mangelnde Dokumentation der API könnte zu Missverständnissen führen.
@@ -143,7 +162,7 @@ Das Technologieradar empfängt Eingaben von Nutzern und ermöglicht die visuelle
 
 ---
 
-## 12. Glossar
+# 12. Glossar
 
 | Begriff | Definition |
 | ------- | ---------- |

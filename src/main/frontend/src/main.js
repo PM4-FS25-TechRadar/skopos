@@ -1,11 +1,13 @@
 import { createApp } from 'vue'
 import './assets/app.css'
 import App from './App.vue'
+import router from './router/index.js'
 import keycloak from './auth'
 
 keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
     if (authenticated) {
         const app = createApp(App)
+        app.use(router)
         app.provide('keycloak', keycloak)
         app.mount('#app')
     } else {
