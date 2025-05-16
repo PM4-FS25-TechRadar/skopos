@@ -5,9 +5,12 @@
     </button>
     <div v-if="!isCollapsed" class="sidebar-nav">
       <ul>
-        <li :class="{ active: activeView === 'radar' }" @click="$emit('navigate', 'radar')">Radar</li>
-        <li :class="{ active: activeView === 'radars' }" @click="$emit('navigate', 'radars')">Radars</li>
-        <li :class="{ active: activeView === 'technologies' }" @click="$emit('navigate', 'technologies')">Technologies</li>
+        <router-link to="/">
+          <li :class="{ active: $route.name === 'radars' }">Radars</li>
+        </router-link>
+        <router-link to="/technologies">
+          <li :class="{ active: $route.name === 'technologies' }">Technologies</li>
+        </router-link>
 <!--        <li :class="{ active: activeView === 'entries' }" @click="$emit('navigate', 'entries')">Entries</li>-->
 <!--        <li :class="{ active: activeView === 'about' }" @click="$emit('navigate', 'about')">About</li>-->
       </ul>

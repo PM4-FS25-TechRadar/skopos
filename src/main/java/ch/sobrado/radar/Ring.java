@@ -1,7 +1,5 @@
 package ch.sobrado.radar;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
@@ -23,6 +21,8 @@ public class Ring extends PanacheEntity {
 
     @Column(nullable = false)
     public String name;
+
+    public String description;
 
     @ManyToOne
     @JoinColumn(name = "radar_id", nullable = false)
