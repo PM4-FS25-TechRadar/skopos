@@ -4,8 +4,9 @@
     <div class="entries-list">
       <RadarEntry
           v-for="entry in entries"
-          :key="entry.id"
+          :key="entry.id || entry.tempId"
           :entry="entry"
+          :radar="radar"
           @update-entry="updateEntry"
           @deleted="removeEntry"
           @add-entry="addEntryToList"
@@ -18,20 +19,27 @@
 import RadarEntry from './RadarEntry.vue'
 
 export default {
-  components: {
-    RadarEntry
-  },
+  props: ['radar'],
+  components: { RadarEntry },
   data() {
     return {
-      entries: []
+      entries: [],
+      tempIdCounter: 1
     }
   },
-  created() {
-    this.fetchEntries()
+  watch: {
+    radar: {
+      handler(newRadar) {
+        if (newRadar?.id) {
+          this.fetchEntries(newRadar.id)
+        }
+      },
+      immediate: true
+    }
   },
   methods: {
-    fetchEntries() {
-      fetch('/radar/entries')
+    fetchEntries(radarId) {
+      fetch(`/radar/${radarId}/entries`)
           .then(res => res.json())
           .then(data => {
             this.entries = data
@@ -41,25 +49,31 @@ export default {
     createNewEntry() {
       const newEntry = {
         id: null,
-        label: '',
-        quadrant: 'data',
-        ring: 'adopt',
-        moved: 0,
-        year: new Date().getFullYear()
+        tempId: 'temp-' + this.tempIdCounter++,
+        ringId: null,
+        quadrantId: null,
+        versionId: null,
+        status: 'NEW'
       }
       this.entries.unshift(newEntry)
     },
     updateEntry(updatedEntry) {
-      const index = this.entries.findIndex(entry => entry.id === updatedEntry.id)
+      const index = this.entries.findIndex(entry =>
+          entry.id === updatedEntry.id || entry.tempId === updatedEntry.tempId
+      )
       if (index !== -1) {
         this.entries.splice(index, 1, updatedEntry)
       }
     },
-    removeEntry(id) {
-      this.entries = this.entries.filter(entry => entry.id !== id)
+    removeEntry(idOrNull) {
+      this.entries = this.entries.filter(entry =>
+          entry.id !== idOrNull && entry.tempId !== idOrNull
+      )
     },
     addEntryToList(newEntry) {
-      this.entries = this.entries.map(entry => entry.id === null ? newEntry : entry)
+      this.entries = this.entries.map(entry =>
+          !entry.id ? newEntry : entry
+      )
     }
   }
 }
@@ -67,15 +81,14 @@ export default {
 
 <style>
 .entries-container {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
 }
 .add-new-entry-btn {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
+  align-self: flex-end;
+  margin-bottom: 1rem;
   font-size: 24px;
-  padding: 0;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -89,11 +102,9 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;
 }
-
 .add-new-entry-btn:hover {
   background-color: #cc660b;
 }
-
 .entries-list {
   display: flex;
   flex-wrap: wrap;

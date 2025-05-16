@@ -78,6 +78,11 @@
     >
     </ConfirmModal>
   </div>
+
+  <div>
+    <RadarEntriesList :radar="radar" />
+  </div>
+
 </template>
 
 <script>
@@ -86,9 +91,10 @@ import QuadrantListEditor from './editors/QuadrantListEditor.vue'
 import ConfirmModal from '@/components/ui/ConfirmModal.vue'
 import service from '@/services/radarService'
 import {deepClone} from '@/utils/deepClone'
+import RadarEntriesList from "@/components/radar-entries/RadarEntriesList.vue";
 
 export default {
-  components: {RingListEditor, QuadrantListEditor, ConfirmModal},
+  components: {RadarEntriesList, RingListEditor, QuadrantListEditor, ConfirmModal},
   props: {modelValue: Object, size: {default: 600}},
   emits: ['update:modelValue', 'close'],
   data() {
