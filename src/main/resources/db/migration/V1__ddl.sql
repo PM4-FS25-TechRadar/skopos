@@ -32,10 +32,6 @@ insert into radarvalmap values ('trial', 1);
 insert into radarvalmap values ('eval', 2); 
 insert into radarvalmap values ('hold', 3); 
 
-
-
-
-
 -- View die direkt benutzt werden kann 
 create or replace view radarentries as 
 select year, json_agg ( 
