@@ -1,16 +1,8 @@
 <template>
   <div class="radar-wrapper">
-    <img alt="radar-img" class="radar-logo"
-         src="https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg"/>
-    <h1 class="radar-title">Sobrado Tech Radar</h1>
+    <div class="radar-logo" />
 
-    <p class="radar-desc">
-      Shows Items that are relevant to Sobrado. Inspired and powered by Zalandos wonderful
-      <a href="https://opensource.zalando.com/tech-radar/" target="_blank">Techradar</a>,
-      with inputs from
-      <a href="https://www.thoughtworks.com/radar" target="_blank">ThoughtWorks</a> and
-      <a href="https://tarmac.io/techradar.html" target="_blank">Tarmac</a>.
-    </p>
+    <h1 class="radar-title"></h1>
 
     <svg id="radar"></svg>
 
