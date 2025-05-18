@@ -28,6 +28,14 @@ body {
     font-family: sans-serif;
 }
 
+.radar-logo {
+    display: block;
+    height: 70px;
+    background-image: url(https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 a:hover {
     color: #cd5b1c;
 }
