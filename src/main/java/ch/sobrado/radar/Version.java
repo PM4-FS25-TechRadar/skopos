@@ -1,6 +1,7 @@
 package ch.sobrado.radar;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 
@@ -20,6 +21,13 @@ public class Version extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(name = "technology_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     public Technology technology;
+
+    @Transient
+    @JsonProperty("techId")
+    public Long getTechnologyId() {
+        return technology != null ? technology.id : null;
+    }
+
 }
