@@ -4,7 +4,7 @@
 
     <label>
       Technology
-      <select v-model="localEntry.technologyId" @change="loadVersionsForTech">
+      <select v-model="localEntry.technologyId">
         <option disabled value="">Bitte wählen</option>
         <option v-for="tech in technologies" :key="tech.id" :value="tech.id">
           {{ tech.name }}
@@ -57,12 +57,11 @@
 export default {
   props: {
     entry: Object,
-    radar: Object
+    radar: Object,
+    technologies: Array,
   },
   data() {
     return {
-      technologies: [],
-      versions: [],
       localEntry: {
         id: null,
         technologyId: '',
@@ -73,10 +72,16 @@ export default {
       }
     }
   },
+  computed: {
+    versions() {
+      const tech = this.technologies.find(t => t.id === this.localEntry.technologyId)
+      return tech ? tech.versions : []
+    }
+  },
   watch: {
     entry: {
       handler(newEntry) {
-        const techId = newEntry.version?.technology?.id || null
+        const techId = newEntry.version?.techId || null
 
         this.localEntry = {
           id: newEntry.id || null,
@@ -87,37 +92,12 @@ export default {
           quadrantId: newEntry.quadrant?.id || newEntry.quadrantId || null,
           status: newEntry.status || 'NEW'
         }
-
-        if (techId) {
-          this.loadVersionsForTech()
-        }
       },
       immediate: true,
       deep: true
     }
   },
-  mounted() {
-    this.loadTechnologies()
-  },
   methods: {
-    async loadTechnologies() {
-      try {
-        const res = await fetch('/technologies')
-        this.technologies = await res.json()
-      } catch (err) {
-        console.error('Failed to load technologies:', err)
-      }
-    },
-    async loadVersionsForTech() {
-      if (!this.localEntry.technologyId) return
-      try {
-        const res = await fetch(`/technologies/${this.localEntry.technologyId}/versions`)
-        this.versions = await res.json()
-      } catch (err) {
-        console.error('Failed to load versions:', err)
-        this.versions = []
-      }
-    },
     saveEntry() {
       const isNew = !this.localEntry.id
       const method = isNew ? 'PUT' : 'POST'
