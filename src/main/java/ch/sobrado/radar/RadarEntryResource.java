@@ -60,12 +60,15 @@ public class RadarEntryResource {
 
         Ring ring = Ring.findById(dto.ringId);
         Quadrant quadrant = Quadrant.findById(dto.quadrantId);
-        if (ring == null || quadrant == null) {
-            return Response.status(BAD_REQUEST).entity("Invalid ring or quadrant").build();
+        Version version = Version.findById(dto.versionId);
+
+        if (ring == null || quadrant == null || version == null) {
+            return Response.status(BAD_REQUEST).entity("Invalid ring, quadrant or version").build();
         }
 
         entry.ring = ring;
         entry.quadrant = quadrant;
+        entry.version = version;
         entry.status = dto.status;
 
         return Response.ok(entry).build();
