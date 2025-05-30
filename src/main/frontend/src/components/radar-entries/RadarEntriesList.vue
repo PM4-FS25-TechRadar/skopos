@@ -71,9 +71,13 @@ export default {
       this.entries.unshift(newEntry)
     },
     updateEntry(updatedEntry) {
-      const index = this.entries.findIndex(entry =>
-          entry.id === updatedEntry.id || entry.tempId === updatedEntry.tempId
-      )
+      const index = this.entries.findIndex(entry => {
+        if (updatedEntry.id != null) {
+          return entry.id === updatedEntry.id;
+        } else {
+          return entry.tempId === updatedEntry.tempId;
+        }
+      })
       if (index !== -1) {
         this.entries.splice(index, 1, updatedEntry)
       }
