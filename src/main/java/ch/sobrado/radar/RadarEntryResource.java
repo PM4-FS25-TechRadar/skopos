@@ -1,5 +1,7 @@
 package ch.sobrado.radar;
 
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -13,6 +15,9 @@ import static jakarta.ws.rs.core.Response.Status.*;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RadarEntryResource {
+
+    @Inject
+    EntityManager em;
 
     @GET
     @Path("radar/{radarId}/entries")
@@ -70,13 +75,13 @@ public class RadarEntryResource {
     @Path("entries/{entryId}")
     @Transactional
     public Response deleteEntry(@PathParam("entryId") Long entryId) {
-        RadarEntry entry = RadarEntry.findById(entryId);
-        if (entry == null) {
-            return Response.status(NOT_FOUND).build();
-        }
+        int result = em.createNativeQuery("DELETE FROM entries WHERE id = :id")
+                .setParameter("id", entryId)
+                .executeUpdate();
 
-        entry.delete();
-        return Response.noContent().build();
+        return result > 0
+                ? Response.noContent().build()
+                : Response.status(Response.Status.NOT_FOUND).build();
     }
 
     public static class EntryDTO {
