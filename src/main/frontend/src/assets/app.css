@@ -1,61 +1,79 @@
-:root {
-    --brand-main : #cd5b1c;
-    --brand-dark : #a74615;
-    --text-dark : #333;
-    --text-light: #666;
-    --card-bg : #fafafa;
-    --border : #e5e5e5;
+/* =============================================================================
+   - Apply app-specific layout rules (header, footer, and the sidebar <-> main-content structure).
+   - Include branding elements such as the logo and nav-link styles.
+   - Control top-level global overrides (e.g., margin shifts when the sidebar expands/collapses).
+   - House any site-wide styles that don’t belong in either variables or global utilities.
+   ============================================================================= */
 
-    --ring-inner : #cd5b1c;
-    --ring-second : #5fa1b7;
-    --ring-third : #693e52;
-    --ring-outer : #000000;
-    --radar-background : #c5c5c5;
-    --radar-inactive : #5fa1b7;
-}
-
-html {
-    background-color: black;
-}
-
-body {
-    background-color: #2e2e2e;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border: 0;
-    top: 0;
-    color: #ffffff;
-    font-family: sans-serif;
-}
-
+/* 1. Logo in the Navbar */
 .radar-logo {
     display: block;
-    height: 70px;
-    background-image: url(https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg);
+    height: 2.5rem;
+    background-image: var(--logo-url);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-a:hover {
-    color: #cd5b1c;
-}
-
-a {
+/* Navigation Links */
+.nav-link {
+    color: var(--color-text-inverse);
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--font-size-md);
     text-decoration: none;
-    color: white;
+    margin-right: var(--space-lg);
+    transition: color var(--transition-fast) var(--easing-default);
+}
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--color-primary);
+    outline: none;
 }
 
+/* 2. Header */
+header {
+    background-color: var(--color-bg-dark);
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-inverse);
+    text-align: center;
+    padding: var(--space-md);
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-lg);
+}
+
+/* 3. App Layout: Sidebar ↔ Main Content */
 .app-layout {
     display: flex;
 }
 
 .app-layout .main-content {
-    margin-left: 220px;
+    margin-left: var(--sidebar-width);
     flex: 1;
-    padding: 2rem;
-    transition: margin-left 0.3s ease;
+    padding: var(--space-lg);
+    transition: margin-left var(--transition-medium) var(--easing-default);
 }
 
 .app-layout.collapsed .main-content {
-    margin-left: 60px;
+    margin-left: var(--sidebar-collapsed);
+}
+
+/* 4. Visually-Hidden (for screen readers) */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
 }

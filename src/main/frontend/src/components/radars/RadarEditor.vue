@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="editor-container container">
     <input v-model="radar.name" class="name" placeholder="Radar name"/>
 
     <div class="body">
@@ -64,9 +64,9 @@
       </div>
     </div>
 
-    <div class="actions">
-      <button class="save" @click="save">Save</button>
-      <button class="cancel" @click="$emit('close', null)">Cancel</button>
+    <div class="flex gap-md mt-md justify-end flex-wrap">
+      <button class="btn btn-primary" @click="save">Save</button>
+      <button class="btn" @click="$emit('close', null)">Cancel</button>
     </div>
 
     <ConfirmModal

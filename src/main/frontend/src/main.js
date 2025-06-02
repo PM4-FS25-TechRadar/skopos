@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import '@/assets/variables.css'
+import '@/assets/global.css'
 import './assets/app.css'
 import App from './App.vue'
 import router from './router/index.js'

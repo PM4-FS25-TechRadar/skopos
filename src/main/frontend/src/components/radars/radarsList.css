@@ -1,19 +1,69 @@
+/* ───────────────────────────────────────────────────
+   Radars List & Floating “Add New” Button
+   ─────────────────────────────────────────────────── */
 
-.loading{ text-align:center; font-size:1rem; color:var(--text-light); padding:2rem 0; }
-
-.radars-list{ display:flex; flex-wrap:wrap; }
-
-/* floating add button */
-.add-new-radar-btn{
-    position:fixed; bottom:20px; right:20px; z-index:20;
-    width:50px; height:50px; border-radius:50%;
-    background:var(--brand-main); color:#fff; border:none; font-size:1.5rem;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 2px 4px rgba(0,0,0,.2); cursor:pointer;
-    transition:background .3s, transform .1s;
+/* Loading spinner / text */
+.loading {
+    text-align: center;
+    font-size: var(--font-size-md);
+    color: var(--color-text-light);
+    padding: var(--space-xl) 0;
 }
-.add-new-radar-btn:hover  { background:var(--brand-dark); transform:scale(1.05);}
-.add-new-radar-btn:active { transform:scale(.95); }
-.add-new-radar-btn:focus  { outline:2px solid var(--brand-main); outline-offset:2px; }
 
-.radar-edit-container{ margin-top:2rem; }
+.radar-container {
+    margin: var(--space-lg) auto;
+    padding: var(--space-md);
+    background-color: unset;
+}
+
+.radars-list .loading {
+    max-width: var(--container-max);
+    margin: var(--space-lg) auto;
+    padding: var(--space-md);
+    background-color: var(--color-bg-dark);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Container for multiple Radar Cards */
+.radars-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
+}
+
+/* Floating “Add New Radar” Button */
+.add-new-radar-btn {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    border: none;
+    font-size: var(--font-size-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition:
+            background-color var(--transition-fast) var(--easing-default),
+            transform var(--transition-fast) var(--easing-default);
+}
+.add-new-radar-btn:hover,
+.add-new-radar-btn:focus {
+    background-color: var(--color-primary-dark);
+    transform: scale(1.05);
+}
+.add-new-radar-btn:active {
+    transform: scale(0.95);
+}
+.add-new-radar-btn:focus {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+}

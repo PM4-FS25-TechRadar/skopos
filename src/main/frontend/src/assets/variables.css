@@ -1,0 +1,124 @@
+/* =============================================================================
+   - Define project-wide CSS custom properties for colors,
+     typography, spacing, and component measures.
+   - Centralize all values such as color palettes, font sizes, spacing scales,
+     border-radius, box shadows, and transition timings.
+   - Enable consistent theming and easy updates of visual styles from a single place.
+   ============================================================================= */
+
+/* 1. COLOR PALETTE */
+:root {
+    /* Background / Text Defaults */
+    --color-bg-light:       #ffffff;
+    --color-bg-dark:        #2e2e2e;
+    --color-bg-overlay:     rgba(0, 0, 0, 0.4);
+
+    --color-text-dark:      #333333;
+    --color-text-light:     #666666;
+    --color-text-inverse:   #ffffff;
+
+    /* Primary / Secondary */
+    --color-primary:        #cd5b1c;
+    --color-primary-dark:   #a74615;
+    --color-secondary:      #5fa1b7;
+    --color-secondary-dark: #3e82a0;
+
+    /* Semantic (Status) Colors */
+    --color-success:        #5cb85c;
+    --color-warning:        #f0ad4e;
+    --color-danger:         #d9534f;
+    --color-danger-dark:    #c12e2a;
+    --color-info:           #5bc0de;
+
+    /* Border Color */
+    --color-border:         #dddddd;
+
+    /* Radar-specific */
+    --radar-ring-inner:     #cd5b1c;
+    --radar-ring-second:    #5fa1b7;
+    --radar-ring-third:     #693e52;
+    --radar-ring-outer:     #000000;
+    --radar-background:     #c5c5c5;
+    --radar-inactive:       #5fa1b7;
+
+    /* Logo URLs (place your logo files in /src/assets/) */
+    --logo-url:       url(https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg);
+}
+
+/* 2. TYPOGRAPHY */
+:root {
+    /* Font Families */
+    --font-sans:           "Helvetica Neue", Arial, sans-serif;
+    --font-heading:        "Roboto Slab", Arial, serif;
+    --font-mono:           "Courier New", monospace;
+
+    /* Font Sizes (rem scale) */
+    --font-size-xs:        0.75rem;   /* 12px */
+    --font-size-sm:        0.875rem;  /* 14px */
+    --font-size-md:        1rem;      /* 16px */
+    --font-size-lg:        1.125rem;  /* 18px */
+    --font-size-xl:        1.5rem;    /* 24px */
+    --font-size-xxl:       2rem;      /* 32px */
+
+    /* Line Heights */
+    --line-height-sm:      1.2;
+    --line-height-md:      1.4;
+    --line-height-lg:      1.6;
+}
+
+/* 3. SPACING SCALE */
+:root {
+    --space-xs:            0.25rem;   /* 4px */
+    --space-sm:            0.5rem;    /* 8px */
+    --space-md:            1rem;      /* 16px */
+    --space-lg:            1.5rem;    /* 24px */
+    --space-xl:            2rem;      /* 32px */
+    --space-xxl:           3rem;      /* 48px */
+}
+
+/* 4. COMPONENT-SPECIFIC MEASURES */
+:root {
+    /* Container / Max-Width */
+    --container-max:       1200px;
+    --container-min:       20rem;
+    --card-width:          20rem;   /* ~320px */
+
+    /* Sidebar Fixed Width */
+    --sidebar-width:       220px;
+    --sidebar-collapsed:   60px;
+
+    /* Button Padding (vertical horizontal) */
+    --btn-padding-sm:      var(--space-sm) var(--space-md);
+    --btn-padding-md:      var(--space-md) var(--space-lg);
+    --btn-padding-lg:      var(--space-lg) var(--space-xl);
+}
+
+/* 5. BORDER-RADIUS, SHADOWS & TRANSITIONS */
+:root {
+    /* Radii */
+    --radius-sm:           4px;
+    --radius-md:           6px;
+    --radius-lg:           8px;
+    --radius-xl:           12px;
+
+    /* Box Shadows */
+    --shadow-xs:           0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm:           0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md:           0 4px 10px rgba(0, 0, 0, 0.12);
+    --shadow-lg:           0 8px 24px rgba(0, 0, 0, 0.15);
+
+    /* Transition Durations & Easing */
+    --transition-fast:     0.15s;
+    --transition-medium:   0.3s;
+    --transition-slow:     0.5s;
+    --easing-default:      ease-in-out;
+}
+
+/* 6. ACCESSIBILITY: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast:   0s;
+        --transition-medium: 0s;
+        --transition-slow:   0s;
+    }
+}
