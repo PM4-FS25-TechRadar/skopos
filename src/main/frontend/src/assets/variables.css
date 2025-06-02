@@ -6,8 +6,10 @@
    - Enable consistent theming and easy updates of visual styles from a single place.
    ============================================================================= */
 
-/* 1. COLOR PALETTE */
 :root {
+
+/* 1. COLOR PALETTE */
+
     /* Background / Text Defaults */
     --color-bg-light:       #ffffff;
     --color-bg-dark:        #2e2e2e;
@@ -43,13 +45,13 @@
 
     /* Logo URLs (place your logo files in /src/assets/) */
     --logo-url:       url(https://landing.sobrado.ch/wp-content/themes/sobrado/assets/img/logo-white.svg);
-}
+
 
 /* 2. TYPOGRAPHY */
-:root {
+
     /* Font Families */
     --font-sans:           "Helvetica Neue", Arial, sans-serif;
-    --font-heading:        "Roboto Slab", Arial, serif;
+    --font-heading:        "Roboto Slab", serif;
     --font-mono:           "Courier New", monospace;
 
     /* Font Sizes (rem scale) */
@@ -64,20 +66,18 @@
     --line-height-sm:      1.2;
     --line-height-md:      1.4;
     --line-height-lg:      1.6;
-}
 
 /* 3. SPACING SCALE */
-:root {
+
     --space-xs:            0.25rem;   /* 4px */
     --space-sm:            0.5rem;    /* 8px */
     --space-md:            1rem;      /* 16px */
     --space-lg:            1.5rem;    /* 24px */
     --space-xl:            2rem;      /* 32px */
     --space-xxl:           3rem;      /* 48px */
-}
 
 /* 4. COMPONENT-SPECIFIC MEASURES */
-:root {
+
     /* Container / Max-Width */
     --container-max:       1200px;
     --container-min:       20rem;
@@ -91,10 +91,9 @@
     --btn-padding-sm:      var(--space-sm) var(--space-md);
     --btn-padding-md:      var(--space-md) var(--space-lg);
     --btn-padding-lg:      var(--space-lg) var(--space-xl);
-}
 
 /* 5. BORDER-RADIUS, SHADOWS & TRANSITIONS */
-:root {
+
     /* Radii */
     --radius-sm:           4px;
     --radius-md:           6px;

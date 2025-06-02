@@ -23,7 +23,7 @@ html {
 body {
     background-color: var(--color-bg-dark);
     color: var(--color-text-inverse);
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-sans);
     line-height: var(--line-height-md);
     -webkit-font-smoothing: antialiased;
 }
@@ -64,35 +64,35 @@ table {
 .heading-xxl {
     font-size: var(--font-size-xxl);
     line-height: var(--line-height-lg);
-    font-family: var(--font-heading), sans-serif;
+    font-family: var(--font-heading);
     color: var(--color-text-dark);
     margin-bottom: var(--space-md);
 }
 .heading-xl {
     font-size: var(--font-size-xl);
     line-height: var(--line-height-lg);
-    font-family: var(--font-heading), sans-serif;
+    font-family: var(--font-heading);
     color: var(--color-text-dark);
     margin-bottom: var(--space-md);
 }
 .heading-lg {
     font-size: var(--font-size-lg);
     line-height: var(--line-height-md);
-    font-family: var(--font-heading), sans-serif;
+    font-family: var(--font-heading);
     color: var(--color-text-dark);
     margin-bottom: var(--space-sm);
 }
 .heading-md {
     font-size: var(--font-size-md);
     line-height: var(--line-height-md);
-    font-family: var(--font-heading), sans-serif;
+    font-family: var(--font-heading);
     color: var(--color-text-dark);
     margin-bottom: var(--space-sm);
 }
 .heading-sm {
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
-    font-family: var(--font-heading), sans-serif;
+    font-family: var(--font-heading);
     color: var(--color-text-dark);
     margin-bottom: var(--space-xs);
 }
@@ -120,7 +120,7 @@ table {
     justify-content: center;
     padding: var(--btn-padding-sm);
     font-size: var(--font-size-sm);
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-sans);
     font-weight: 600;
     border: none;
     border-radius: var(--radius-md);
@@ -241,7 +241,7 @@ textarea,
 select {
     width: 100%;
     padding: var(--space-sm) var(--space-md);
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-sans);
     font-size: var(--font-size-md);
     color: var(--color-text-dark);
     background-color: var(--color-bg-light);

@@ -10,7 +10,7 @@
 .title {
     font-size: var(--font-size-lg);
     font-weight: 700;
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-sans);
     text-align: center;
     color: var(--color-text-dark);
     margin-bottom: var(--space-sm);

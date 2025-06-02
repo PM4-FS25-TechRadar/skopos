@@ -17,7 +17,7 @@
 /* Navigation Links */
 .nav-link {
     color: var(--color-text-inverse);
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-sans);
     font-size: var(--font-size-md);
     text-decoration: none;
     margin-right: var(--space-lg);
