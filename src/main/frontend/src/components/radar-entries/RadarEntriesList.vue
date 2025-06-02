@@ -1,7 +1,7 @@
 <template>
   <div class="entries-container container">
     <div>
-    <button class="btn btn-primary add-new-entry-btn" @click="createNewEntry">+</button>
+    <button class="btn btn-primary add-btn add-new-entry-btn" @click="createNewEntry">+</button>
     </div>
     <div class="entries-list">
       <RadarEntry

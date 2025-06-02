@@ -8,7 +8,7 @@
 /* 1. Logo in the Navbar */
 .radar-logo {
     display: block;
-    height: 2.5rem;
+    height: 5rem;
     background-image: var(--logo-url);
     background-repeat: no-repeat;
     background-size: contain;

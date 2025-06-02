@@ -56,9 +56,8 @@
 }
 
 /* Versions Section */
-
 .versions-section h4 {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     font-weight: 600;
     color: var(--color-text-dark);
     margin-bottom: var(--space-sm);

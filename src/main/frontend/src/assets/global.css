@@ -173,6 +173,29 @@ table {
     background-color: var(--color-danger-dark);
 }
 
+/* Floating “Add” Button */
+.add-btn {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: var(--font-size-lg);
+    z-index: 100;
+}
+.add-btn:hover,
+.add-btn:focus {
+    transform: scale(1.05);
+}
+.add-btn:active {
+    transform: scale(0.95);
+}
+.add-btn:focus {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+}
+
 /* Button Sizes */
 .btn-sm {
     font-size: var(--font-size-sm);

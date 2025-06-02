@@ -24,38 +24,3 @@
     gap: var(--space-lg);
     margin-top: var(--space-md);
 }
-
-/* Floating “Add New Technology” Button */
-.add-new-technology-btn {
-    position: fixed;
-    bottom: var(--space-lg);
-    right: var(--space-lg);
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: var(--color-primary);
-    color: var(--color-text-inverse);
-    border: none;
-    font-size: var(--font-size-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-    transition:
-            background-color var(--transition-fast) var(--easing-default),
-            transform var(--transition-fast) var(--easing-default);
-}
-.add-new-technology-btn:hover,
-.add-new-technology-btn:focus {
-    background-color: var(--color-primary-dark);
-    transform: scale(1.05);
-}
-.add-new-technology-btn:active {
-    transform: scale(0.95);
-}
-.add-new-technology-btn:focus {
-    outline: 2px solid var(--color-secondary);
-    outline-offset: 2px;
-}
