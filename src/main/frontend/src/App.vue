@@ -4,7 +4,7 @@
     <div class="main-content">
       <div>
         <div>👤 {{ username }}</div>
-        <button @click="logout">Logout</button>
+        <button class="btn" @click="logout">Logout</button>
       </div>
 
       <router-view />
@@ -54,17 +54,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.app-layout {
-  display: flex;
-}
-
-.main-content {
-  flex: 1;
-  padding: 2rem;
-  margin-left: 220px;
-  overflow-y: auto;
-  height: 100vh;
-}
-</style>

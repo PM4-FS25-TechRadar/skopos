@@ -1,7 +1,30 @@
-.list{ display:flex; flex-direction:column; gap:.5rem; }
-.item{
-    display:flex; align-items:center; background:var(--card-bg);
-    border:1px solid var(--border); padding:.3rem .5rem; border-radius:4px;
+/* List container for items (drag / drop capable) */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
 }
-.handle{ cursor:grab; margin-right:.4rem; color:#888; }
-input{ flex:1; border:none; background:transparent; font-size:1rem; }
+
+/* Single item row */
+.item {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+}
+
+/* “Handle” icon for dragging */
+.handle {
+    cursor: grab;
+    margin-right: var(--space-sm);
+    color: var(--color-text-dark);
+}
+
+/* Input fields inside list */
+input {
+    flex: 1;
+    border: none;
+    font-size: var(--font-size-md);
+    outline: none;
+}

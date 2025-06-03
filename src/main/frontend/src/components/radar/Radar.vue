@@ -46,10 +46,10 @@ export default {
     renderRadar(data) {
       const style = getComputedStyle(document.documentElement)
       const bg    = style.getPropertyValue('--radar-background')
-      const grid  = style.getPropertyValue('--brand-main')
+      const grid  = style.getPropertyValue('--color-primary')
       const inactive = style.getPropertyValue('--radar-inactive')
 
-      const ringColors = ['--ring-inner','--ring-second','--ring-third','--ring-outer']
+      const ringColors = ['--radar-ring-inner','--radar-ring-second','--radar-ring-third','--radar-ring-outer']
       const rings = data.rings.map((r,i) => ({
         name:  r.name.toUpperCase(),
         color: style.getPropertyValue(ringColors[i])

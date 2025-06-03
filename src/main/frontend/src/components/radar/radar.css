@@ -1,22 +1,48 @@
+/* ───────────────────────────────────────────────────
+   1. Radar Wrapper
+   2. Title & Description
+   3. Info Section
+   ─────────────────────────────────────────────────── */
+
+/* 1. Radar Wrapper */
 .radar-wrapper {
-    padding: 1rem;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-xxl);
 }
 
+/* 2. Title & Description */
 .radar-title {
-    font-size: 2rem;
-    margin: 1rem 0;
+    font-size: var(--font-size-xxl);
+    line-height: var(--line-height-lg);
+    font-family: var(--font-heading);
+    color: var(--color-text-dark);
+    margin-bottom: var(--space-md);
 }
 
 .radar-desc {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
 }
 
+/* 3. Info Section */
 .radar-info {
-    margin-top: 2rem;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
 }
-
 .radar-info h2 {
-    margin-top: 1.5rem;
-    color: #cd5b1c;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-md);
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+}
+.radar-info p {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--space-lg);
 }

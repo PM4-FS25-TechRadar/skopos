@@ -1,10 +1,10 @@
 <template>
   <div
-      class="radar-card"
+      class="card radar-card"
       @dblclick="goToRadar">
     <h3 class="title">{{ radar.name || 'Unnamed Radar' }}</h3>
 
-    <div class="meta">
+    <div class="flex gap-lg">
       <!-- quadrants -->
       <div class="block">
         <h4>Quadrants</h4>
@@ -29,12 +29,12 @@
       </div>
     </div>
 
-    <div class="actions">
-      <button class="view-radar-btn" @click="goToRadar">View</button>
-      <button class="edit-btn" @click="$emit('edit', radar)">Edit</button>
-      <button class="duplicate-btn" @click="duplicate">Duplicate</button>
-      <button class="delete-btn" @click="ask=true">🗑️</button>
+    <div class="flex-center gap-md mt-md">
+      <button class="btn btn-outline flex-1" @click="$emit('edit', radar)">Edit</button>
+      <button class="btn flex-1" @click="duplicate">Duplicate</button>
     </div>
+      <button class="btn btn-primary w-full mt-sm" @click="goToRadar">View</button>
+      <button class="delete-btn" @click="ask=true">🗑️</button>
 
     <ConfirmModal
         v-if="ask"

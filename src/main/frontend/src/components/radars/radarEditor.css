@@ -1,135 +1,159 @@
-.container{
-    background:#fff;
-    padding:1.5rem 2rem;
-    border-radius:8px;
-    max-width:1200px;
-    margin:auto;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
+/* ───────────────────────────────────────────────────
+   1. Container & Name Input
+   2. Body & Layout
+   3. Radar Preview
+   4. Editor Headings
+   5. Ring/Quadrant Lists
+   6. Save/Cancel Button Row
+─────────────────────────────────────────────────── */
+
+/* 1. Container for Radar Editor Form */
+.editor-container {
+    background-color: var(--color-bg-light);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
 }
 
-.name{
-    font:700 1.4rem/1.2 sans-serif;
-    width:100%;
-    border:none;
-    border-bottom:2px solid var(--brand-main);
-    margin-bottom:1.5rem;
-    text-align:center;
-    background:transparent;
-    color:var(--text-dark);
+/* Name Input */
+.name {
+    font: 700 var(--font-size-lg)/1 var(--font-sans);
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--color-primary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    background: transparent;
+    color: var(--color-text-dark);
+    transition: border-color var(--transition-fast) var(--easing-default);
+}
+.name:focus {
+    border-color: var(--color-primary-dark);
 }
 
-.body{
+/* 2. Body: Editor Area + Radar Preview */
+.body {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: var(--space-lg);
     justify-content: center;
-    align-items: center;
-    align-content: center;
 }
-
-@media(min-width:960px){
-    .body{
-        grid-template-columns:1fr minmax(240px, 320px);
-        align-items:start;
+@media (min-width: 960px) {
+    .body {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: var(--space-lg);
     }
 }
 
+/* 3. Radar Preview Container (SVG) */
 .radar-preview {
     flex: 1 1 400px;
     min-width: 260px;
+    width: 100%;
+    height: auto;
     background: none;
-    border-radius: 8px;
-}
-.radar-preview .axis     { stroke:var(--brand-main); stroke-width:1.0; }
-.radar-preview .ring     { fill:none; stroke-width:1.2; }
-
-.radar-preview .ring   { stroke:var(--brand-main); }
-
-
-.radar-preview .ring-label{
-    font:700 22px/1 sans-serif;
-    text-anchor:middle;
-    dominant-baseline:middle;
-    opacity:.8;
-}
-.radar-preview .rl-0 { fill:var(--ring-inner); }
-.radar-preview .rl-1 { fill:var(--ring-second); }
-.radar-preview .rl-2 { fill:var(--ring-third);  }
-.radar-preview .rl-3 { fill:var(--ring-outer);  }
-
-.radar-preview .quad-label{
-    font:700 18px/1 sans-serif;
-    text-anchor:middle;
-    dominant-baseline:middle;
-    fill:var(--text-dark);
+    border-radius: var(--radius-lg);
 }
 
-.lists{
+/* SVG styling inside radar preview */
+.radar-preview .axis { stroke: var(--color-primary); stroke-width: 1; }
+.radar-preview .ring {
+    fill: none;
+    stroke-width: 1.2;
+    stroke: var(--color-primary);
+}
+.radar-preview .ring-label {
+    font: 700 var(--font-size-xl)/1 var(--font-sans);
+    text-anchor: middle;
+    dominant-baseline: middle;
+    opacity: 0.8;
+}
+.radar-preview .rl-0 {
+    fill: var(--radar-ring-inner);
+}
+.radar-preview .rl-1 {
+    fill: var(--radar-ring-second);
+}
+.radar-preview .rl-2 {
+    fill: var(--radar-ring-third);
+}
+.radar-preview .rl-3 {
+    fill: var(--radar-ring-outer);
+}
+.radar-preview .quad-label {
+    font: 700 var(--font-size-lg)/1 var(--font-sans);
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: var(--color-text-dark);
+}
+
+/* 4. Editor Headings: Force <h4> to be dark */
+.editor-container h4,
+.editor-block h4 {
+    margin: 0 0 var(--space-sm);
+    font: 600 var(--font-size-md)/1 var(--font-sans);
+    text-align: center;
+    color: var(--color-text-dark);
+}
+
+/* 5. Ring/Quadrant List Sidebar */
+.lists {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    flex: 1 1 280px;
-    min-width: 280px;
+    gap: var(--space-lg);
+    width: 100%;
     max-width: 280px;
+    flex: 1 1 0;
 }
-
-.editor-block h4{
-    margin:0 0 .5rem;
-    font:600 1rem/1 sans-serif;
-    text-align:center;
-    color:#000;
-}
-
-@media(min-width:960px){
-    .lists{
-        display:flex;
-        flex-direction:column;
-        flex-wrap:nowrap;
-        width:280px;
-        max-width:280px;
+@media (min-width: 960px) {
+    .lists {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 280px;
+        max-width: 280px;
     }
 }
 
-.list{ display:flex; flex-direction:column; gap:.6rem; max-height:240px; overflow:auto; }
-.item{
-    display:flex; align-items:center;
-    background:var(--card-bg);
-    border:1px solid var(--border);
-    border-radius:6px;
-    padding:.45rem .6rem;
-}
-.handle{ cursor:grab; margin-right:.5rem; color:#888; }
-input{
-    flex:1; border:none; background:transparent;
-    font-size:.95rem; color:var(--text-dark);
+/* Each list wrapper (Quadrant / Ring) */
+.quadrant-list,
+.ring-list {
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
 }
 
-.actions{
-    display:flex;
-    gap:1rem;
-    margin-top:2rem;
-    justify-content:flex-end;
-    flex-wrap:wrap;
+/* UL inside each list */
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-height: 240px;
+    overflow-y: auto;
 }
-.actions button{
-    flex:1 1 140px;
-    padding:.6rem 1rem;
-    font-weight:600;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
+
+/* Each LI (item) */
+.item {
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    display: flex;
+    align-items: center;
+    word-break: break-word;
 }
-button.save{
-    background:var(--brand-main);
-    color:#fff;
+
+/* List Headings */
+.quadrant-list h4,
+.ring-list h4 {
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-dark);
+    text-align: center;
 }
-button.save:hover{
-    background:var(--brand-dark);
-}
-button.cancel {
-    background:#f0f0f0;
-    color:var(--text-dark);
-}
-button.cancel:hover{
-    background:#d9d9d9;
-}
+

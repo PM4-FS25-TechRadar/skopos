@@ -1,6 +1,8 @@
 <template>
-  <div class="entries-container">
-    <button class="add-new-entry-btn" @click="createNewEntry">+</button>
+  <div class="entries-container container">
+    <div>
+    <button class="btn btn-primary add-btn add-new-entry-btn" @click="createNewEntry">+</button>
+    </div>
     <div class="entries-list">
       <RadarEntry
           v-for="entry in entries"
@@ -79,35 +81,4 @@ export default {
 }
 </script>
 
-<style>
-.entries-container {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-.add-new-entry-btn {
-  align-self: flex-end;
-  margin-bottom: 1rem;
-  font-size: 24px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #ff7f0e;
-  color: white;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-}
-.add-new-entry-btn:hover {
-  background-color: #cc660b;
-}
-.entries-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-</style>
+<style src="./radarEntriesList.css"></style>

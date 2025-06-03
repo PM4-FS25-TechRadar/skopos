@@ -1,5 +1,5 @@
 <template>
-  <div class="entry-card">
+  <div class="entry-card card">
     <button class="delete-btn" title="Eintrag löschen" @click="deleteEntry">🗑️</button>
 
     <input
@@ -46,7 +46,7 @@
       </select>
     </label>
 
-    <button class="save-button" @click="saveEntry">Save</button>
+    <button class="btn btn-primary save-button" @click="saveEntry">Save</button>
   </div>
 </template>
 
