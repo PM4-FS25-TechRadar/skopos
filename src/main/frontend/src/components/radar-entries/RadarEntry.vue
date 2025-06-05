@@ -2,22 +2,25 @@
   <div class="entry-card card">
     <button class="delete-btn" title="Eintrag löschen" @click="deleteEntry">🗑️</button>
 
-    <input
-        v-model="localEntry.label"
-        class="entry-label-input"
-        type="text"
-        placeholder="Label (optional)"
-    />
+    <label>
+      Technology
+      <select v-model="localEntry.technologyId">
+        <option disabled value="">Bitte wählen</option>
+        <option v-for="tech in technologies" :key="tech.id" :value="tech.id">
+          {{ tech.name }}
+        </option>
+      </select>
+    </label>
 
     <label>
       Version
-      <select v-model="localEntry.versionId">
+      <select v-model="localEntry.versionId" :disabled="!versions.length">
+        <option disabled value="">Bitte wählen</option>
         <option v-for="version in versions" :key="version.id" :value="version.id">
           {{ version.name }}
         </option>
       </select>
     </label>
-
     <label>
       Ring
       <select v-model="localEntry.ringId">
@@ -54,30 +57,39 @@
 export default {
   props: {
     entry: Object,
-    radar: Object
+    radar: Object,
+    technologies: Array,
   },
   data() {
     return {
-      versions: [],
       localEntry: {
         id: null,
-        label: '',
+        technologyId: '',
+        versionId: '',
         ringId: null,
         quadrantId: null,
-        versionId: null,
         status: 'NEW'
       }
+    }
+  },
+  computed: {
+    versions() {
+      const tech = this.technologies.find(t => t.id === this.localEntry.technologyId)
+      return tech ? tech.versions : []
     }
   },
   watch: {
     entry: {
       handler(newEntry) {
+        const techId = newEntry.version?.techId || null
+
         this.localEntry = {
           id: newEntry.id || null,
           label: newEntry.label || '',
+          technologyId: techId,
+          versionId: newEntry.version?.id || newEntry.versionId || '',
           ringId: newEntry.ring?.id || newEntry.ringId || null,
           quadrantId: newEntry.quadrant?.id || newEntry.quadrantId || null,
-          versionId: newEntry.version?.id || newEntry.versionId || null,
           status: newEntry.status || 'NEW'
         }
       },
@@ -85,35 +97,27 @@ export default {
       deep: true
     }
   },
-  mounted() {
-    this.loadVersions()
-  },
   methods: {
-    async loadVersions() {
-      try {
-        const techsRes = await fetch('/api/technologies')
-        const techs = await techsRes.json()
-
-        const versionPromises = techs.map(t =>
-            fetch(`/api/technologies/${t.id}/versions`).then(r => r.json())
-        )
-        const allVersionsArrays = await Promise.all(versionPromises)
-        this.versions = allVersionsArrays.flat()
-      } catch (err) {
-        console.error('Failed to load versions:', err)
-      }
-    },
     saveEntry() {
       const isNew = !this.localEntry.id
       const method = isNew ? 'PUT' : 'POST'
       const url = isNew
-          ? `/api/radar/${this.radar.id}/entries`
-          : `/api/entries/${this.localEntry.id}`
+          ? `/radar/${this.radar.id}/entries`
+          : `/entries/${this.localEntry.id}`
+
+      const payload = {
+        id: this.localEntry.id,
+        label: this.localEntry.label,
+        versionId: this.localEntry.versionId,
+        ringId: this.localEntry.ringId,
+        quadrantId: this.localEntry.quadrantId,
+        status: this.localEntry.status
+      }
 
       fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.localEntry)
+        body: JSON.stringify(payload)
       })
           .then(res => {
             if (!res.ok) throw new Error('Save failed')
@@ -130,7 +134,7 @@ export default {
         return
       }
 
-      fetch(`/api/entries/${this.localEntry.id}`, {
+      fetch(`/entries/${this.localEntry.id}`, {
         method: 'DELETE'
       })
           .then(res => {

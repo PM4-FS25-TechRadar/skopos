@@ -9,6 +9,7 @@
           :key="entry.id || entry.tempId"
           :entry="entry"
           :radar="radar"
+          :technologies="technologies"
           @update-entry="updateEntry"
           @deleted="removeEntry"
           @add-entry="addEntryToList"
@@ -26,7 +27,8 @@ export default {
   data() {
     return {
       entries: [],
-      tempIdCounter: 1
+      tempIdCounter: 1,
+      technologies: [],
     }
   },
   watch: {
@@ -39,7 +41,18 @@ export default {
       immediate: true
     }
   },
+  mounted() {
+    this.loadTechnologies()
+  },
   methods: {
+    async loadTechnologies() {
+      try {
+        const res = await fetch('/technologies')
+        this.technologies = await res.json()
+      } catch (err) {
+        console.error('Failed to load technologies:', err)
+      }
+    },
     fetchEntries(radarId) {
       fetch(`/radar/${radarId}/entries`)
           .then(res => res.json())
@@ -60,9 +73,13 @@ export default {
       this.entries.unshift(newEntry)
     },
     updateEntry(updatedEntry) {
-      const index = this.entries.findIndex(entry =>
-          entry.id === updatedEntry.id || entry.tempId === updatedEntry.tempId
-      )
+      const index = this.entries.findIndex(entry => {
+        if (updatedEntry.id != null) {
+          return entry.id === updatedEntry.id;
+        } else {
+          return entry.tempId === updatedEntry.tempId;
+        }
+      })
       if (index !== -1) {
         this.entries.splice(index, 1, updatedEntry)
       }
