@@ -1,155 +1,106 @@
+/* ───────────────────────────────────────────────────
+   Technology Card & Version Section (unique overrides only)
+   ─────────────────────────────────────────────────── */
 .technology-card {
-    background-color: #fdfdfd;
-    border: 1px solid #ddd;
-    padding: 1.5rem;
-    border-radius: 10px;
-    width: 320px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s ease-in-out;
-    box-sizing: border-box;
-    margin: 1rem;
+    margin-bottom: var(--space-lg);
     position: relative;
 }
 
-.technology-card:hover {
-    transform: translateY(-4px);
-}
-
+/* Label above input */
 .technology-card label {
-    font-size: 0.95rem;
+    font-size: var(--font-size-sm);
     font-weight: 600;
-    margin: 0.8rem 0 0.2rem;
-    color: #333;
+    color: var(--color-text-dark);
+    margin-bottom: var(--space-xs);
     display: block;
 }
 
+/* Main input for technology name */
 .technology-name-input {
-    margin-top: 0.8rem !important;
-    font-weight: bold;
+    font: bold var(--font-size-lg)/1 var(--font-sans);
     text-align: center;
+    color: var(--color-text-dark);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--color-border);
+    padding: 0;
+    margin-top: var(--space-md) !important;
+    transition: border-color var(--transition-fast) var(--easing-default);
 }
-
 .technology-name-input:focus {
-    border-bottom: 2px solid #cd5b1c;
+    border-color: var(--color-primary);
 }
 
+/* Generic inputs / textarea inside card */
 .technology-card input,
 .technology-card textarea {
     width: 100%;
-    padding: 0.6rem;
-    font-size: 0.95rem;
-    margin-top: 0.4rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: #fff;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-in-out;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-md);
+    color: var(--color-text-dark);
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition:
+            border-color var(--transition-fast) var(--easing-default),
+            box-shadow var(--transition-fast) var(--easing-default);
+    margin: var(--space-xs) 0;
 }
-
 .technology-card textarea {
     resize: vertical;
 }
-
 .technology-card input:focus,
-.technology-card textarea:focus,
-.technology-card button:focus {
-    border-color: #cd5b1c;
-    outline: 2px solid #cd5b1c;
-    outline-offset: 2px;
+.technology-card textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(205, 91, 28, 0.15);
 }
 
-.technology-card button {
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.save-button {
-    margin-top: 1rem;
-    background-color: #cd5b1c;
-    color: white;
-    width: 100%;
-}
-
-.save-button:hover,
-.technology-card button:hover {
-    background-color: #a74615;
-}
-
-.version-actions {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    margin-top: 0.5rem;
-    gap: 0.5rem;
-}
-
-.version-actions button {
-    flex: 1;
-    width: 100%;
-}
-
+/* Versions Section */
 .versions-section h4 {
-    font-size: 1.1rem;
+    font-size: var(--font-size-md);
     font-weight: 600;
-    color: #222;
-    margin-bottom: 0.8rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--space-sm);
 }
+
 .versions-container {
     max-height: 250px;
     overflow-y: auto;
-    padding-bottom: 0.1rem;
+    margin-bottom: var(--space-sm);
 }
+
 .version-item {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #aaaaaa;
-    border-radius: 6px;
-    padding: 5px 5px 5px 5px;
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-dark);
+    word-break: break-word; /* ensure long text wraps */
 }
 
-.versions-section button {
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0.5rem 0;
-}
-
-.versions-section button:hover {
-    background-color: #d9d9d9;
-}
-
+/* Add-Version Container */
 .add-version-container {
     display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center;     /* center vertically */
+    justify-content: center;
+    align-items: center;
 }
 
+/* Delete button */
 .delete-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    font-size: var(--font-size-sm);
     background: transparent;
     border: none;
-    font-size: 0.9rem;
-    color: #aaa;
+    color: var(--color-text-light);
     cursor: pointer;
-    padding: 0;
-    transition: color 0.2s ease;
-    z-index: 2;
+    transition: color var(--transition-fast) var(--easing-default);
 }
-
-.delete-btn:hover {
-    color: #cd5b1c;
+.delete-btn:hover,
+.delete-btn:focus {
+    color: var(--color-danger);
+    transform: scale(1.1);
 }

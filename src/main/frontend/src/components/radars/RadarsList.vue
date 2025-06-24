@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <button v-if="!editing" class="add-new-radar-btn" @click="newRadar">＋</button>
+  <div class="radar-container container">
+    <button v-if="!editing" class="btn btn-primary add-btn" @click="newRadar">＋</button>
 
     <RadarEditor
         v-if="editing"

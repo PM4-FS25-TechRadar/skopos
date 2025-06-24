@@ -1,7 +1,22 @@
+/* ───────────────────────────────────────────────────
+   Radar Entry Cards Container
+─────────────────────────────────────────────────── */
 .entries-container {
+    margin: var(--space-lg) auto;
+    padding: unset;
+    background-color: unset;
+}
+
+.add-new-entry-btn {
+    position: unset;
+    display: block;
+    margin: var(--space-xs);
+    margin-left: auto;
+}
+
+.entries-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
-    justify-content: flex-start; /* oder center, je nach Wunsch */
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
 }

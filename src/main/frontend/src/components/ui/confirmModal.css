@@ -1,7 +1,11 @@
+/* ───────────────────────────────────────────────────
+   Confirm Modal (Backdrop + Buttons)
+   ─────────────────────────────────────────────────── */
+/* 1. Overlay (Backdrop) */
 .backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--color-bg-overlay);
     backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
@@ -9,54 +13,28 @@
     z-index: 1000;
 }
 
+/* 2. Modal Container */
 .modal {
-    background: var(--card-bg);
-    color: var(--text-dark);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    min-width: 320px;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    min-width: 20rem; /* ~320px */
     max-width: 90vw;
 }
 
 .modal h3 {
-    margin: 0 0 1rem;
-    font: 600 1.2rem sans-serif;
-    color: var(--text-dark);
+    font: 600 var(--font-size-lg)/1 var(--font-sans);
     text-align: center;
+    margin-bottom: var(--space-md);
+    color: var(--color-text-dark);
 }
 
+/* 3. Button Row Inside Modal */
 .row {
     display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    justify-content: flex-end;
-}
-
-.row button {
-    flex: 1 1 auto;
-    padding: 0.6rem 1rem;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-
-.row button:first-child {
-    background:#f0f0f0;
-    color:var(--text-dark);
-}
-.row button:first-child:hover {
-    background:#d9d9d9;
-}
-
-.row button.danger {
-    background: var(--brand-main);
-    color: #fff;
-}
-.row button.danger:hover {
-    background: var(--brand-dark);
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    justify-content: center;
 }

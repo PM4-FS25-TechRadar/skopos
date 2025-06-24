@@ -8,12 +8,13 @@
         <!-- cancel only if not confirm‑only -->
         <button
             v-if="!confirmOnly"
+            class="btn"
             @click="$emit('cancel')"
         >{{ cancelLabel }}</button>
 
         <!-- always show the confirm button, styled differently -->
         <button
-            :class="[ confirmOnly ? 'primary' : 'danger' ]"
+            class="btn btn-primary"
             @click="$emit('confirm')"
         >{{ confirmLabel }}</button>
       </div>

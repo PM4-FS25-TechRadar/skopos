@@ -426,15 +426,23 @@ function radar_visualization(config) {
         }
 
         // blip shape
-        if (d.moved > 0) {
+        if (d.moved === 2) {
+            // NEW → Stern (5-zackig)
             blip.append("path")
-                .attr("d", "M -11,5 11,5 0,-13 z") // triangle pointing up
+                .attr("d", "M0,-10 L2.4,-3.1 L9.5,-3.1 L3.9,1.2 L6.2,8.1 L0,4 L-6.2,8.1 L-3.9,1.2 L-9.5,-3.1 L-2.4,-3.1 Z")
+                .style("fill", d.color);
+        } else if (d.moved > 0) {
+            // MOVED_UP
+            blip.append("path")
+                .attr("d", "M -11,5 11,5 0,-13 z")
                 .style("fill", d.color);
         } else if (d.moved < 0) {
+            // MOVED_DOWN
             blip.append("path")
-                .attr("d", "M -11,-5 11,-5 0,13 z") // triangle pointing down
+                .attr("d", "M -11,-5 11,-5 0,13 z")
                 .style("fill", d.color);
         } else {
+            // NO_CHANGE
             blip.append("circle")
                 .attr("r", 9)
                 .attr("fill", d.color);

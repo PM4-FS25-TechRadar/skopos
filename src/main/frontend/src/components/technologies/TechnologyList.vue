@@ -1,7 +1,7 @@
 <template>
-  <div class="technologies-container">
+  <div class="technologies-container container">
     <button
-        class="add-new-technology-btn"
+        class="btn btn-primary add-btn"
         @click="createNewTechnology"
         aria-label="Add new technology"
     >

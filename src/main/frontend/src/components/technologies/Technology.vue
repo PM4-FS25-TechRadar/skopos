@@ -1,5 +1,5 @@
 <template>
-  <div class="technology-card">
+  <div class="card technology-card">
     <button
         class="delete-btn"
         title="Delete Technology"
@@ -35,16 +35,16 @@
             <textarea v-model="version.description" placeholder="Version Description"></textarea>
           </label>
           <div class="version-actions">
-            <button @click="saveVersion(version, index)">Save</button>
-            <button @click="removeVersion(version, index)">Remove</button>
+            <button class="btn" @click="saveVersion(version, index)">Save</button>
+            <button class="btn" @click="removeVersion(version, index)">Remove</button>
           </div>
         </div>
         <div class="add-version-container">
-          <button @click="addVersion">Add Version</button>
+          <button class="btn" @click="addVersion">Add Version</button>
         </div>
       </div>
     </div>
-    <button class="save-button" @click="saveTechnology">Save Technology</button>
+    <button class="btn btn-primary save-button" @click="saveTechnology">Save Technology</button>
   </div>
 </template>
 
